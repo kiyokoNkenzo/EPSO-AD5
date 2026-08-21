@@ -1,0 +1,1372 @@
+{
+  "schema_version": "1.0.0",
+  "deck_id": "epso-ad5-2026-phase2-foundations",
+  "title": "EPSO AD5 2026 — Phase 2 official-source foundations",
+  "phase": 2,
+  "language": "en",
+  "status": "PROVISIONAL_BACKGROUND_NOT_OFFICIAL_SYLLABUS",
+  "disclaimer": "This is a provisional fact-review deck built from the competition notice, EPSO guidance and authoritative EU background sources. It is not the official EPSO syllabus or the official EU Knowledge Test source pack. EPSO says that references to the materials used to develop the EU Knowledge Test will be published approximately two months before the test. When that pack appears, it must supersede this provisional scope and trigger a full content review. These are study flashcards, not invented test questions.",
+  "verified_at": "2026-08-13",
+  "cards": [
+    {
+      "id": "p2-format-01",
+      "topic": "Competition format",
+      "front": "When is Phase 2 expected, and which candidates reach it?",
+      "back": "Phase 2 is planned for 2027, on dates still to be announced. Candidates reach it only after obtaining the required Phase 1 reasoning-test pass scores.",
+      "detail": "EPSO split testing into two sittings: reasoning tests expected from October/November 2026, followed in 2027 by the remaining tests for candidates who pass Part 1. Treat all dates as operationally volatile and check the candidate portal and competition page.",
+      "tags": ["phase-2", "format", "timeline", "high-volatility"],
+      "source": {
+        "source_title": "AD5 Graduates testing split into two parts",
+        "url": "https://eu-careers.europa.eu/en/epso-apply-page-related-news/7576",
+        "locator": "Section 'What will change for candidates?', subsections 'Part 1' and 'Part 2'",
+        "version_or_snapshot_date": "EPSO update dated 2026-06-30; snapshot 2026-08-12",
+        "source_tier": "EPSO_GUIDANCE",
+        "verified_at": "2026-08-12",
+        "volatility": "HIGH"
+      }
+    },
+    {
+      "id": "p2-format-02",
+      "topic": "Competition format",
+      "front": "Which three tests make up Part 2 of EPSO/AD/427/26?",
+      "back": "The EU Knowledge Test, the digital skills test, and the Free-Text Essay on EU Matters (EUFTE).",
+      "detail": "The notice allows the delivery order to differ from the order in which the tests are listed. All Part 2 tests use the candidate's language 2.",
+      "tags": ["phase-2", "format", "tests", "language-2"],
+      "source": {
+        "source_title": "Consolidated Notice of Open Competition EPSO/AD/427/26 — Administrators (AD 5)",
+        "url": "https://eu-careers.europa.eu/system/files/2026-07/Notice-of-open-competition-EPSO-AD-427-26_consolidated-version.pdf",
+        "locator": "Sections 4.1 and 4.3.2(a)(i), printed pp. 3 and 5; Table 1, printed p. 4",
+        "version_or_snapshot_date": "Consolidated version published 2026-07-01",
+        "source_tier": "EPSO_GUIDANCE",
+        "verified_at": "2026-08-12",
+        "volatility": "MEDIUM"
+      }
+    },
+    {
+      "id": "p2-format-03",
+      "topic": "EU Knowledge Test",
+      "front": "What is the official format and pass mark of the EU Knowledge Test?",
+      "back": "30 multiple-choice questions in 40 minutes, scored 0–30, with a pass mark of 15/30.",
+      "detail": "The notice describes its subject as the EU, its institutions, procedures and main policies. Passing the test is necessary; the score also contributes to ranking.",
+      "tags": ["phase-2", "eu-knowledge", "timing", "pass-mark"],
+      "source": {
+        "source_title": "Consolidated Notice of Open Competition EPSO/AD/427/26 — Administrators (AD 5)",
+        "url": "https://eu-careers.europa.eu/system/files/2026-07/Notice-of-open-competition-EPSO-AD-427-26_consolidated-version.pdf",
+        "locator": "Section 4.3.2(c) and Table 3, printed p. 6",
+        "version_or_snapshot_date": "Consolidated version published 2026-07-01",
+        "source_tier": "EPSO_GUIDANCE",
+        "verified_at": "2026-08-12",
+        "volatility": "MEDIUM"
+      }
+    },
+    {
+      "id": "p2-format-04",
+      "topic": "Digital skills test",
+      "front": "What is the official format and pass mark of the digital skills test?",
+      "back": "40 multiple-choice questions in 30 minutes, scored 0–40, with a pass mark of 20/40.",
+      "detail": "The test assesses digital literacy in line with DigComp and draws from five stated areas. Its score contributes to ranking after the EU Knowledge Test is passed.",
+      "tags": ["phase-2", "digital-skills", "timing", "pass-mark"],
+      "source": {
+        "source_title": "Consolidated Notice of Open Competition EPSO/AD/427/26 — Administrators (AD 5)",
+        "url": "https://eu-careers.europa.eu/system/files/2026-07/Notice-of-open-competition-EPSO-AD-427-26_consolidated-version.pdf",
+        "locator": "Section 4.3.2(d) and Table 4, printed pp. 6–7",
+        "version_or_snapshot_date": "Consolidated version published 2026-07-01",
+        "source_tier": "EPSO_GUIDANCE",
+        "verified_at": "2026-08-12",
+        "volatility": "MEDIUM"
+      }
+    },
+    {
+      "id": "p2-format-05",
+      "topic": "EUFTE",
+      "front": "What is the official format and pass mark of the EUFTE?",
+      "back": "40 minutes, scored 0–10, with a pass mark of 5/10.",
+      "detail": "Candidates answer assignment(s) using EU-related documentation released ahead of the test and supplied again during it. EPSO states that this is a written-communication test, not a language or factual-knowledge test.",
+      "tags": ["phase-2", "eufte", "timing", "pass-mark"],
+      "source": {
+        "source_title": "Consolidated Notice of Open Competition EPSO/AD/427/26 — Administrators (AD 5)",
+        "url": "https://eu-careers.europa.eu/system/files/2026-07/Notice-of-open-competition-EPSO-AD-427-26_consolidated-version.pdf",
+        "locator": "Section 4.3.2(e) and Table 5, printed p. 7",
+        "version_or_snapshot_date": "Consolidated version published 2026-07-01",
+        "source_tier": "EPSO_GUIDANCE",
+        "verified_at": "2026-08-12",
+        "volatility": "MEDIUM"
+      }
+    },
+    {
+      "id": "p2-format-06",
+      "topic": "Scoring",
+      "front": "How is the preliminary combined score weighted?",
+      "back": "Verbal reasoning 40%, EU Knowledge Test 30%, and digital skills 30%. Numerical and abstract reasoning are pass-only at this stage; EUFTE is not yet included.",
+      "detail": "Only candidates who obtain all required pass scores have these results combined. The preliminary ranking determines whose EUFTE script and eligibility will be processed.",
+      "tags": ["phase-2", "ranking", "weights", "preliminary-score"],
+      "source": {
+        "source_title": "Consolidated Notice of Open Competition EPSO/AD/427/26 — Administrators (AD 5)",
+        "url": "https://eu-careers.europa.eu/system/files/2026-07/Notice-of-open-competition-EPSO-AD-427-26_consolidated-version.pdf",
+        "locator": "Section 4.3.3(a), Table 6, printed p. 7; Section 4.3.3(b)(ii)–(iv), printed p. 8",
+        "version_or_snapshot_date": "Consolidated version published 2026-07-01",
+        "source_tier": "EPSO_GUIDANCE",
+        "verified_at": "2026-08-12",
+        "volatility": "MEDIUM"
+      }
+    },
+    {
+      "id": "p2-format-07",
+      "topic": "Scoring",
+      "front": "How is the final combined score weighted?",
+      "back": "Verbal reasoning 35%, EU Knowledge Test 25%, digital skills 25%, and EUFTE 15%. Numerical and abstract reasoning remain pass-only.",
+      "detail": "EUFTE scoring and eligibility checks are normally limited to candidates taken in preliminary-rank order, in principle no more than 1.5 times the 1,490 successful candidates sought, subject to equal scores and a Selection Board increase.",
+      "tags": ["phase-2", "ranking", "weights", "final-score"],
+      "source": {
+        "source_title": "Consolidated Notice of Open Competition EPSO/AD/427/26 — Administrators (AD 5)",
+        "url": "https://eu-careers.europa.eu/system/files/2026-07/Notice-of-open-competition-EPSO-AD-427-26_consolidated-version.pdf",
+        "locator": "Section 4.3.3(a), Table 6, printed p. 7; Section 4.3.3(b)(iv)–(vii), printed pp. 8–9",
+        "version_or_snapshot_date": "Consolidated version published 2026-07-01",
+        "source_tier": "EPSO_GUIDANCE",
+        "verified_at": "2026-08-12",
+        "volatility": "MEDIUM"
+      }
+    },
+    {
+      "id": "p2-scope-01",
+      "topic": "Official source boundary",
+      "front": "Is this deck the official EU Knowledge Test syllabus?",
+      "back": "No. The official source pack is still pending. EPSO says references to the materials used to develop the test will be published approximately two months before the test date.",
+      "detail": "Use these cards as authoritative background only. Once EPSO publishes the source references, replace or revalidate every EU-knowledge card against that pack; do not infer official scope from this provisional deck.",
+      "tags": ["phase-2", "source-pack", "disclaimer", "high-volatility"],
+      "source": {
+        "source_title": "EU Knowledge Test material available 2 months before test",
+        "url": "https://eu-careers.europa.eu/en/news/eu-knowledge-test-material-available-2-months-test/19555",
+        "locator": "Entire notice: two paragraphs under the page title",
+        "version_or_snapshot_date": "Published 2026-03-16; last modified 2026-03-17; snapshot 2026-08-12",
+        "source_tier": "EPSO_GUIDANCE",
+        "verified_at": "2026-08-12",
+        "volatility": "HIGH"
+      }
+    },
+    {
+      "id": "p2-teu-01",
+      "topic": "TEU values",
+      "front": "Which values found the European Union under Article 2 TEU?",
+      "back": "Human dignity, freedom, democracy, equality, the rule of law, and respect for human rights, including minority rights.",
+      "detail": "Article 2 also describes the Member-State society in which these values are common: pluralism, non-discrimination, tolerance, justice, solidarity, and equality between women and men prevail.",
+      "tags": ["eu-knowledge", "teu", "values", "article-2"],
+      "source": {
+        "source_title": "Consolidated version of the Treaty on European Union",
+        "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A02016M%2FTXT-20250315",
+        "locator": "Article 2 TEU",
+        "version_or_snapshot_date": "Current consolidation dated 2025-03-15",
+        "source_tier": "OFFICIAL_EU_BACKGROUND",
+        "verified_at": "2026-08-12",
+        "volatility": "LOW"
+      }
+    },
+    {
+      "id": "p2-teu-02",
+      "topic": "TEU objectives",
+      "front": "What core objectives does Article 3 TEU set for the Union?",
+      "back": "Promote peace, its values and peoples' well-being; provide an area of freedom, security and justice; establish an internal market; pursue sustainable development and cohesion; establish economic and monetary union with the euro; and uphold its values and interests in the wider world.",
+      "detail": "The article expands these objectives with balanced growth, price stability, a highly competitive social market economy, social progress, environmental protection, scientific advance, anti-discrimination, solidarity, cultural and linguistic diversity, human rights and international law.",
+      "tags": ["eu-knowledge", "teu", "objectives", "article-3"],
+      "source": {
+        "source_title": "Consolidated version of the Treaty on European Union",
+        "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A02016M%2FTXT-20250315",
+        "locator": "Article 3(1)–(6) TEU",
+        "version_or_snapshot_date": "Current consolidation dated 2025-03-15",
+        "source_tier": "OFFICIAL_EU_BACKGROUND",
+        "verified_at": "2026-08-12",
+        "volatility": "LOW"
+      }
+    },
+    {
+      "id": "p2-teu-03",
+      "topic": "EU principles",
+      "front": "How do conferral, subsidiarity and proportionality differ?",
+      "back": "Conferral limits the Union to competences granted by the Treaties. Subsidiarity asks, outside exclusive competence, whether objectives are better achieved at Union level. Proportionality limits Union action to what is necessary for Treaty objectives.",
+      "detail": "Competences not conferred remain with Member States. Subsidiarity compares achievement at central, regional and local Member-State levels with the scale or effects of Union action; proportionality governs both content and form.",
+      "tags": ["eu-knowledge", "teu", "conferral", "subsidiarity", "proportionality"],
+      "source": {
+        "source_title": "Consolidated version of the Treaty on European Union",
+        "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A02016M%2FTXT-20250315",
+        "locator": "Article 5(1)–(4) TEU",
+        "version_or_snapshot_date": "Current consolidation dated 2025-03-15",
+        "source_tier": "OFFICIAL_EU_BACKGROUND",
+        "verified_at": "2026-08-12",
+        "volatility": "LOW"
+      }
+    },
+    {
+      "id": "p2-teu-04",
+      "topic": "EU principles",
+      "front": "What does sincere cooperation require under Article 4(3) TEU?",
+      "back": "The Union and Member States must assist each other, in full mutual respect, in carrying out Treaty tasks. Member States must fulfil Union obligations, facilitate Union tasks and avoid measures that could jeopardise Union objectives.",
+      "detail": "The same article also protects Member-State equality, national identities and essential State functions; national security remains each Member State's sole responsibility.",
+      "tags": ["eu-knowledge", "teu", "sincere-cooperation", "national-identity"],
+      "source": {
+        "source_title": "Consolidated version of the Treaty on European Union",
+        "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A02016M%2FTXT-20250315",
+        "locator": "Article 4(1)–(3) TEU",
+        "version_or_snapshot_date": "Current consolidation dated 2025-03-15",
+        "source_tier": "OFFICIAL_EU_BACKGROUND",
+        "verified_at": "2026-08-12",
+        "volatility": "LOW"
+      }
+    },
+    {
+      "id": "p2-teu-05",
+      "topic": "Democratic principles",
+      "front": "How are citizens and Member States represented democratically at Union level?",
+      "back": "Citizens are directly represented in the European Parliament. Member States are represented by their heads in the European Council and by their governments in the Council, with those governments democratically accountable nationally.",
+      "detail": "Article 10 TEU grounds the Union in representative democracy and requires decisions to be taken as openly and as closely as possible to citizens. Article 9 says Union citizenship is additional to, not a replacement for, national citizenship.",
+      "tags": ["eu-knowledge", "teu", "democracy", "representation", "citizenship"],
+      "source": {
+        "source_title": "Consolidated version of the Treaty on European Union",
+        "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A02016M%2FTXT-20250315",
+        "locator": "Articles 9 and 10(1)–(4) TEU",
+        "version_or_snapshot_date": "Current consolidation dated 2025-03-15",
+        "source_tier": "OFFICIAL_EU_BACKGROUND",
+        "verified_at": "2026-08-12",
+        "volatility": "LOW"
+      }
+    },
+    {
+      "id": "p2-teu-06",
+      "topic": "Institutions",
+      "front": "Which seven bodies are Union institutions under Article 13 TEU?",
+      "back": "European Parliament; European Council; Council; European Commission; Court of Justice of the European Union; European Central Bank; and Court of Auditors.",
+      "detail": "Each institution must act within its conferred powers and the Treaty procedures, conditions and objectives. The institutions practise mutual sincere cooperation. The EESC and Committee of the Regions are advisory bodies, not institutions in this list.",
+      "tags": ["eu-knowledge", "teu", "institutions", "article-13"],
+      "source": {
+        "source_title": "Consolidated version of the Treaty on European Union",
+        "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A02016M%2FTXT-20250315",
+        "locator": "Article 13(1)–(4) TEU",
+        "version_or_snapshot_date": "Current consolidation dated 2025-03-15",
+        "source_tier": "OFFICIAL_EU_BACKGROUND",
+        "verified_at": "2026-08-12",
+        "volatility": "LOW"
+      }
+    },
+    {
+      "id": "p2-inst-01",
+      "topic": "European Parliament",
+      "front": "What are the European Parliament's core Treaty functions?",
+      "back": "Jointly with the Council, it exercises legislative and budgetary functions. It also exercises political control and consultation and elects the Commission President.",
+      "detail": "Members represent Union citizens and are elected every five years by direct universal suffrage in a free and secret ballot.",
+      "tags": ["eu-knowledge", "institutions", "parliament", "article-14"],
+      "source": {
+        "source_title": "Consolidated version of the Treaty on European Union",
+        "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A02016M%2FTXT-20250315",
+        "locator": "Article 14(1)–(4) TEU",
+        "version_or_snapshot_date": "Current consolidation dated 2025-03-15",
+        "source_tier": "OFFICIAL_EU_BACKGROUND",
+        "verified_at": "2026-08-12",
+        "volatility": "LOW"
+      }
+    },
+    {
+      "id": "p2-inst-02",
+      "topic": "European Council",
+      "front": "What does the European Council do—and what does it not do?",
+      "back": "It gives the Union development impetus and defines general political directions and priorities. It does not exercise legislative functions.",
+      "detail": "It comprises the Member States' heads of state or government, its President and the Commission President; the High Representative takes part. Unless the Treaties say otherwise, it decides by consensus.",
+      "tags": ["eu-knowledge", "institutions", "european-council", "article-15"],
+      "source": {
+        "source_title": "Consolidated version of the Treaty on European Union",
+        "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A02016M%2FTXT-20250315",
+        "locator": "Article 15(1)–(4) TEU",
+        "version_or_snapshot_date": "Current consolidation dated 2025-03-15",
+        "source_tier": "OFFICIAL_EU_BACKGROUND",
+        "verified_at": "2026-08-12",
+        "volatility": "LOW"
+      }
+    },
+    {
+      "id": "p2-inst-03",
+      "topic": "Council of the EU",
+      "front": "What are the Council's core functions and default voting rule?",
+      "back": "Jointly with Parliament, it exercises legislative and budgetary functions; it also makes policy and coordinates. It acts by qualified majority unless the Treaties provide otherwise.",
+      "detail": "The ordinary double-majority threshold is at least 55% of Council members, at least 15, representing at least 65% of the Union population; a blocking minority normally needs at least four members.",
+      "tags": ["eu-knowledge", "institutions", "council", "qmv", "article-16"],
+      "source": {
+        "source_title": "Consolidated version of the Treaty on European Union",
+        "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A02016M%2FTXT-20250315",
+        "locator": "Article 16(1)–(4) TEU",
+        "version_or_snapshot_date": "Current consolidation dated 2025-03-15",
+        "source_tier": "OFFICIAL_EU_BACKGROUND",
+        "verified_at": "2026-08-12",
+        "volatility": "LOW"
+      }
+    },
+    {
+      "id": "p2-inst-04",
+      "topic": "European Commission",
+      "front": "What are the Commission's core Treaty functions?",
+      "back": "Promote the Union's general interest; initiate action; ensure Treaty and Union-law application under Court control; execute the budget; manage programmes; and perform coordinating, executive and management functions.",
+      "detail": "Except where the Treaties provide otherwise, Union legislative acts are adopted on a Commission proposal. Outside CFSP and other exceptions, the Commission also ensures external representation and initiates annual and multiannual programming.",
+      "tags": ["eu-knowledge", "institutions", "commission", "initiative", "article-17"],
+      "source": {
+        "source_title": "Consolidated version of the Treaty on European Union",
+        "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A02016M%2FTXT-20250315",
+        "locator": "Article 17(1)–(3) TEU",
+        "version_or_snapshot_date": "Current consolidation dated 2025-03-15",
+        "source_tier": "OFFICIAL_EU_BACKGROUND",
+        "verified_at": "2026-08-12",
+        "volatility": "LOW"
+      }
+    },
+    {
+      "id": "p2-inst-05",
+      "topic": "Court of Justice of the European Union",
+      "front": "What is the CJEU's core mission and what main kinds of ruling does it give?",
+      "back": "It ensures that the law is observed in interpreting and applying the Treaties. It rules on actions, gives preliminary rulings requested by national courts on Union-law interpretation or act validity, and handles other Treaty cases.",
+      "detail": "The CJEU includes the Court of Justice, the General Court and any specialised courts. Member States must provide remedies sufficient for effective legal protection in Union-law fields.",
+      "tags": ["eu-knowledge", "institutions", "cjeu", "article-19"],
+      "source": {
+        "source_title": "Consolidated version of the Treaty on European Union",
+        "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A02016M%2FTXT-20250315",
+        "locator": "Article 19(1)–(3) TEU",
+        "version_or_snapshot_date": "Current consolidation dated 2025-03-15",
+        "source_tier": "OFFICIAL_EU_BACKGROUND",
+        "verified_at": "2026-08-12",
+        "volatility": "LOW"
+      }
+    },
+    {
+      "id": "p2-inst-06",
+      "topic": "European Central Bank",
+      "front": "What is the ESCB's primary objective, and what special authority does the ECB have over the euro?",
+      "back": "The ESCB's primary objective is price stability. The ECB alone may authorise issuance of the euro and must be independent in exercising its powers and managing its finances.",
+      "detail": "The ECB and national central banks form the ESCB; the ECB and central banks of euro-area Member States form the Eurosystem and conduct Union monetary policy.",
+      "tags": ["eu-knowledge", "institutions", "ecb", "price-stability", "euro"],
+      "source": {
+        "source_title": "Consolidated version of the Treaty on the Functioning of the European Union",
+        "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A02016E%2FTXT-20250315",
+        "locator": "Article 282(1)–(3) TFEU",
+        "version_or_snapshot_date": "Current consolidation dated 2025-03-15",
+        "source_tier": "OFFICIAL_EU_BACKGROUND",
+        "verified_at": "2026-08-12",
+        "volatility": "LOW"
+      }
+    },
+    {
+      "id": "p2-inst-07",
+      "topic": "European Court of Auditors",
+      "front": "What does the European Court of Auditors do?",
+      "back": "It carries out the Union's audit: examining revenue and expenditure, the reliability of accounts, the legality and regularity of underlying transactions, and whether financial management is sound.",
+      "detail": "It provides Parliament and the Council with a statement of assurance and assists them in controlling budget implementation. Its members must be completely independent in performing their duties.",
+      "tags": ["eu-knowledge", "institutions", "court-of-auditors", "audit", "budget"],
+      "source": {
+        "source_title": "Consolidated version of the Treaty on the Functioning of the European Union",
+        "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A02016E%2FTXT-20250315",
+        "locator": "Articles 285 and 287(1)–(2) TFEU",
+        "version_or_snapshot_date": "Current consolidation dated 2025-03-15",
+        "source_tier": "OFFICIAL_EU_BACKGROUND",
+        "verified_at": "2026-08-12",
+        "volatility": "LOW"
+      }
+    },
+    {
+      "id": "p2-tfeu-01",
+      "topic": "EU competences",
+      "front": "How do exclusive, shared and supporting Union competences operate?",
+      "back": "Exclusive: only the Union legislates, unless it empowers Member States or they implement Union acts. Shared: both may legislate, but Member-State scope recedes when the Union acts. Supporting: the Union supports, coordinates or supplements without superseding Member-State competence or harmonising national law.",
+      "detail": "These are categories of power, not a ranking of policy importance. The detailed scope always depends on the Treaty legal basis for the particular field.",
+      "tags": ["eu-knowledge", "tfeu", "competences", "exclusive", "shared", "supporting"],
+      "source": {
+        "source_title": "Consolidated version of the Treaty on the Functioning of the European Union",
+        "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A02016E%2FTXT-20250315",
+        "locator": "Article 2(1), 2(2) and 2(5) TFEU",
+        "version_or_snapshot_date": "Current consolidation dated 2025-03-15",
+        "source_tier": "OFFICIAL_EU_BACKGROUND",
+        "verified_at": "2026-08-12",
+        "volatility": "LOW"
+      }
+    },
+    {
+      "id": "p2-tfeu-02",
+      "topic": "EU competences",
+      "front": "Which five policy areas are expressly exclusive Union competences?",
+      "back": "Customs union; internal-market competition rules; monetary policy for euro-area Member States; conservation of marine biological resources under the common fisheries policy; and common commercial policy.",
+      "detail": "Article 3(2) separately makes conclusion of certain international agreements an exclusive competence when specified Treaty conditions are met.",
+      "tags": ["eu-knowledge", "tfeu", "competences", "exclusive", "article-3"],
+      "source": {
+        "source_title": "Consolidated version of the Treaty on the Functioning of the European Union",
+        "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A02016E%2FTXT-20250315",
+        "locator": "Article 3(1)–(2) TFEU",
+        "version_or_snapshot_date": "Current consolidation dated 2025-03-15",
+        "source_tier": "OFFICIAL_EU_BACKGROUND",
+        "verified_at": "2026-08-12",
+        "volatility": "LOW"
+      }
+    },
+    {
+      "id": "p2-tfeu-03",
+      "topic": "EU competences",
+      "front": "Which principal areas are shared competences under Article 4(2) TFEU?",
+      "back": "Internal market; defined aspects of social policy; cohesion; agriculture and fisheries except marine-resource conservation; environment; consumer protection; transport; trans-European networks; energy; freedom, security and justice; and defined common public-health safety concerns.",
+      "detail": "Research, technological development and space, plus development cooperation and humanitarian aid, have special parallel-action rules in Article 4(3)–(4): Union action does not prevent Member-State action.",
+      "tags": ["eu-knowledge", "tfeu", "competences", "shared", "article-4"],
+      "source": {
+        "source_title": "Consolidated version of the Treaty on the Functioning of the European Union",
+        "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A02016E%2FTXT-20250315",
+        "locator": "Article 4(1)–(4) TFEU",
+        "version_or_snapshot_date": "Current consolidation dated 2025-03-15",
+        "source_tier": "OFFICIAL_EU_BACKGROUND",
+        "verified_at": "2026-08-12",
+        "volatility": "LOW"
+      }
+    },
+    {
+      "id": "p2-tfeu-04",
+      "topic": "EU competences",
+      "front": "Which areas can the Union support, coordinate or supplement under Article 6 TFEU?",
+      "back": "Human health protection and improvement; industry; culture; tourism; education, vocational training, youth and sport; civil protection; and administrative cooperation.",
+      "detail": "These supporting actions do not supersede Member-State competence, and binding Union acts based on supporting competences may not harmonise Member-State laws or regulations.",
+      "tags": ["eu-knowledge", "tfeu", "competences", "supporting", "article-6"],
+      "source": {
+        "source_title": "Consolidated version of the Treaty on the Functioning of the European Union",
+        "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A02016E%2FTXT-20250315",
+        "locator": "Articles 2(5) and 6 TFEU",
+        "version_or_snapshot_date": "Current consolidation dated 2025-03-15",
+        "source_tier": "OFFICIAL_EU_BACKGROUND",
+        "verified_at": "2026-08-12",
+        "volatility": "LOW"
+      }
+    },
+    {
+      "id": "p2-tfeu-05",
+      "topic": "EU citizenship",
+      "front": "What core citizenship rights are listed in Article 20(2) TFEU?",
+      "back": "Free movement and residence; voting and standing in European Parliament and municipal elections in the Member State of residence; consular protection by another Member State abroad when one's own is unrepresented; and petition, Ombudsman and Treaty-language communication rights.",
+      "detail": "Union citizenship belongs to every person holding Member-State nationality. It is additional to, not a replacement for, national citizenship, and rights operate under Treaty and legislative conditions and limits.",
+      "tags": ["eu-knowledge", "tfeu", "citizenship", "rights", "article-20"],
+      "source": {
+        "source_title": "Consolidated version of the Treaty on the Functioning of the European Union",
+        "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A02016E%2FTXT-20250315",
+        "locator": "Article 20(1)–(2) TFEU",
+        "version_or_snapshot_date": "Current consolidation dated 2025-03-15",
+        "source_tier": "OFFICIAL_EU_BACKGROUND",
+        "verified_at": "2026-08-12",
+        "volatility": "LOW"
+      }
+    },
+    {
+      "id": "p2-law-01",
+      "topic": "EU legal acts",
+      "front": "What are the defining legal effects of an EU regulation?",
+      "back": "It has general application, is binding in its entirety, and is directly applicable in every Member State.",
+      "detail": "Article 288 combines three characteristics for the regulation form: general application, full binding force and direct applicability throughout the Member States.",
+      "tags": ["eu-knowledge", "tfeu", "legal-acts", "regulation", "article-288"],
+      "source": {
+        "source_title": "Consolidated version of the Treaty on the Functioning of the European Union",
+        "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A02016E%2FTXT-20250315",
+        "locator": "Article 288, second paragraph, TFEU",
+        "version_or_snapshot_date": "Current consolidation dated 2025-03-15",
+        "source_tier": "OFFICIAL_EU_BACKGROUND",
+        "verified_at": "2026-08-12",
+        "volatility": "LOW"
+      }
+    },
+    {
+      "id": "p2-law-02",
+      "topic": "EU legal acts",
+      "front": "What are the defining legal effects of an EU directive?",
+      "back": "It binds each Member State to which it is addressed as to the result, while leaving national authorities the choice of form and methods.",
+      "detail": "A directive therefore differs from a regulation: Article 288 builds national implementation choices into the directive form.",
+      "tags": ["eu-knowledge", "tfeu", "legal-acts", "directive", "article-288"],
+      "source": {
+        "source_title": "Consolidated version of the Treaty on the Functioning of the European Union",
+        "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A02016E%2FTXT-20250315",
+        "locator": "Article 288, third paragraph, TFEU",
+        "version_or_snapshot_date": "Current consolidation dated 2025-03-15",
+        "source_tier": "OFFICIAL_EU_BACKGROUND",
+        "verified_at": "2026-08-12",
+        "volatility": "LOW"
+      }
+    },
+    {
+      "id": "p2-law-03",
+      "topic": "EU legal acts",
+      "front": "How do decisions, recommendations and opinions differ under Article 288 TFEU?",
+      "back": "A decision is binding in its entirety; if it names addressees, it binds only them. Recommendations and opinions have no binding force.",
+      "detail": "All five Article 288 forms—regulations, directives, decisions, recommendations and opinions—are Union legal acts, but only the first three are described there as binding.",
+      "tags": ["eu-knowledge", "tfeu", "legal-acts", "decision", "recommendation", "opinion"],
+      "source": {
+        "source_title": "Consolidated version of the Treaty on the Functioning of the European Union",
+        "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A02016E%2FTXT-20250315",
+        "locator": "Article 288, fourth and fifth paragraphs, TFEU",
+        "version_or_snapshot_date": "Current consolidation dated 2025-03-15",
+        "source_tier": "OFFICIAL_EU_BACKGROUND",
+        "verified_at": "2026-08-12",
+        "volatility": "LOW"
+      }
+    },
+    {
+      "id": "p2-law-04",
+      "topic": "Legislative procedure",
+      "front": "What defines the ordinary legislative procedure?",
+      "back": "Parliament and the Council jointly adopt a regulation, directive or decision on a Commission proposal, following the readings and possible conciliation set out in Article 294 TFEU.",
+      "detail": "At first reading Parliament adopts a position. If the Council approves it, the act is adopted; otherwise the Council sends its own position back. Later disagreement can lead to a second reading and a Conciliation Committee.",
+      "tags": ["eu-knowledge", "tfeu", "olp", "parliament", "council", "commission"],
+      "source": {
+        "source_title": "Consolidated version of the Treaty on the Functioning of the European Union",
+        "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A02016E%2FTXT-20250315",
+        "locator": "Articles 289(1) and 294(1)–(10) TFEU",
+        "version_or_snapshot_date": "Current consolidation dated 2025-03-15",
+        "source_tier": "OFFICIAL_EU_BACKGROUND",
+        "verified_at": "2026-08-12",
+        "volatility": "LOW"
+      }
+    },
+    {
+      "id": "p2-law-05",
+      "topic": "Delegated and implementing acts",
+      "front": "What is the difference between delegated and implementing acts?",
+      "back": "A delegated act is a Commission non-legislative act of general application that supplements or amends non-essential elements of legislation. An implementing act supplies uniform conditions for implementing a binding Union act, usually through Commission powers.",
+      "detail": "Legislation must define delegation objectives, scope and duration; Parliament or Council can revoke or object under the set conditions. Member States normally implement Union acts, but uniformity can justify conferred implementing powers.",
+      "tags": ["eu-knowledge", "tfeu", "delegated-acts", "implementing-acts", "commission"],
+      "source": {
+        "source_title": "Consolidated version of the Treaty on the Functioning of the European Union",
+        "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A02016E%2FTXT-20250315",
+        "locator": "Articles 290(1)–(3) and 291(1)–(4) TFEU",
+        "version_or_snapshot_date": "Current consolidation dated 2025-03-15",
+        "source_tier": "OFFICIAL_EU_BACKGROUND",
+        "verified_at": "2026-08-12",
+        "volatility": "LOW"
+      }
+    },
+    {
+      "id": "p2-budget-01",
+      "topic": "EU budget",
+      "front": "Which baseline budget principles appear in Article 310 TFEU?",
+      "back": "All annual revenue and expenditure must appear in the budget; revenue and expenditure must balance; expenditure needs authorisation; implementation follows sound financial management; and the Union and Member States counter fraud.",
+      "detail": "Budget-significant acts must be financeable within own-resources limits and the MFF. The annual budget is established by Parliament and the Council under Article 314.",
+      "tags": ["eu-knowledge", "tfeu", "budget", "principles", "article-310"],
+      "source": {
+        "source_title": "Consolidated version of the Treaty on the Functioning of the European Union",
+        "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A02016E%2FTXT-20250315",
+        "locator": "Article 310(1)–(6) TFEU",
+        "version_or_snapshot_date": "Current consolidation dated 2025-03-15",
+        "source_tier": "OFFICIAL_EU_BACKGROUND",
+        "verified_at": "2026-08-12",
+        "volatility": "LOW"
+      }
+    },
+    {
+      "id": "p2-budget-02",
+      "topic": "EU budget",
+      "front": "How does the Treaty describe financing through own resources?",
+      "back": "Without prejudice to other revenue, the Union budget is financed wholly from own resources. The Council unanimously adopts the own-resources decision after consulting Parliament, and Member States approve it under their constitutional requirements.",
+      "detail": "The Union must provide itself the means needed for its objectives and policies. The decision may create or abolish categories of own resources; Parliament consents to implementing measures where the decision provides for them.",
+      "tags": ["eu-knowledge", "tfeu", "budget", "own-resources", "article-311"],
+      "source": {
+        "source_title": "Consolidated version of the Treaty on the Functioning of the European Union",
+        "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A02016E%2FTXT-20250315",
+        "locator": "Article 311 TFEU",
+        "version_or_snapshot_date": "Current consolidation dated 2025-03-15",
+        "source_tier": "OFFICIAL_EU_BACKGROUND",
+        "verified_at": "2026-08-12",
+        "volatility": "LOW"
+      }
+    },
+    {
+      "id": "p2-budget-03",
+      "topic": "EU budget",
+      "front": "What does the Multiannual Financial Framework do, and how is it adopted?",
+      "back": "It keeps Union expenditure orderly and within own-resource limits, sets annual commitment and payment ceilings, and lasts at least five years. The Council adopts it unanimously after Parliament's consent.",
+      "detail": "The annual budget must comply with the MFF. The European Council may unanimously authorise qualified-majority voting for the Council's MFF regulation.",
+      "tags": ["eu-knowledge", "tfeu", "budget", "mff", "article-312"],
+      "source": {
+        "source_title": "Consolidated version of the Treaty on the Functioning of the European Union",
+        "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A02016E%2FTXT-20250315",
+        "locator": "Article 312(1)–(5) TFEU",
+        "version_or_snapshot_date": "Current consolidation dated 2025-03-15",
+        "source_tier": "OFFICIAL_EU_BACKGROUND",
+        "verified_at": "2026-08-12",
+        "volatility": "LOW"
+      }
+    },
+    {
+      "id": "p2-budget-04",
+      "topic": "EU budget",
+      "front": "Who proposes, adopts, implements, audits and discharges the annual EU budget?",
+      "back": "The Commission proposes; Parliament and the Council establish it; the Commission implements it with Member States; the Court of Auditors audits; and Parliament grants discharge to the Commission on a Council recommendation.",
+      "detail": "This chain separates political adoption, executive implementation, external audit and democratic accountability. The financial year runs from 1 January to 31 December.",
+      "tags": ["eu-knowledge", "tfeu", "budget", "accountability", "discharge"],
+      "source": {
+        "source_title": "Consolidated version of the Treaty on the Functioning of the European Union",
+        "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A02016E%2FTXT-20250315",
+        "locator": "Articles 313, 314(1)–(5), 317, 319(1), and 287 TFEU",
+        "version_or_snapshot_date": "Current consolidation dated 2025-03-15",
+        "source_tier": "OFFICIAL_EU_BACKGROUND",
+        "verified_at": "2026-08-12",
+        "volatility": "LOW"
+      }
+    },
+    {
+      "id": "p2-strategy-01",
+      "topic": "Strategic Agenda 2024–2029",
+      "front": "What are the three pillars of the European Council's Strategic Agenda 2024–2029?",
+      "back": "A free and democratic Europe; a strong and secure Europe; and a prosperous and competitive Europe.",
+      "detail": "The European Council agreed the agenda on 27 June 2024. It sets strategic orientations for the institutional cycle and guides the institutions; it is distinct from the Commission's seven political priorities.",
+      "tags": ["eu-knowledge", "strategic-agenda", "2024-2029", "political-cycle"],
+      "source": {
+        "source_title": "Strategic agenda 2024–2029",
+        "url": "https://www.consilium.europa.eu/en/european-council/strategic-agenda-2024-2029/",
+        "locator": "Introductory section and headings 'A free and democratic Europe', 'A strong and secure Europe', 'A prosperous and competitive Europe'",
+        "version_or_snapshot_date": "Adopted 2024-06-27; page last reviewed 2026-06-24; snapshot 2026-08-12",
+        "source_tier": "OFFICIAL_EU_BACKGROUND",
+        "verified_at": "2026-08-12",
+        "volatility": "MEDIUM"
+      }
+    },
+    {
+      "id": "p2-strategy-02",
+      "topic": "Commission priorities 2024–2029",
+      "front": "What are the Commission's seven priorities for 2024–2029?",
+      "back": "Sustainable prosperity and competitiveness; defence and security; people, society and the social model; quality of life—food security, water and nature; democracy and values; a global Europe; and delivering together while preparing the Union's future.",
+      "detail": "These seven Commission priorities operationalise the political programme for the current mandate. Their wording and supporting initiatives are time-sensitive and should be rechecked against the live Commission page.",
+      "tags": ["eu-knowledge", "commission", "priorities", "2024-2029", "high-volatility"],
+      "source": {
+        "source_title": "Commission's priorities 2024–2029",
+        "url": "https://commission.europa.eu/priorities-2024-2029_en",
+        "locator": "Seven priority headings under 'Commission’s priorities'",
+        "version_or_snapshot_date": "Political Guidelines dated 2024-07-18; web-page snapshot 2026-08-12",
+        "source_tier": "OFFICIAL_EU_BACKGROUND",
+        "verified_at": "2026-08-12",
+        "volatility": "HIGH"
+      }
+    },
+    {
+      "id": "p2-digcomp-01",
+      "topic": "DigComp overview",
+      "front": "What are DigComp 2.2's five digital-competence areas?",
+      "back": "Information and data literacy; communication and collaboration; digital content creation; safety; and problem solving.",
+      "detail": "DigComp groups 21 competences into these areas. The first three map to particular activities and uses; safety and problem solving are transversal across digital activities.",
+      "tags": ["phase-2", "digital-skills", "digcomp-2.2", "five-areas"],
+      "source": {
+        "source_title": "DigComp 2.2: The Digital Competence Framework for Citizens",
+        "url": "https://op.europa.eu/en/publication-detail/-/publication/50c53c01-abeb-11ec-83e1-01aa75ed71a1",
+        "locator": "Section 2, 'The Digital Competence Framework for Citizens', printed p. 8; Figure 3; table of contents, printed pp. I–II",
+        "version_or_snapshot_date": "JRC128415, 2022 edition, released 2022-03-17",
+        "source_tier": "OFFICIAL_EU_BACKGROUND",
+        "verified_at": "2026-08-12",
+        "volatility": "MEDIUM"
+      }
+    },
+    {
+      "id": "p2-digcomp-02",
+      "topic": "DigComp area 1",
+      "front": "Which competences make up DigComp Area 1: Information and data literacy?",
+      "back": "1.1 Browse, search and filter data, information and digital content; 1.2 evaluate them; 1.3 manage them.",
+      "detail": "The area covers articulating information needs, locating and retrieving content, judging source relevance, and storing, organising and managing digital information and data.",
+      "tags": ["phase-2", "digital-skills", "digcomp-2.2", "area-1", "information-literacy"],
+      "source": {
+        "source_title": "DigComp 2.2: The Digital Competence Framework for Citizens",
+        "url": "https://op.europa.eu/en/publication-detail/-/publication/50c53c01-abeb-11ec-83e1-01aa75ed71a1",
+        "locator": "Section 2, Area 1 and competences 1.1–1.3, printed pp. 9–14; accessible framework pp. 85–90",
+        "version_or_snapshot_date": "JRC128415, 2022 edition, released 2022-03-17",
+        "source_tier": "OFFICIAL_EU_BACKGROUND",
+        "verified_at": "2026-08-12",
+        "volatility": "MEDIUM"
+      }
+    },
+    {
+      "id": "p2-digcomp-03",
+      "topic": "DigComp area 2",
+      "front": "Which competences make up DigComp Area 2: Communication and collaboration?",
+      "back": "2.1 Interacting; 2.2 sharing; 2.3 engaging in citizenship; 2.4 collaborating through digital technologies; 2.5 netiquette; and 2.6 managing digital identity.",
+      "detail": "The framework couples tool choice and participation with attribution, collaborative processes, behavioural norms, diversity awareness, and control of one's digital presence and reputation.",
+      "tags": ["phase-2", "digital-skills", "digcomp-2.2", "area-2", "collaboration"],
+      "source": {
+        "source_title": "DigComp 2.2: The Digital Competence Framework for Citizens",
+        "url": "https://op.europa.eu/en/publication-detail/-/publication/50c53c01-abeb-11ec-83e1-01aa75ed71a1",
+        "locator": "Section 2, Area 2 and competences 2.1–2.6, printed pp. 15–26; accessible framework pp. 91–102",
+        "version_or_snapshot_date": "JRC128415, 2022 edition, released 2022-03-17",
+        "source_tier": "OFFICIAL_EU_BACKGROUND",
+        "verified_at": "2026-08-12",
+        "volatility": "MEDIUM"
+      }
+    },
+    {
+      "id": "p2-digcomp-04",
+      "topic": "DigComp area 3",
+      "front": "Which competences make up DigComp Area 3: Digital content creation?",
+      "back": "3.1 Developing digital content; 3.2 integrating and re-elaborating it; 3.3 copyright and licences; and 3.4 programming.",
+      "detail": "The area covers creating and editing content, improving and combining existing material, understanding rights and licences, and planning instructions that make a computing system solve a problem or perform a task.",
+      "tags": ["phase-2", "digital-skills", "digcomp-2.2", "area-3", "content-creation"],
+      "source": {
+        "source_title": "DigComp 2.2: The Digital Competence Framework for Citizens",
+        "url": "https://op.europa.eu/en/publication-detail/-/publication/50c53c01-abeb-11ec-83e1-01aa75ed71a1",
+        "locator": "Section 2, Area 3 and competences 3.1–3.4, printed pp. 27–34; accessible framework pp. 103–110",
+        "version_or_snapshot_date": "JRC128415, 2022 edition, released 2022-03-17",
+        "source_tier": "OFFICIAL_EU_BACKGROUND",
+        "verified_at": "2026-08-12",
+        "volatility": "MEDIUM"
+      }
+    },
+    {
+      "id": "p2-digcomp-05",
+      "topic": "DigComp area 4",
+      "front": "Which competences make up DigComp Area 4: Safety?",
+      "back": "4.1 Protecting devices; 4.2 protecting personal data and privacy; 4.3 protecting health and well-being; and 4.4 protecting the environment.",
+      "detail": "Safety is broader than cybersecurity: it includes privacy-policy awareness, physical and psychological well-being, social inclusion, and the environmental impact of digital technologies and their use.",
+      "tags": ["phase-2", "digital-skills", "digcomp-2.2", "area-4", "safety"],
+      "source": {
+        "source_title": "DigComp 2.2: The Digital Competence Framework for Citizens",
+        "url": "https://op.europa.eu/en/publication-detail/-/publication/50c53c01-abeb-11ec-83e1-01aa75ed71a1",
+        "locator": "Section 2, Area 4 and competences 4.1–4.4, printed pp. 35–42; accessible framework pp. 111–118",
+        "version_or_snapshot_date": "JRC128415, 2022 edition, released 2022-03-17",
+        "source_tier": "OFFICIAL_EU_BACKGROUND",
+        "verified_at": "2026-08-12",
+        "volatility": "MEDIUM"
+      }
+    },
+    {
+      "id": "p2-digcomp-06",
+      "topic": "DigComp area 5",
+      "front": "Which competences make up DigComp Area 5: Problem solving?",
+      "back": "5.1 Solving technical problems; 5.2 identifying needs and technological responses; 5.3 creatively using digital technologies; and 5.4 identifying digital competence gaps.",
+      "detail": "This transversal area covers diagnosis and resolution, matching tools to needs including accessibility, innovating with technology, and planning one's own or others' continuing digital development.",
+      "tags": ["phase-2", "digital-skills", "digcomp-2.2", "area-5", "problem-solving"],
+      "source": {
+        "source_title": "DigComp 2.2: The Digital Competence Framework for Citizens",
+        "url": "https://op.europa.eu/en/publication-detail/-/publication/50c53c01-abeb-11ec-83e1-01aa75ed71a1",
+        "locator": "Section 2, Area 5 and competences 5.1–5.4, printed pp. 43–50; accessible framework pp. 119–126",
+        "version_or_snapshot_date": "JRC128415, 2022 edition, released 2022-03-17",
+        "source_tier": "OFFICIAL_EU_BACKGROUND",
+        "verified_at": "2026-08-12",
+        "volatility": "MEDIUM"
+      }
+    },
+    {
+      "id": "p2-eufte-01",
+      "topic": "EUFTE anchors",
+      "front": "Which five anchors does EPSO publish for assessing the EUFTE?",
+      "back": "Logical flow; concision; clarity and understandability; adaptation to audience and purpose; and effective use of the supplied information to answer the assignment.",
+      "detail": "Build a response around these five checks. Factual recall is not the assessed competency: EPSO supplies the source material, and the task tests written communication.",
+      "tags": ["phase-2", "eufte", "writing", "anchors"],
+      "source": {
+        "source_title": "Graduates (Administrators – AD5)",
+        "url": "https://eu-careers.europa.eu/en/graduates-administrators-ad5",
+        "locator": "Section 'Written test - Free-Text Essay on EU Matters (EUFTE)', five anchor bullets",
+        "version_or_snapshot_date": "Web-page snapshot 2026-08-12",
+        "source_tier": "EPSO_GUIDANCE",
+        "verified_at": "2026-08-12",
+        "volatility": "HIGH"
+      }
+    },
+    {
+      "id": "p2-eufte-02",
+      "topic": "Clear writing",
+      "front": "What practical drafting habits from the Commission's clear-writing guide reinforce the EUFTE anchors?",
+      "back": "Define reader and purpose; outline and signpost; keep the text short and simple; order actions logically; prefer concrete words and active verbs; explain jargon and abbreviations; then revise from the reader's perspective.",
+      "detail": "The guide treats these as adaptable hints, not rigid rules. Its sentence-length benchmark is about 20 words on average, varied with shorter sentences; clarity and audience needs govern the final choice.",
+      "tags": ["phase-2", "eufte", "clear-writing", "audience", "revision"],
+      "source": {
+        "source_title": "How to write clearly",
+        "url": "https://op.europa.eu/en/publication-detail/-/publication/725b7eb0-d92e-11e5-8fea-01aa75ed71a1",
+        "locator": "Hints 1–10, especially printed pp. 3–9 and 14; 'KISS' benchmark on printed p. 6",
+        "version_or_snapshot_date": "European Commission Directorate-General for Translation, 2015 edition; released online 2016-02-19",
+        "source_tier": "OFFICIAL_EU_BACKGROUND",
+        "verified_at": "2026-08-12",
+        "volatility": "LOW"
+      }
+    },
+    {
+      "id": "p2-epschool-history-01",
+      "topic": "EU history and facts",
+      "front": "How many Member States are currently in the EU?",
+      "back": "27.",
+      "detail": "European Parliament Europe@School 2025 answer key. This is a time-sensitive 2025 snapshot; recheck after any accession or withdrawal.",
+      "tags": ["phase-2", "eu-knowledge", "european-parliament", "europe-at-school-2025", "history-and-facts", "membership", "high-volatility"],
+      "source": {
+        "source_title": "Europe@School — Educational game: EU History and Facts (2025)",
+        "url": "https://youth.europarl.europa.eu/files/live/sites/youthhub/files/active-lessons-revamp/en-educational-game-eu-history-and-facts-2025.pdf",
+        "locator": "PDF p. 1, source card 1 (top-left), question and blue answer",
+        "version_or_snapshot_date": "Europe@School 2025 edition; PDF metadata dated 2025-08-13; snapshot 2026-08-13",
+        "source_tier": "OFFICIAL_EU_BACKGROUND",
+        "verified_at": "2026-08-13",
+        "volatility": "HIGH"
+      }
+    },
+    {
+      "id": "p2-epschool-history-02",
+      "topic": "EU history and facts",
+      "front": "When did the first countries join forces for European cooperation? (A time period or a decade is close enough; you do not need to say a specific year)",
+      "back": "After World War II / in the 1950s (both answers are correct).",
+      "detail": "Answer from the European Parliament Europe@School 2025 history-and-facts card set.",
+      "tags": ["phase-2", "eu-knowledge", "european-parliament", "europe-at-school-2025", "history-and-facts", "post-war-europe"],
+      "source": {
+        "source_title": "Europe@School — Educational game: EU History and Facts (2025)",
+        "url": "https://youth.europarl.europa.eu/files/live/sites/youthhub/files/active-lessons-revamp/en-educational-game-eu-history-and-facts-2025.pdf",
+        "locator": "PDF p. 1, source card 2 (left column, second row), question and blue answer",
+        "version_or_snapshot_date": "Europe@School 2025 edition; PDF metadata dated 2025-08-13; snapshot 2026-08-13",
+        "source_tier": "OFFICIAL_EU_BACKGROUND",
+        "verified_at": "2026-08-13",
+        "volatility": "LOW"
+      }
+    },
+    {
+      "id": "p2-epschool-history-03",
+      "topic": "EU history and facts",
+      "front": "Why was the ECSC (European Coal and Steel Community) founded?",
+      "back": "To prevent a future war / to ensure peace.",
+      "detail": "Answer from the European Parliament Europe@School 2025 history-and-facts card set.",
+      "tags": ["phase-2", "eu-knowledge", "european-parliament", "europe-at-school-2025", "history-and-facts", "ecsc", "peace"],
+      "source": {
+        "source_title": "Europe@School — Educational game: EU History and Facts (2025)",
+        "url": "https://youth.europarl.europa.eu/files/live/sites/youthhub/files/active-lessons-revamp/en-educational-game-eu-history-and-facts-2025.pdf",
+        "locator": "PDF p. 1, source card 3 (left column, third row), question and blue answer",
+        "version_or_snapshot_date": "Europe@School 2025 edition; PDF metadata dated 2025-08-13; snapshot 2026-08-13",
+        "source_tier": "OFFICIAL_EU_BACKGROUND",
+        "verified_at": "2026-08-13",
+        "volatility": "LOW"
+      }
+    },
+    {
+      "id": "p2-epschool-history-04",
+      "topic": "EU history and facts",
+      "front": "What historically important event occurred in Europe in 1989?",
+      "back": "Fall of the Berlin wall / end of the Cold War.",
+      "detail": "Answer from the European Parliament Europe@School 2025 history-and-facts card set.",
+      "tags": ["phase-2", "eu-knowledge", "european-parliament", "europe-at-school-2025", "history-and-facts", "berlin-wall", "cold-war"],
+      "source": {
+        "source_title": "Europe@School — Educational game: EU History and Facts (2025)",
+        "url": "https://youth.europarl.europa.eu/files/live/sites/youthhub/files/active-lessons-revamp/en-educational-game-eu-history-and-facts-2025.pdf",
+        "locator": "PDF p. 1, source card 4 (left column, fourth row), question and blue answer",
+        "version_or_snapshot_date": "Europe@School 2025 edition; PDF metadata dated 2025-08-13; snapshot 2026-08-13",
+        "source_tier": "OFFICIAL_EU_BACKGROUND",
+        "verified_at": "2026-08-13",
+        "volatility": "LOW"
+      }
+    },
+    {
+      "id": "p2-epschool-history-05",
+      "topic": "EU history and facts",
+      "front": "The ‘four freedoms’ of the European single market are: free movement of goods, capital, people and … ?",
+      "back": "Services.",
+      "detail": "Answer from the European Parliament Europe@School 2025 history-and-facts card set.",
+      "tags": ["phase-2", "eu-knowledge", "european-parliament", "europe-at-school-2025", "history-and-facts", "single-market", "four-freedoms"],
+      "source": {
+        "source_title": "Europe@School — Educational game: EU History and Facts (2025)",
+        "url": "https://youth.europarl.europa.eu/files/live/sites/youthhub/files/active-lessons-revamp/en-educational-game-eu-history-and-facts-2025.pdf",
+        "locator": "PDF p. 1, source card 5 (bottom-left), question and blue answer",
+        "version_or_snapshot_date": "Europe@School 2025 edition; PDF metadata dated 2025-08-13; snapshot 2026-08-13",
+        "source_tier": "OFFICIAL_EU_BACKGROUND",
+        "verified_at": "2026-08-13",
+        "volatility": "LOW"
+      }
+    },
+    {
+      "id": "p2-epschool-history-06",
+      "topic": "EU history and facts",
+      "front": "The founding countries of the current European Union were France, Germany, Belgium, The Netherlands, Luxembourg and … ?",
+      "back": "Italy.",
+      "detail": "Answer from the European Parliament Europe@School 2025 history-and-facts card set.",
+      "tags": ["phase-2", "eu-knowledge", "european-parliament", "europe-at-school-2025", "history-and-facts", "founding-members", "italy"],
+      "source": {
+        "source_title": "Europe@School — Educational game: EU History and Facts (2025)",
+        "url": "https://youth.europarl.europa.eu/files/live/sites/youthhub/files/active-lessons-revamp/en-educational-game-eu-history-and-facts-2025.pdf",
+        "locator": "PDF p. 1, source card 6 (top-right), question and blue answer",
+        "version_or_snapshot_date": "Europe@School 2025 edition; PDF metadata dated 2025-08-13; snapshot 2026-08-13",
+        "source_tier": "OFFICIAL_EU_BACKGROUND",
+        "verified_at": "2026-08-13",
+        "volatility": "LOW"
+      }
+    },
+    {
+      "id": "p2-epschool-history-07",
+      "topic": "EU history and facts",
+      "front": "Which European institution is elected by us, the citizens, every 5 years? (direct elections)",
+      "back": "The European Parliament.",
+      "detail": "Answer from the European Parliament Europe@School 2025 history-and-facts card set.",
+      "tags": ["phase-2", "eu-knowledge", "european-parliament", "europe-at-school-2025", "history-and-facts", "elections"],
+      "source": {
+        "source_title": "Europe@School — Educational game: EU History and Facts (2025)",
+        "url": "https://youth.europarl.europa.eu/files/live/sites/youthhub/files/active-lessons-revamp/en-educational-game-eu-history-and-facts-2025.pdf",
+        "locator": "PDF p. 1, source card 7 (right column, second row), question and blue answer",
+        "version_or_snapshot_date": "Europe@School 2025 edition; PDF metadata dated 2025-08-13; snapshot 2026-08-13",
+        "source_tier": "OFFICIAL_EU_BACKGROUND",
+        "verified_at": "2026-08-13",
+        "volatility": "LOW"
+      }
+    },
+    {
+      "id": "p2-epschool-history-08",
+      "topic": "EU history and facts",
+      "front": "Which European city is the official seat of the European Parliament, where most of its plenary sessions are held?",
+      "back": "Strasbourg.",
+      "detail": "Answer from the European Parliament Europe@School 2025 history-and-facts card set.",
+      "tags": ["phase-2", "eu-knowledge", "european-parliament", "europe-at-school-2025", "history-and-facts", "strasbourg", "seat"],
+      "source": {
+        "source_title": "Europe@School — Educational game: EU History and Facts (2025)",
+        "url": "https://youth.europarl.europa.eu/files/live/sites/youthhub/files/active-lessons-revamp/en-educational-game-eu-history-and-facts-2025.pdf",
+        "locator": "PDF p. 1, source card 8 (right column, third row), question and blue answer",
+        "version_or_snapshot_date": "Europe@School 2025 edition; PDF metadata dated 2025-08-13; snapshot 2026-08-13",
+        "source_tier": "OFFICIAL_EU_BACKGROUND",
+        "verified_at": "2026-08-13",
+        "volatility": "LOW"
+      }
+    },
+    {
+      "id": "p2-epschool-history-09",
+      "topic": "EU history and facts",
+      "front": "In what language do the Members of the European Parliament (MEPs) communicate in the European Parliament?",
+      "back": "Everyone can speak his or her own language (one of the 24 official languages in the EU).",
+      "detail": "European Parliament Europe@School 2025 answer key. The stated number of official languages is tied to the 2025 edition and should be rechecked if EU language arrangements change.",
+      "tags": ["phase-2", "eu-knowledge", "european-parliament", "europe-at-school-2025", "history-and-facts", "official-languages", "time-sensitive"],
+      "source": {
+        "source_title": "Europe@School — Educational game: EU History and Facts (2025)",
+        "url": "https://youth.europarl.europa.eu/files/live/sites/youthhub/files/active-lessons-revamp/en-educational-game-eu-history-and-facts-2025.pdf",
+        "locator": "PDF p. 1, source card 9 (right column, fourth row), question and blue answer",
+        "version_or_snapshot_date": "Europe@School 2025 edition; PDF metadata dated 2025-08-13; snapshot 2026-08-13",
+        "source_tier": "OFFICIAL_EU_BACKGROUND",
+        "verified_at": "2026-08-13",
+        "volatility": "MEDIUM"
+      }
+    },
+    {
+      "id": "p2-epschool-history-10",
+      "topic": "EU history and facts",
+      "front": "In what year did the United Kingdom officially leave the European Union?",
+      "back": "2020.",
+      "detail": "Answer from the European Parliament Europe@School 2025 history-and-facts card set.",
+      "tags": ["phase-2", "eu-knowledge", "european-parliament", "europe-at-school-2025", "history-and-facts", "united-kingdom", "brexit"],
+      "source": {
+        "source_title": "Europe@School — Educational game: EU History and Facts (2025)",
+        "url": "https://youth.europarl.europa.eu/files/live/sites/youthhub/files/active-lessons-revamp/en-educational-game-eu-history-and-facts-2025.pdf",
+        "locator": "PDF p. 1, source card 10 (bottom-right), question and blue answer",
+        "version_or_snapshot_date": "Europe@School 2025 edition; PDF metadata dated 2025-08-13; snapshot 2026-08-13",
+        "source_tier": "OFFICIAL_EU_BACKGROUND",
+        "verified_at": "2026-08-13",
+        "volatility": "LOW"
+      }
+    },
+    {
+      "id": "p2-epschool-history-11",
+      "topic": "EU history and facts",
+      "front": "What currency is used in most EU countries?",
+      "back": "The euro.",
+      "detail": "Answer from the European Parliament Europe@School 2025 history-and-facts card set.",
+      "tags": ["phase-2", "eu-knowledge", "european-parliament", "europe-at-school-2025", "history-and-facts", "euro"],
+      "source": {
+        "source_title": "Europe@School — Educational game: EU History and Facts (2025)",
+        "url": "https://youth.europarl.europa.eu/files/live/sites/youthhub/files/active-lessons-revamp/en-educational-game-eu-history-and-facts-2025.pdf",
+        "locator": "PDF p. 2, source card 11 (top-left), question and blue answer",
+        "version_or_snapshot_date": "Europe@School 2025 edition; PDF metadata dated 2025-08-13; snapshot 2026-08-13",
+        "source_tier": "OFFICIAL_EU_BACKGROUND",
+        "verified_at": "2026-08-13",
+        "volatility": "LOW"
+      }
+    },
+    {
+      "id": "p2-epschool-history-12",
+      "topic": "EU history and facts",
+      "front": "What day is Europe day? (date)",
+      "back": "9 May.",
+      "detail": "Answer from the European Parliament Europe@School 2025 history-and-facts card set.",
+      "tags": ["phase-2", "eu-knowledge", "european-parliament", "europe-at-school-2025", "history-and-facts", "europe-day"],
+      "source": {
+        "source_title": "Europe@School — Educational game: EU History and Facts (2025)",
+        "url": "https://youth.europarl.europa.eu/files/live/sites/youthhub/files/active-lessons-revamp/en-educational-game-eu-history-and-facts-2025.pdf",
+        "locator": "PDF p. 2, source card 12 (left column, second row), question and blue answer",
+        "version_or_snapshot_date": "Europe@School 2025 edition; PDF metadata dated 2025-08-13; snapshot 2026-08-13",
+        "source_tier": "OFFICIAL_EU_BACKGROUND",
+        "verified_at": "2026-08-13",
+        "volatility": "LOW"
+      }
+    },
+    {
+      "id": "p2-epschool-history-14",
+      "topic": "EU history and facts",
+      "front": "You can compare the European Commission with the … of a country, because they have executive power.",
+      "back": "Government.",
+      "detail": "Answer from the European Parliament Europe@School 2025 history-and-facts card set.",
+      "tags": ["phase-2", "eu-knowledge", "european-parliament", "europe-at-school-2025", "history-and-facts", "commission", "executive-power"],
+      "source": {
+        "source_title": "Europe@School — Educational game: EU History and Facts (2025)",
+        "url": "https://youth.europarl.europa.eu/files/live/sites/youthhub/files/active-lessons-revamp/en-educational-game-eu-history-and-facts-2025.pdf",
+        "locator": "PDF p. 2, source card 14 (left column, fourth row), question and blue answer",
+        "version_or_snapshot_date": "Europe@School 2025 edition; PDF metadata dated 2025-08-13; snapshot 2026-08-13",
+        "source_tier": "OFFICIAL_EU_BACKGROUND",
+        "verified_at": "2026-08-13",
+        "volatility": "LOW"
+      }
+    },
+    {
+      "id": "p2-epschool-history-15",
+      "topic": "EU history and facts",
+      "front": "What is the European emergency number that you can call throughout the whole EU?",
+      "back": "112.",
+      "detail": "Answer from the European Parliament Europe@School 2025 history-and-facts card set.",
+      "tags": ["phase-2", "eu-knowledge", "european-parliament", "europe-at-school-2025", "history-and-facts", "emergency-number", "112"],
+      "source": {
+        "source_title": "Europe@School — Educational game: EU History and Facts (2025)",
+        "url": "https://youth.europarl.europa.eu/files/live/sites/youthhub/files/active-lessons-revamp/en-educational-game-eu-history-and-facts-2025.pdf",
+        "locator": "PDF p. 2, source card 15 (bottom-left), question and blue answer",
+        "version_or_snapshot_date": "Europe@School 2025 edition; PDF metadata dated 2025-08-13; snapshot 2026-08-13",
+        "source_tier": "OFFICIAL_EU_BACKGROUND",
+        "verified_at": "2026-08-13",
+        "volatility": "LOW"
+      }
+    },
+    {
+      "id": "p2-epschool-history-16",
+      "topic": "EU history and facts",
+      "front": "What is the name of the European petition, through which citizens can put a legislative proposal on the agenda of the European Commission?",
+      "back": "The European Citizens’ Initiative.",
+      "detail": "European Parliament Europe@School 2025 answer. The card normalises the answer key’s obvious misspelling “Initative” to the official name “Initiative”.",
+      "tags": ["phase-2", "eu-knowledge", "european-parliament", "europe-at-school-2025", "history-and-facts", "european-citizens-initiative"],
+      "source": {
+        "source_title": "Europe@School — Educational game: EU History and Facts (2025)",
+        "url": "https://youth.europarl.europa.eu/files/live/sites/youthhub/files/active-lessons-revamp/en-educational-game-eu-history-and-facts-2025.pdf",
+        "locator": "PDF p. 2, source card 16 (top-right), question and blue answer",
+        "version_or_snapshot_date": "Europe@School 2025 edition; PDF metadata dated 2025-08-13; snapshot 2026-08-13",
+        "source_tier": "OFFICIAL_EU_BACKGROUND",
+        "verified_at": "2026-08-13",
+        "volatility": "LOW"
+      }
+    },
+    {
+      "id": "p2-epschool-history-17",
+      "topic": "EU history and facts",
+      "front": "What is the name of the European exchange programme for students in higher education, but also for schools in primary and secondary education?",
+      "back": "The Erasmus+ programme / Erasmus.",
+      "detail": "Answer from the European Parliament Europe@School 2025 history-and-facts card set.",
+      "tags": ["phase-2", "eu-knowledge", "european-parliament", "europe-at-school-2025", "history-and-facts", "erasmus-plus"],
+      "source": {
+        "source_title": "Europe@School — Educational game: EU History and Facts (2025)",
+        "url": "https://youth.europarl.europa.eu/files/live/sites/youthhub/files/active-lessons-revamp/en-educational-game-eu-history-and-facts-2025.pdf",
+        "locator": "PDF p. 2, source card 17 (right column, second row), question and blue answer",
+        "version_or_snapshot_date": "Europe@School 2025 edition; PDF metadata dated 2025-08-13; snapshot 2026-08-13",
+        "source_tier": "OFFICIAL_EU_BACKGROUND",
+        "verified_at": "2026-08-13",
+        "volatility": "LOW"
+      }
+    },
+    {
+      "id": "p2-epschool-history-19",
+      "topic": "EU history and facts",
+      "front": "What is the name of the European Treaty that allows European citizens to travel across (most) EU countries without having their identity checked (open borders)?",
+      "back": "The Schengen Treaty / Schengen.",
+      "detail": "Answer from the European Parliament Europe@School 2025 history-and-facts card set.",
+      "tags": ["phase-2", "eu-knowledge", "european-parliament", "europe-at-school-2025", "history-and-facts", "schengen", "open-borders"],
+      "source": {
+        "source_title": "Europe@School — Educational game: EU History and Facts (2025)",
+        "url": "https://youth.europarl.europa.eu/files/live/sites/youthhub/files/active-lessons-revamp/en-educational-game-eu-history-and-facts-2025.pdf",
+        "locator": "PDF p. 2, source card 19 (right column, fourth row), question and blue answer",
+        "version_or_snapshot_date": "Europe@School 2025 edition; PDF metadata dated 2025-08-13; snapshot 2026-08-13",
+        "source_tier": "OFFICIAL_EU_BACKGROUND",
+        "verified_at": "2026-08-13",
+        "volatility": "MEDIUM"
+      }
+    },
+    {
+      "id": "p2-epschool-history-20",
+      "topic": "EU history and facts",
+      "front": "Which EU Member State has the most inhabitants?",
+      "back": "Germany (more than 84 million).",
+      "detail": "European Parliament Europe@School 2025 answer key. Population totals and rankings are time-sensitive and must be treated as a 2025 snapshot.",
+      "tags": ["phase-2", "eu-knowledge", "european-parliament", "europe-at-school-2025", "history-and-facts", "population", "germany", "high-volatility"],
+      "source": {
+        "source_title": "Europe@School — Educational game: EU History and Facts (2025)",
+        "url": "https://youth.europarl.europa.eu/files/live/sites/youthhub/files/active-lessons-revamp/en-educational-game-eu-history-and-facts-2025.pdf",
+        "locator": "PDF p. 2, source card 20 (bottom-right), question and blue answer",
+        "version_or_snapshot_date": "Europe@School 2025 edition; PDF metadata dated 2025-08-13; snapshot 2026-08-13",
+        "source_tier": "OFFICIAL_EU_BACKGROUND",
+        "verified_at": "2026-08-13",
+        "volatility": "HIGH"
+      }
+    },
+    {
+      "id": "p2-epschool-history-21",
+      "topic": "EU history and facts",
+      "front": "Which EU Member State has the least amount of inhabitants and is the smallest EU Member State?",
+      "back": "Malta (about 542,000 inhabitants).",
+      "detail": "European Parliament Europe@School 2025 answer key. The population figure is time-sensitive and must be treated as a 2025 snapshot.",
+      "tags": ["phase-2", "eu-knowledge", "european-parliament", "europe-at-school-2025", "history-and-facts", "population", "malta", "high-volatility"],
+      "source": {
+        "source_title": "Europe@School — Educational game: EU History and Facts (2025)",
+        "url": "https://youth.europarl.europa.eu/files/live/sites/youthhub/files/active-lessons-revamp/en-educational-game-eu-history-and-facts-2025.pdf",
+        "locator": "PDF p. 3, source card 21 (top-left), question and blue answer",
+        "version_or_snapshot_date": "Europe@School 2025 edition; PDF metadata dated 2025-08-13; snapshot 2026-08-13",
+        "source_tier": "OFFICIAL_EU_BACKGROUND",
+        "verified_at": "2026-08-13",
+        "volatility": "HIGH"
+      }
+    },
+    {
+      "id": "p2-epschool-history-22",
+      "topic": "EU history and facts",
+      "front": "In what year did the first countries of the Euro area start using euro notes and coins?",
+      "back": "2002.",
+      "detail": "Answer from the European Parliament Europe@School 2025 history-and-facts card set.",
+      "tags": ["phase-2", "eu-knowledge", "european-parliament", "europe-at-school-2025", "history-and-facts", "euro", "notes-and-coins"],
+      "source": {
+        "source_title": "Europe@School — Educational game: EU History and Facts (2025)",
+        "url": "https://youth.europarl.europa.eu/files/live/sites/youthhub/files/active-lessons-revamp/en-educational-game-eu-history-and-facts-2025.pdf",
+        "locator": "PDF p. 3, source card 22 (left column, second row), question and blue answer",
+        "version_or_snapshot_date": "Europe@School 2025 edition; PDF metadata dated 2025-08-13; snapshot 2026-08-13",
+        "source_tier": "OFFICIAL_EU_BACKGROUND",
+        "verified_at": "2026-08-13",
+        "volatility": "LOW"
+      }
+    },
+    {
+      "id": "p2-epschool-history-24",
+      "topic": "EU history and facts",
+      "front": "Which European Member State has the same name as its capital?",
+      "back": "Luxembourg.",
+      "detail": "Answer from the European Parliament Europe@School 2025 history-and-facts card set.",
+      "tags": ["phase-2", "eu-knowledge", "european-parliament", "europe-at-school-2025", "history-and-facts", "luxembourg"],
+      "source": {
+        "source_title": "Europe@School — Educational game: EU History and Facts (2025)",
+        "url": "https://youth.europarl.europa.eu/files/live/sites/youthhub/files/active-lessons-revamp/en-educational-game-eu-history-and-facts-2025.pdf",
+        "locator": "PDF p. 3, source card 24 (top-right), question and blue answer",
+        "version_or_snapshot_date": "Europe@School 2025 edition; PDF metadata dated 2025-08-13; snapshot 2026-08-13",
+        "source_tier": "OFFICIAL_EU_BACKGROUND",
+        "verified_at": "2026-08-13",
+        "volatility": "LOW"
+      }
+    },
+    {
+      "id": "p2-epschool-daily-01",
+      "topic": "EU in daily life",
+      "front": "What policy level decides the speed limit on the highway?",
+      "back": "Not EU.",
+      "detail": "European Parliament Europe@School 2025 explanation: national law sets traffic rules and rules may differ between Member States. Traffic codes are coordinated at European level, and the European driving licence is valid throughout the EU.",
+      "tags": ["phase-2", "eu-knowledge", "european-parliament", "europe-at-school-2025", "eu-in-daily-life", "transport", "national-level"],
+      "source": {
+        "source_title": "Europe@School — Game: The EU in Our Daily Lives — Questions for Pupils (2025)",
+        "url": "https://youth.europarl.europa.eu/files/live/sites/youthhub/files/active-lessons-revamp/en-educational-game-questions-eu-in-our-daily-lives-2025.pdf",
+        "locator": "PDF p. 1, table row 1, question, solution and explanation columns",
+        "version_or_snapshot_date": "Europe@School 2025 edition; PDF metadata dated 2025-08-13; snapshot 2026-08-13",
+        "source_tier": "OFFICIAL_EU_BACKGROUND",
+        "verified_at": "2026-08-13",
+        "volatility": "MEDIUM"
+      }
+    },
+    {
+      "id": "p2-epschool-daily-02",
+      "topic": "EU in daily life",
+      "front": "Who determines that you get at least a two-year guarantee when you buy a new laptop?",
+      "back": "EU level.",
+      "detail": "European Parliament Europe@School 2025 explanation: under EU consumer-protection legislation, manufacturers must provide at least a two-year warranty on faulty electronic devices such as laptops and smartphones.",
+      "tags": ["phase-2", "eu-knowledge", "european-parliament", "europe-at-school-2025", "eu-in-daily-life", "consumer-protection", "guarantee", "eu-level"],
+      "source": {
+        "source_title": "Europe@School — Game: The EU in Our Daily Lives — Questions for Pupils (2025)",
+        "url": "https://youth.europarl.europa.eu/files/live/sites/youthhub/files/active-lessons-revamp/en-educational-game-questions-eu-in-our-daily-lives-2025.pdf",
+        "locator": "PDF p. 1, table row 2, question, solution and explanation columns",
+        "version_or_snapshot_date": "Europe@School 2025 edition; PDF metadata dated 2025-08-13; snapshot 2026-08-13",
+        "source_tier": "OFFICIAL_EU_BACKGROUND",
+        "verified_at": "2026-08-13",
+        "volatility": "MEDIUM"
+      }
+    },
+    {
+      "id": "p2-epschool-daily-03",
+      "topic": "EU in daily life",
+      "front": "Who decides when the trash gets picked up?",
+      "back": "Not EU.",
+      "detail": "European Parliament Europe@School 2025 explanation: this is mostly decided locally because local authorities are best placed to respond to each city’s needs.",
+      "tags": ["phase-2", "eu-knowledge", "european-parliament", "europe-at-school-2025", "eu-in-daily-life", "waste-collection", "local-level"],
+      "source": {
+        "source_title": "Europe@School — Game: The EU in Our Daily Lives — Questions for Pupils (2025)",
+        "url": "https://youth.europarl.europa.eu/files/live/sites/youthhub/files/active-lessons-revamp/en-educational-game-questions-eu-in-our-daily-lives-2025.pdf",
+        "locator": "PDF p. 1, table row 3, question, solution and explanation columns",
+        "version_or_snapshot_date": "Europe@School 2025 edition; PDF metadata dated 2025-08-13; snapshot 2026-08-13",
+        "source_tier": "OFFICIAL_EU_BACKGROUND",
+        "verified_at": "2026-08-13",
+        "volatility": "LOW"
+      }
+    },
+    {
+      "id": "p2-epschool-daily-04",
+      "topic": "EU in daily life",
+      "front": "Who decides the information you see on food packaging: ingredients, calories, producer contact information, etc.?",
+      "back": "EU level.",
+      "detail": "European Parliament Europe@School 2025 explanation: EU consumer-protection rules require food labels to include specified information, including ingredients and allergen information, so consumers receive correct and complete information.",
+      "tags": ["phase-2", "eu-knowledge", "european-parliament", "europe-at-school-2025", "eu-in-daily-life", "food-labelling", "consumer-protection", "eu-level"],
+      "source": {
+        "source_title": "Europe@School — Game: The EU in Our Daily Lives — Questions for Pupils (2025)",
+        "url": "https://youth.europarl.europa.eu/files/live/sites/youthhub/files/active-lessons-revamp/en-educational-game-questions-eu-in-our-daily-lives-2025.pdf",
+        "locator": "PDF p. 1, table row 4, question, solution and explanation columns",
+        "version_or_snapshot_date": "Europe@School 2025 edition; PDF metadata dated 2025-08-13; snapshot 2026-08-13",
+        "source_tier": "OFFICIAL_EU_BACKGROUND",
+        "verified_at": "2026-08-13",
+        "volatility": "MEDIUM"
+      }
+    },
+    {
+      "id": "p2-epschool-daily-05",
+      "topic": "EU in daily life",
+      "front": "Which government level determines the safety standards that your smartphone has to meet?",
+      "back": "EU level.",
+      "detail": "European Parliament Europe@School 2025 explanation: under single-market and consumer-protection rules, the EU determines safety standards for products sold within the European Economic Area.",
+      "tags": ["phase-2", "eu-knowledge", "european-parliament", "europe-at-school-2025", "eu-in-daily-life", "product-safety", "single-market", "eu-level"],
+      "source": {
+        "source_title": "Europe@School — Game: The EU in Our Daily Lives — Questions for Pupils (2025)",
+        "url": "https://youth.europarl.europa.eu/files/live/sites/youthhub/files/active-lessons-revamp/en-educational-game-questions-eu-in-our-daily-lives-2025.pdf",
+        "locator": "PDF p. 1, table row 5, question, solution and explanation columns",
+        "version_or_snapshot_date": "Europe@School 2025 edition; PDF metadata dated 2025-08-13; snapshot 2026-08-13",
+        "source_tier": "OFFICIAL_EU_BACKGROUND",
+        "verified_at": "2026-08-13",
+        "volatility": "MEDIUM"
+      }
+    },
+    {
+      "id": "p2-epschool-daily-06",
+      "topic": "EU in daily life",
+      "front": "Who decides what you need to have learned at the end of each school year?",
+      "back": "Not EU.",
+      "detail": "European Parliament Europe@School 2025 explanation: the EU does not determine how education is organised or its content, so attainment goals differ between Member States and sometimes between regions.",
+      "tags": ["phase-2", "eu-knowledge", "european-parliament", "europe-at-school-2025", "eu-in-daily-life", "education", "national-level"],
+      "source": {
+        "source_title": "Europe@School — Game: The EU in Our Daily Lives — Questions for Pupils (2025)",
+        "url": "https://youth.europarl.europa.eu/files/live/sites/youthhub/files/active-lessons-revamp/en-educational-game-questions-eu-in-our-daily-lives-2025.pdf",
+        "locator": "PDF p. 1, table row 6, question, solution and explanation columns",
+        "version_or_snapshot_date": "Europe@School 2025 edition; PDF metadata dated 2025-08-13; snapshot 2026-08-13",
+        "source_tier": "OFFICIAL_EU_BACKGROUND",
+        "verified_at": "2026-08-13",
+        "volatility": "LOW"
+      }
+    },
+    {
+      "id": "p2-epschool-daily-07",
+      "topic": "EU in daily life",
+      "front": "Who determines the minimum of 20 days paid leave annually for a full-time employee?",
+      "back": "EU level.",
+      "detail": "European Parliament Europe@School 2025 explanation: EU workers have a right to at least four weeks of paid annual leave; a sector or Member State may increase that entitlement.",
+      "tags": ["phase-2", "eu-knowledge", "european-parliament", "europe-at-school-2025", "eu-in-daily-life", "employment", "paid-leave", "eu-level"],
+      "source": {
+        "source_title": "Europe@School — Game: The EU in Our Daily Lives — Questions for Pupils (2025)",
+        "url": "https://youth.europarl.europa.eu/files/live/sites/youthhub/files/active-lessons-revamp/en-educational-game-questions-eu-in-our-daily-lives-2025.pdf",
+        "locator": "PDF p. 1, table row 7, question, solution and explanation columns",
+        "version_or_snapshot_date": "Europe@School 2025 edition; PDF metadata dated 2025-08-13; snapshot 2026-08-13",
+        "source_tier": "OFFICIAL_EU_BACKGROUND",
+        "verified_at": "2026-08-13",
+        "volatility": "MEDIUM"
+      }
+    },
+    {
+      "id": "p2-epschool-daily-08",
+      "topic": "EU in daily life",
+      "front": "Which level of government introduces a ban on throwaway plastics, such as plastic straws and single-use plastic cutlery?",
+      "back": "EU level.",
+      "detail": "European Parliament Europe@School 2025 explanation: the EU approved a law banning specified single-use plastic items, including disposable plates, cutlery, straws and cotton bud sticks; the ban has applied since July 2021.",
+      "tags": ["phase-2", "eu-knowledge", "european-parliament", "europe-at-school-2025", "eu-in-daily-life", "single-use-plastics", "environment", "eu-level"],
+      "source": {
+        "source_title": "Europe@School — Game: The EU in Our Daily Lives — Questions for Pupils (2025)",
+        "url": "https://youth.europarl.europa.eu/files/live/sites/youthhub/files/active-lessons-revamp/en-educational-game-questions-eu-in-our-daily-lives-2025.pdf",
+        "locator": "PDF p. 2, table row 8, question, solution and explanation columns",
+        "version_or_snapshot_date": "Europe@School 2025 edition; PDF metadata dated 2025-08-13; snapshot 2026-08-13",
+        "source_tier": "OFFICIAL_EU_BACKGROUND",
+        "verified_at": "2026-08-13",
+        "volatility": "MEDIUM"
+      }
+    },
+    {
+      "id": "p2-epschool-daily-09",
+      "topic": "EU in daily life",
+      "front": "Which level of government determines the minimum target for energy coming from renewable sources, such as solar and wind energy?",
+      "back": "EU level.",
+      "detail": "European Parliament Europe@School 2025 explanation: the EU’s binding 2030 target is at least 42.5% renewable energy in overall EU energy consumption, with an aspirational 45% goal; the percentage varies by Member State situation.",
+      "tags": ["phase-2", "eu-knowledge", "european-parliament", "europe-at-school-2025", "eu-in-daily-life", "renewable-energy", "2030-target", "eu-level", "high-volatility"],
+      "source": {
+        "source_title": "Europe@School — Game: The EU in Our Daily Lives — Questions for Pupils (2025)",
+        "url": "https://youth.europarl.europa.eu/files/live/sites/youthhub/files/active-lessons-revamp/en-educational-game-questions-eu-in-our-daily-lives-2025.pdf",
+        "locator": "PDF p. 2, table row 9, question, solution and explanation columns",
+        "version_or_snapshot_date": "Europe@School 2025 edition; PDF metadata dated 2025-08-13; snapshot 2026-08-13",
+        "source_tier": "OFFICIAL_EU_BACKGROUND",
+        "verified_at": "2026-08-13",
+        "volatility": "HIGH"
+      }
+    },
+    {
+      "id": "p2-epschool-daily-10",
+      "topic": "EU in daily life",
+      "front": "Which policy level issues building permits for houses?",
+      "back": "Not EU.",
+      "detail": "European Parliament Europe@School 2025 explanation: building permits for private homes are mostly issued by local authorities.",
+      "tags": ["phase-2", "eu-knowledge", "european-parliament", "europe-at-school-2025", "eu-in-daily-life", "building-permits", "local-level"],
+      "source": {
+        "source_title": "Europe@School — Game: The EU in Our Daily Lives — Questions for Pupils (2025)",
+        "url": "https://youth.europarl.europa.eu/files/live/sites/youthhub/files/active-lessons-revamp/en-educational-game-questions-eu-in-our-daily-lives-2025.pdf",
+        "locator": "PDF p. 2, table row 10, question, solution and explanation columns",
+        "version_or_snapshot_date": "Europe@School 2025 edition; PDF metadata dated 2025-08-13; snapshot 2026-08-13",
+        "source_tier": "OFFICIAL_EU_BACKGROUND",
+        "verified_at": "2026-08-13",
+        "volatility": "LOW"
+      }
+    },
+    {
+      "id": "p2-epschool-daily-11",
+      "topic": "EU in daily life",
+      "front": "Who do you pay your taxes to?",
+      "back": "Not EU.",
+      "detail": "European Parliament Europe@School 2025 explanation: the EU does not collect taxes directly from citizens. Member States contribute annually to the EU budget, which funds shared priorities and programmes including regional development, research, climate action, education, training and mobility.",
+      "tags": ["phase-2", "eu-knowledge", "european-parliament", "europe-at-school-2025", "eu-in-daily-life", "taxation", "eu-budget", "national-level"],
+      "source": {
+        "source_title": "Europe@School — Game: The EU in Our Daily Lives — Questions for Pupils (2025)",
+        "url": "https://youth.europarl.europa.eu/files/live/sites/youthhub/files/active-lessons-revamp/en-educational-game-questions-eu-in-our-daily-lives-2025.pdf",
+        "locator": "PDF p. 2, table row 11, question, solution and explanation columns",
+        "version_or_snapshot_date": "Europe@School 2025 edition; PDF metadata dated 2025-08-13; snapshot 2026-08-13",
+        "source_tier": "OFFICIAL_EU_BACKGROUND",
+        "verified_at": "2026-08-13",
+        "volatility": "MEDIUM"
+      }
+    },
+    {
+      "id": "p2-epschool-daily-12",
+      "topic": "EU in daily life",
+      "front": "Who makes decisions about our public holidays: which dates and how many days?",
+      "back": "Not EU.",
+      "detail": "European Parliament Europe@School 2025 explanation: national states usually decide the dates and number of public holidays.",
+      "tags": ["phase-2", "eu-knowledge", "european-parliament", "europe-at-school-2025", "eu-in-daily-life", "public-holidays", "national-level"],
+      "source": {
+        "source_title": "Europe@School — Game: The EU in Our Daily Lives — Questions for Pupils (2025)",
+        "url": "https://youth.europarl.europa.eu/files/live/sites/youthhub/files/active-lessons-revamp/en-educational-game-questions-eu-in-our-daily-lives-2025.pdf",
+        "locator": "PDF p. 2, table row 12, question, solution and explanation columns",
+        "version_or_snapshot_date": "Europe@School 2025 edition; PDF metadata dated 2025-08-13; snapshot 2026-08-13",
+        "source_tier": "OFFICIAL_EU_BACKGROUND",
+        "verified_at": "2026-08-13",
+        "volatility": "LOW"
+      }
+    },
+    {
+      "id": "p2-epschool-daily-13",
+      "topic": "EU in daily life",
+      "front": "Who determines the maximum amount of fine particles that are allowed to be in the air?",
+      "back": "EU level.",
+      "detail": "European Parliament Europe@School 2025 explanation: the EU adopted stricter air-pollution rules in 2024, including tighter PM2.5 thresholds to be fully implemented by 2030; it also sets other environmental measures such as water-quality rules.",
+      "tags": ["phase-2", "eu-knowledge", "european-parliament", "europe-at-school-2025", "eu-in-daily-life", "air-quality", "pm2.5", "2030-target", "eu-level", "high-volatility"],
+      "source": {
+        "source_title": "Europe@School — Game: The EU in Our Daily Lives — Questions for Pupils (2025)",
+        "url": "https://youth.europarl.europa.eu/files/live/sites/youthhub/files/active-lessons-revamp/en-educational-game-questions-eu-in-our-daily-lives-2025.pdf",
+        "locator": "PDF p. 2, table row 13, question, solution and explanation columns",
+        "version_or_snapshot_date": "Europe@School 2025 edition; PDF metadata dated 2025-08-13; snapshot 2026-08-13",
+        "source_tier": "OFFICIAL_EU_BACKGROUND",
+        "verified_at": "2026-08-13",
+        "volatility": "HIGH"
+      }
+    },
+    {
+      "id": "p2-epschool-daily-14",
+      "topic": "EU in daily life",
+      "front": "Where do you register your marriage?",
+      "back": "Not EU.",
+      "detail": "European Parliament Europe@School 2025 explanation: population registration and civil status are mostly the responsibility of local authorities.",
+      "tags": ["phase-2", "eu-knowledge", "european-parliament", "europe-at-school-2025", "eu-in-daily-life", "civil-status", "local-level"],
+      "source": {
+        "source_title": "Europe@School — Game: The EU in Our Daily Lives — Questions for Pupils (2025)",
+        "url": "https://youth.europarl.europa.eu/files/live/sites/youthhub/files/active-lessons-revamp/en-educational-game-questions-eu-in-our-daily-lives-2025.pdf",
+        "locator": "PDF p. 2, table row 14, question, solution and explanation columns",
+        "version_or_snapshot_date": "Europe@School 2025 edition; PDF metadata dated 2025-08-13; snapshot 2026-08-13",
+        "source_tier": "OFFICIAL_EU_BACKGROUND",
+        "verified_at": "2026-08-13",
+        "volatility": "LOW"
+      }
+    }
+  ]
+}
