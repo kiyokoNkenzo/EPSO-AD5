@@ -5,7 +5,14 @@ export interface DailyCalendarReminder {
   appUrl: string;
   /** Local calendar date in YYYY-MM-DD form. Defaults to the supplied clock date. */
   startDate?: string;
+  /** Repeat every N days (1–7). Defaults to a daily event. */
+  intervalDays?: number;
+  /** Event body text. Defaults to a link back to the study app. */
+  description?: string;
 }
+
+/** EPSO asks candidates to consult their account at least every three calendar days. */
+export const PORTAL_CHECK_INTERVAL_DAYS = 3;
 
 export interface DailyReminderDueInput {
   now: Date;
@@ -81,7 +88,7 @@ export function escapeIcsText(value: string): string {
 }
 
 /**
- * Creates a self-contained daily calendar event with a ten-minute display alarm.
+ * Creates a self-contained recurring calendar event with a ten-minute display alarm.
  * DTSTART deliberately has no Z or TZID: calendar clients interpret it as local
  * wall-clock time, so 19:00 remains 19:00 when daylight-saving time changes.
  */
@@ -100,13 +107,18 @@ export function generateDailyReminderIcs(
 
   const startDate = reminder.startDate ?? localReminderDate(createdAt);
   if (!isValidLocalDate(startDate)) throw new Error('Start date must be a valid YYYY-MM-DD date.');
+  const intervalDays = reminder.intervalDays ?? 1;
+  if (!Number.isInteger(intervalDays) || intervalDays < 1 || intervalDays > 7) {
+    throw new Error('Reminder interval must be a whole number of days from 1 to 7.');
+  }
 
   const compactDate = startDate.replaceAll('-', '');
   const compactTime = `${String(parsedTime.hours).padStart(2, '0')}${String(parsedTime.minutes).padStart(2, '0')}00`;
   const escapedTitle = escapeIcsText(title);
-  const escapedDescription = escapeIcsText(`Open the AD5 study app: ${appUrl}`);
+  const escapedDescription = escapeIcsText(reminder.description?.trim() || `Open the AD5 study app: ${appUrl}`);
   const safeUrl = sanitizeIcsUri(appUrl);
-  const uid = `ad5-daily-${compactDate}-${compactTime.slice(0, 4)}@ad5-companion.local`;
+  const cadence = intervalDays === 1 ? 'daily' : `every-${intervalDays}d`;
+  const uid = `ad5-${cadence}-${compactDate}-${compactTime.slice(0, 4)}@ad5-companion.local`;
 
   const lines = [
     'BEGIN:VCALENDAR',
@@ -118,7 +130,7 @@ export function generateDailyReminderIcs(
     `UID:${uid}`,
     `DTSTAMP:${utcIcsTimestamp(createdAt)}`,
     `DTSTART:${compactDate}T${compactTime}`,
-    'RRULE:FREQ=DAILY',
+    intervalDays === 1 ? 'RRULE:FREQ=DAILY' : `RRULE:FREQ=DAILY;INTERVAL=${intervalDays}`,
     `SUMMARY:${escapedTitle}`,
     `DESCRIPTION:${escapedDescription}`,
     `URL:${safeUrl}`,

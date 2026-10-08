@@ -8,6 +8,14 @@
 
 export const ASSESSMENT_FRAMEWORK_VERIFIED_AT = '2026-08-13' as const;
 
+/**
+ * Date of the Part 1 roll-out refresh. These facts were cross-checked against the
+ * indexed text of the cited EU Careers pages on this date; the pages could not be
+ * opened directly from the build environment, so re-open each source before
+ * relying on a detail that matters for your own invitation.
+ */
+export const PART1_ROLLOUT_VERIFIED_AT = '2026-10-08' as const;
+
 export type EvidenceClassification =
   | 'official-binding'
   | 'official-guidance'
@@ -23,6 +31,9 @@ export type AssessmentSourceId =
   | 'competition-page'
   | 'assessment-overview'
   | 'two-part-testing-update'
+  | 'testing-rollout-update'
+  | 'online-testing-instructions'
+  | 'tao-first-testing-report'
   | 'ad5-testing-page'
   | 'eu-knowledge-source-pack-update'
   | 'written-test-page'
@@ -110,7 +121,40 @@ export const ASSESSMENT_SOURCES = [
     classification: 'official-guidance',
     locator:
       '“Part 1: reasoning tests (expected as of October/November 2026)” and “Part 2: remaining tests (2027)”',
-    verifiedAt: ASSESSMENT_FRAMEWORK_VERIFIED_AT
+    verifiedAt: ASSESSMENT_FRAMEWORK_VERIFIED_AT,
+    note: 'Its Part 1 timing wording is superseded by the 18 September 2026 roll-out update.'
+  },
+  {
+    id: 'testing-rollout-update',
+    title: 'AD5 graduates testing: more details about timing and roll-out',
+    publisher: 'European Personnel Selection Office (EPSO)',
+    url: 'https://eu-careers.europa.eu/en/news/ad5-graduates-testing-more-details-about-timing-and-roll-out/20788',
+    classification: 'official-guidance',
+    locator:
+      'Part 1 paragraph: planned November 2026 start, invitation letter and testing-platform slot details; Part 2 paragraph',
+    verifiedAt: PART1_ROLLOUT_VERIFIED_AT,
+    note: 'Published 18 September 2026. Replaces the earlier “expected as of October/November 2026” Part 1 wording.'
+  },
+  {
+    id: 'online-testing-instructions',
+    title: 'Instructions for online testing (TAO)',
+    publisher: 'European Personnel Selection Office (EPSO)',
+    url: 'https://eu-careers.europa.eu/system/files/2026-03/EN_Instructions%20for%20online%20Testing%20%28TAO%29%20March%202026.pdf',
+    classification: 'official-guidance',
+    locator: 'TAO and Proctorio set-up, technical requirements, public sessions and the mandatory technical prerequisite check',
+    verifiedAt: PART1_ROLLOUT_VERIFIED_AT,
+    note:
+      'General March 2026 edition. EPSO has also published an EPSO/AD/427/26 edition (September 2026); the instructions linked from your own invitation prevail.'
+  },
+  {
+    id: 'tao-first-testing-report',
+    title: 'First testing with the TAO platform on 27/1/2026: preliminary data and observations',
+    publisher: 'European Personnel Selection Office (EPSO)',
+    url: 'https://eu-careers.europa.eu/en/news/first-testing-tao-platform-27-1-2026-preliminary-data-and-observations/19231',
+    classification: 'official-guidance',
+    locator: 'Preliminary figures: 2249 of 3170 applicants connected; about 91% completed all three tests',
+    verifiedAt: PART1_ROLLOUT_VERIFIED_AT,
+    note: 'Concerns EPSO/AD/425/25, not this competition. Cited only as evidence that technical rehearsal matters.'
   },
   {
     id: 'ad5-testing-page',
@@ -574,12 +618,12 @@ export const OFFICIAL_OPERATIONAL_RULES = {
   part1SessionRule:
     'For each candidate, all three Part 1 reasoning tests take place in one testing session on one day.',
   schedulingRule:
-    'Candidates may be scheduled on different dates during the Part 1 testing period, receive an individual invitation several weeks ahead, and cannot reschedule.',
+    'Candidates may be scheduled on different dates during the Part 1 testing period. The invitation gives the testing week; the exact date and time follow on the testing platform. Rescheduling is not possible.',
   communicationRule:
     'Candidates must consult their EPSO account at least every three calendar days and immediately inform EPSO of any change to the email address linked to that account.',
-  sourceIds: ['original-notice', 'amending-notice', 'two-part-testing-update'] as const,
+  sourceIds: ['original-notice', 'amending-notice', 'two-part-testing-update', 'testing-rollout-update'] as const,
   sourceLocator:
-    'Notice §3.3(a)–(b), §4.3.2(a), §4.3.3(a)(ii)–(iii); amendment point (5); EPSO two-part update, Part 1'
+    'Notice §3.3(a)–(b), §4.3.2(a), §4.3.3(a)(ii)–(iii); amendment point (5); EPSO two-part update, Part 1; roll-out update, Part 1'
 } as const;
 
 export const OFFICIAL_TIMELINE = {
@@ -592,25 +636,75 @@ export const OFFICIAL_TIMELINE = {
     sourceLocator: 'Notice §4.3.1(e)'
   },
   part1: {
-    display: 'Expected as of October/November 2026',
+    display: 'Planned to start in November 2026',
+    shortDisplay: 'Nov 2026 (planned)',
+    plannedStartMonth: '2026-11',
     exactDatesPublished: false,
-    status: 'official-expected-window-not-an-exact-date',
-    sourceIds: ['two-part-testing-update'] as const,
-    sourceLocator: 'Part 1 heading and first paragraph'
+    status: 'official-planned-month-not-an-exact-date',
+    supersedes: 'Expected as of October/November 2026 (30 June 2026 two-part update)',
+    sourceIds: ['testing-rollout-update'] as const,
+    sourceLocator: 'Roll-out update, Part 1 paragraph, first sentence'
   },
   part2: {
     display: '2027 — dates to be announced later',
     exactDatesPublished: false,
     early2027OfficiallyConfirmed: false,
     status: 'official-year-only',
-    sourceIds: ['two-part-testing-update'] as const,
-    sourceLocator: 'Part 2 heading and final sentence'
+    sourceIds: ['two-part-testing-update', 'testing-rollout-update'] as const,
+    sourceLocator: 'Two-part update, Part 2 heading and final sentence; roll-out update, Part 2 paragraph'
   }
+} as const;
+
+/**
+ * How individual Part 1 sessions are announced. Lead times are EPSO's own
+ * approximate wording; anything the app derives from them is labelled as arithmetic.
+ */
+export const OFFICIAL_PART1_ROLLOUT = {
+  classification: 'official-guidance',
+  verifiedAt: PART1_ROLLOUT_VERIFIED_AT,
+  invitation: {
+    channel: 'Single Candidate Portal (your EPSO account)',
+    approximateLeadDays: 21,
+    leadDisplay: 'About three weeks before the first testing session',
+    content: 'States the week in which you will take the tests. It does not include the exact date and time.'
+  },
+  exactSlot: {
+    channel: 'Testing platform, reached by following the steps in the invitation letter',
+    minimumLeadDays: 14,
+    leadDisplay: 'At least two weeks before your test'
+  },
+  accountAccess: 'Make sure you can log in to your Single Candidate Portal account before invitations arrive.',
+  rescheduling: 'Rescheduling is not possible.',
+  sourceIds: ['testing-rollout-update', 'two-part-testing-update'] as const,
+  sourceLocator: 'Roll-out update, Part 1 paragraph; two-part update, Part 1 (no rescheduling)'
+} as const;
+
+/** Remote-testing set-up from EPSO’s general TAO instructions; your invitation prevails. */
+export const OFFICIAL_ONLINE_TESTING_SETUP = {
+  classification: 'official-guidance',
+  verifiedAt: PART1_ROLLOUT_VERIFIED_AT,
+  platform: 'TAO (Open Assessment Technologies) used together with the Proctorio browser extension',
+  requirements: [
+    'A desktop or laptop computer; mobile devices and tablets are not supported',
+    'Google Chrome or Microsoft Edge',
+    'Windows 10 or later, macOS 10.15 or later, or Ubuntu 18.04 or later',
+    'A working webcam and microphone',
+    'Administrator rights on the computer (often unavailable on employer-managed devices)'
+  ],
+  prerequisiteCheck:
+    'A mandatory technical prerequisite check must be run no later than the deadline stated in your invitation letter.',
+  publicSessions:
+    'Optional public TAO sessions are anonymous and unscored. They help with the interface but may not show every EPSO feature.',
+  firstTaoTestingEvidence:
+    'At EPSO’s first TAO testing (27 January 2026, another competition), about 9% of the candidates who connected could not complete all three tests.',
+  sourceIds: ['online-testing-instructions', 'tao-first-testing-report'] as const,
+  sourceLocator: 'TAO instructions: technical requirements, public sessions, prerequisite check; TAO first-testing report'
 } as const;
 
 export const OFFICIAL_SOURCE_PACK_BOUNDARIES = {
   classification: 'official-guidance',
-  verifiedAt: ASSESSMENT_FRAMEWORK_VERIFIED_AT,
+  // Re-confirmed as still pending by the 18 September 2026 roll-out update.
+  verifiedAt: PART1_ROLLOUT_VERIFIED_AT,
   euKnowledge: {
     status: 'not-published-as-of-verification',
     promisedTiming: 'Approximately two months before the EU knowledge test date',

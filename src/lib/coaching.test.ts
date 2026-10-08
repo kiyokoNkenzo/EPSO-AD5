@@ -69,4 +69,46 @@ describe('coaching snapshot', () => {
     expect(snapshot.unresolvedMistakes).toBe(1);
     expect(snapshot.nextActions.some((action) => action.id === 'mistakes')).toBe(false);
   });
+
+  it('only counts the prerequisite check as an open risk once an invitation is recorded', () => {
+    const before = buildCoachingSnapshot(defaultState, new Date('2026-10-08T12:00:00Z'));
+    expect(before.checklistTotal).toBe(6);
+    const invited: AppState = { ...defaultState, part1Logistics: { testingWeekStart: '2026-11-16' } };
+    expect(buildCoachingSnapshot(invited, new Date('2026-10-30T12:00:00Z')).checklistTotal).toBe(7);
+  });
+
+  it('puts an imminent prerequisite-check deadline above every training action', () => {
+    const state: AppState = {
+      ...defaultState,
+      part1Logistics: { testingWeekStart: '2026-11-16', prerequisiteDeadline: '2026-11-06' }
+    };
+    const snapshot = buildCoachingSnapshot(state, new Date('2026-11-02T12:00:00Z'));
+    expect(snapshot.nextActions[0]).toMatchObject({ id: 'prerequisite-check', href: '/coach#part1' });
+    expect(snapshot.nextActions.some((action) => action.id === 'exact-slot')).toBe(true);
+
+    const done = buildCoachingSnapshot(
+      { ...state, completedChecklistItems: ['prerequisite-check'] },
+      new Date('2026-11-02T12:00:00Z')
+    );
+    expect(done.nextActions.some((action) => action.id === 'prerequisite-check')).toBe(false);
+  });
+
+  it('prompts an invitation check only once the estimated invitation window is open', () => {
+    const early = buildCoachingSnapshot(defaultState, new Date('2026-10-08T12:00:00Z'));
+    expect(early.nextActions.some((action) => action.id === 'invitation-watch')).toBe(false);
+    const open = buildCoachingSnapshot(defaultState, new Date('2026-10-12T12:00:00Z'));
+    expect(open.nextActions.some((action) => action.id === 'invitation-watch')).toBe(true);
+  });
+
+  it('switches to a one-sitting rehearsal in the final week and stops logistics after the test', () => {
+    const state: AppState = {
+      ...defaultState,
+      part1Logistics: { testingWeekStart: '2026-11-16', testDate: '2026-11-18' }
+    };
+    const testWeek = buildCoachingSnapshot(state, new Date('2026-11-13T12:00:00Z'));
+    expect(testWeek.nextActions.some((action) => action.id === 'test-week')).toBe(true);
+    const after = buildCoachingSnapshot(state, new Date('2026-11-20T12:00:00Z'));
+    expect(after.part1.stage).toBe('completed');
+    expect(after.nextActions.some((action) => ['test-week', 'exact-slot', 'invitation-watch'].includes(action.id))).toBe(false);
+  });
 });

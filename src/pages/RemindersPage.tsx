@@ -11,6 +11,7 @@ import {
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { PageHeader } from '../components/PageHeader';
 import {
+  PORTAL_CHECK_INTERVAL_DAYS,
   dailyReminderDueDate,
   generateDailyReminderIcs,
   localReminderDate,
@@ -124,19 +125,14 @@ export function RemindersPage() {
     setError('');
   };
 
-  const downloadCalendar = () => {
+  const downloadIcs = (fileName: string, build: () => string) => {
     setError('');
     try {
-      const ics = generateDailyReminderIcs({
-        time: preferences.time,
-        title: preferences.title,
-        appUrl: preferences.appUrl,
-        startDate: localReminderDate(new Date())
-      });
+      const ics = build();
       const url = URL.createObjectURL(new Blob([ics], { type: 'text/calendar;charset=utf-8' }));
       const anchor = document.createElement('a');
       anchor.href = url;
-      anchor.download = 'ad5-daily-study-reminder.ics';
+      anchor.download = fileName;
       document.body.appendChild(anchor);
       anchor.click();
       anchor.remove();
@@ -146,6 +142,22 @@ export function RemindersPage() {
       setError(caught instanceof Error ? caught.message : 'The calendar file could not be created.');
     }
   };
+
+  const downloadCalendar = () => downloadIcs('ad5-daily-study-reminder.ics', () => generateDailyReminderIcs({
+    time: preferences.time,
+    title: preferences.title,
+    appUrl: preferences.appUrl,
+    startDate: localReminderDate(new Date())
+  }));
+
+  const downloadPortalCheck = () => downloadIcs('ad5-portal-check-every-3-days.ics', () => generateDailyReminderIcs({
+    time: preferences.time,
+    title: 'Check the EPSO Single Candidate Portal',
+    appUrl: preferences.appUrl,
+    startDate: localReminderDate(new Date()),
+    intervalDays: PORTAL_CHECK_INTERVAL_DAYS,
+    description: `EPSO asks candidates to consult their account at least every three calendar days. Look for the Part 1 invitation (testing week) and the steps to your exact slot, then record them in the AD5 app: ${preferences.appUrl}`
+  }));
 
   const enableBrowserNotifications = async () => {
     setError('');
@@ -256,6 +268,17 @@ export function RemindersPage() {
           >
             <Download size={17} /> Download daily .ics
           </button>
+          <button
+            className="button secondary"
+            type="button"
+            onClick={downloadPortalCheck}
+            disabled={!validTime || !validAppUrl}
+          >
+            <Download size={17} /> Portal check every 3 days .ics
+          </button>
+          <p className="reminder-limitation">
+            The portal-check event follows EPSO’s rule to consult your account at least every three calendar days, which is where Part 1 invitations arrive.
+          </p>
           <p className="reminder-limitation">
             Import the file once and enable alerts in the calendar app. Delivery still depends on that app’s notification settings and device permissions.
           </p>

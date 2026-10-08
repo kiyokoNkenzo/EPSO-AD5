@@ -1,6 +1,7 @@
 import { ArrowRight, CheckCircle2, ExternalLink, FileCheck2, Filter, Info, Search, ShieldCheck, TriangleAlert } from 'lucide-react';
 import { useMemo, useState } from 'react';
 import { PageHeader } from '../components/PageHeader';
+import { ASSESSMENT_SOURCES } from '../data/assessmentFramework';
 import { phase2Cards } from '../data/cards';
 import { competition, officialUpdateStatus } from '../data/competition';
 import { externalPracticeResources } from '../data/externalPractice';
@@ -16,13 +17,31 @@ type SourceRow = {
   answer: string;
   answerUrl?: string;
   verified: string;
-  status: 'embedded' | 'background' | 'link-only';
+  status: 'official' | 'embedded' | 'background' | 'link-only';
 };
+
+const OFFICIAL_TIER_LABELS = {
+  'official-binding': 'Binding rule',
+  'official-guidance': 'EPSO guidance',
+  'official-technical-framework': 'Technical framework',
+  'official-informational-consolidation': 'Info only'
+} as const;
 
 export function SourcesPage() {
   const [query, setQuery] = useState('');
   const [status, setStatus] = useState<'all' | SourceRow['status']>('all');
   const rows = useMemo<SourceRow[]>(() => {
+    const officialRows = ASSESSMENT_SOURCES.map((source) => ({
+      id: source.id,
+      publisher: source.publisher,
+      title: source.title,
+      url: source.url,
+      locator: source.locator,
+      tier: OFFICIAL_TIER_LABELS[source.classification],
+      answer: 'note' in source ? source.note : 'Competition rule or timing source',
+      verified: source.verifiedAt,
+      status: 'official' as const
+    }));
     const questionRows = questions.map((question) => ({
       id: question.id,
       publisher: question.source.publisher,
@@ -61,7 +80,7 @@ export function SourcesPage() {
       verified: resource.verifiedAt,
       status: 'link-only' as const
     }));
-    return [...questionRows, ...cardRows, ...externalRows];
+    return [...officialRows, ...questionRows, ...cardRows, ...externalRows];
   }, []);
 
   const filtered = rows.filter((row) => {
@@ -81,7 +100,7 @@ export function SourcesPage() {
       <PageHeader
         eyebrow="PROVENANCE REGISTER"
         title="Trust, then verify"
-        description="Every embedded question, fact card and external practice recommendation is listed here with its publisher, exact locator, answer trail and verification date."
+        description="Every competition rule source, embedded question, fact card and external practice recommendation is listed here with its publisher, exact locator, answer trail and verification date."
         actions={<a className="button secondary" href={competition.bindingNoticeUrl} target="_blank" rel="noreferrer">Binding notice <ExternalLink size={16} /></a>}
       />
 
@@ -98,7 +117,7 @@ export function SourcesPage() {
       <section className="source-register card">
         <div className="source-toolbar">
           <label><Search size={17} /><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search publisher, title or locator" /></label>
-          <div className="filter-tabs compact"><Filter size={16} />{(['all', 'embedded', 'background', 'link-only'] as const).map((value) => <button key={value} className={status === value ? 'active' : ''} onClick={() => setStatus(value)}>{value === 'all' ? 'All' : value.replace('-', ' ')}</button>)}</div>
+          <div className="filter-tabs compact"><Filter size={16} />{(['all', 'official', 'embedded', 'background', 'link-only'] as const).map((value) => <button key={value} className={status === value ? 'active' : ''} onClick={() => setStatus(value)}>{value === 'all' ? 'All' : value.replace('-', ' ')}</button>)}</div>
         </div>
         <div className="source-table-wrap">
           <table className="source-table">

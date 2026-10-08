@@ -18,6 +18,13 @@ export function daysUntil(isoDate: string, from = new Date()): number {
   return Math.max(0, Math.ceil((target.getTime() - start.getTime()) / DAY_MS));
 }
 
+/** Whole local calendar days from `from` to `isoDate`; negative once the date has passed. */
+export function signedDaysUntil(isoDate: string, from = new Date()): number {
+  const target = new Date(`${isoDate}T12:00:00`);
+  const start = new Date(from.getFullYear(), from.getMonth(), from.getDate(), 12);
+  return Math.round((target.getTime() - start.getTime()) / DAY_MS);
+}
+
 export function addDaysIso(isoDate: string, days: number): string {
   const date = new Date(`${isoDate}T12:00:00`);
   date.setDate(date.getDate() + days);

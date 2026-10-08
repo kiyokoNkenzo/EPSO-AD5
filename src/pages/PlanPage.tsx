@@ -1,6 +1,7 @@
 import { ArrowRight, BrainCircuit, CircleDashed, Clock3, Flag, Info, Target } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { PageHeader } from '../components/PageHeader';
+import { OFFICIAL_TIMELINE } from '../data/assessmentFramework';
 import { competition } from '../data/competition';
 import { buildCoachingSnapshot, labelCategory } from '../lib/coaching';
 import { addDaysIso, daysUntil, formatDate, todayIso } from '../lib/date';
@@ -8,13 +9,15 @@ import { useAppState } from '../state/AppState';
 
 export function PlanPage() {
   const { state } = useAppState();
-  const part1Days = daysUntil(state.profile.phase1Target);
-  const afterPart1 = todayIso() > state.profile.phase1Target;
   const snapshot = buildCoachingSnapshot(state);
+  const part1 = snapshot.part1;
+  const part1Days = Math.max(0, part1.daysToTarget);
+  const afterPart1 = part1.stage === 'completed' || (part1.targetSource === 'planning-target' && part1.daysToTarget < 0);
+  const part1Card = PART1_TARGET_COPY[part1.targetSource];
   const weakest = [...snapshot.readiness.components].sort((left, right) => left.index - right.index)[0];
   const primaryAction = snapshot.nextActions[0];
   const weeks = buildWeeks(
-    state.profile.phase1Target,
+    part1.targetDate,
     state.profile.weeklyGoal,
     afterPart1,
     snapshot.nextActions.map((action) => action.title),
@@ -26,15 +29,15 @@ export function PlanPage() {
       <PageHeader
         eyebrow="ADAPTIVE ROADMAP"
         title="Your study plan"
-        description="A local plan keyed to your editable targets. It prioritises the only confirmed next sitting—Part 1 reasoning—without letting Phase 2 go cold."
+        description="A local plan keyed to your invitation details or editable targets. It prioritises the only scheduled next sitting—Part 1 reasoning—without letting Phase 2 go cold."
         actions={<Link className="button secondary" to="/settings">Adjust targets <ArrowRight size={16} /></Link>}
       />
 
       <section className="plan-summary">
         <div className="card plan-target primary-target">
           <div className="target-icon"><Target size={24} /></div>
-          <div><p className="eyebrow">PART 1 PLANNING TARGET</p><h2>{formatDate(state.profile.phase1Target)}</h2><p>{part1Days ? `${part1Days} days remaining` : 'Target reached'} · Official expectation: as of Oct/Nov 2026</p></div>
-          <span className="verified-tag">Official window</span>
+          <div><p className="eyebrow">{part1Card.eyebrow}</p><h2>{formatDate(part1.targetDate)}</h2><p>{part1Days ? `${part1Days} days remaining` : 'Target reached'} · EPSO: {OFFICIAL_TIMELINE.part1.display}</p></div>
+          <span className={part1Card.official ? 'verified-tag' : 'pending-tag'}>{part1Card.tag}</span>
         </div>
         <div className="card plan-target">
           <div className="target-icon phase2"><Flag size={24} /></div>
@@ -103,6 +106,12 @@ export function PlanPage() {
     </div>
   );
 }
+
+const PART1_TARGET_COPY = {
+  'testing-platform': { eyebrow: 'PART 1 TEST DATE', tag: 'From testing platform', official: true },
+  'invitation-week': { eyebrow: 'PART 1 TESTING WEEK', tag: 'From your invitation', official: true },
+  'planning-target': { eyebrow: 'PART 1 PLANNING TARGET', tag: 'Your estimate', official: false }
+} as const;
 
 function buildWeeks(target: string, goal: number, afterPart1: boolean, priorities: string[], primaryHref?: string) {
   const first = todayIso();

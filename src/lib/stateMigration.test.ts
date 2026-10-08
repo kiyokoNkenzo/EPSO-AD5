@@ -181,6 +181,27 @@ describe('app-state v2 migration', () => {
     expect(migrated.completedChecklistItems).toEqual(['portal-login', 'id-document']);
   });
 
+  it('keeps valid Part 1 invitation details and drops malformed or orphaned fields', () => {
+    expect(createDefaultState().part1Logistics).toEqual({});
+    expect(migrateAppState(v1Export()).part1Logistics).toEqual({});
+
+    const migrated = migrateAppState({
+      schemaVersion: 2,
+      part1Logistics: {
+        testingWeekStart: '2026-11-16',
+        prerequisiteDeadline: '2026-11-31',
+        testDate: '2026-11-18',
+        testTime: '09:30',
+        injected: 'ignored'
+      }
+    });
+    expect(migrated.part1Logistics).toEqual({ testingWeekStart: '2026-11-16', testDate: '2026-11-18', testTime: '09:30' });
+
+    expect(migrateAppState({ part1Logistics: { testTime: '09:30' } }).part1Logistics).toEqual({});
+    expect(migrateAppState({ part1Logistics: { testDate: '2026-11-18', testTime: '25:00' } }).part1Logistics).toEqual({ testDate: '2026-11-18' });
+    expect(migrateAppState({ part1Logistics: 'soon' }).part1Logistics).toEqual({});
+  });
+
   it('normalizes the short-lived legacy misread cause label', () => {
     const migrated = migrateAppState({
       schemaVersion: 2,

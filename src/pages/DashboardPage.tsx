@@ -2,6 +2,7 @@ import {
   ArrowRight,
   BookOpenCheck,
   BellRing,
+  CalendarClock,
   Check,
   Clock3,
   FileText,
@@ -14,15 +15,18 @@ import {
 import { Link } from 'react-router-dom';
 import { PageHeader } from '../components/PageHeader';
 import { ProgressRing } from '../components/ProgressRing';
+import { OFFICIAL_TIMELINE, PART1_ROLLOUT_VERIFIED_AT } from '../data/assessmentFramework';
 import { competition, officialUpdateStatus } from '../data/competition';
-import { currentStreak, daysUntil, formatDate } from '../lib/date';
+import { currentStreak, formatDate } from '../lib/date';
 import { buildCoachingSnapshot, labelCategory } from '../lib/coaching';
+import { part1CountdownHeadline, part1NextStep, part1StageLabel } from '../lib/part1Rollout';
 import { useAppState } from '../state/AppState';
 
 export function DashboardPage() {
   const { state } = useAppState();
-  const days = daysUntil(state.profile.phase1Target);
   const coaching = buildCoachingSnapshot(state);
+  const part1 = coaching.part1;
+  const testTime = state.part1Logistics.testTime;
   const totalAnswers = state.attempts.reduce((sum, attempt) => sum + attempt.total, 0);
   const totalCorrect = state.attempts.reduce((sum, attempt) => sum + attempt.score, 0);
   const accuracy = totalAnswers ? (totalCorrect / totalAnswers) * 100 : 0;
@@ -53,7 +57,7 @@ export function DashboardPage() {
             <strong>COACHING ESTIMATE · NOT AN EPSO RESULT</strong>
             <span className="official-window">{formatReadinessBand(coaching.readiness.band)}</span>
           </div>
-          <h2>{days > 0 ? `${days} days to your planning target` : 'Your planning target is here'}</h2>
+          <h2>{part1CountdownHeadline(part1)}</h2>
           <p>
             Your conservative readiness estimate combines accuracy, sample depth and recency across the assessed areas. It has <strong>{Math.round(coaching.readiness.evidenceCoverage * 100)}% evidence coverage</strong> from {evidenceItems} scored item{evidenceItems === 1 ? '' : 's'}; it is not a guarantee of passing, ranking or recruitment.
           </p>
@@ -62,7 +66,7 @@ export function DashboardPage() {
             <Link className="button ghost" to="/analytics">Open full analysis</Link>
           </div>
           <div className="hero-facts">
-            <span><Clock3 size={15} /> Target {formatDate(state.profile.phase1Target)}</span>
+            <span><Clock3 size={15} /> {part1.targetSource === 'testing-platform' ? `Test ${formatDate(part1.targetDate)}${testTime ? ` · ${testTime}` : ''}` : part1.targetSource === 'invitation-week' ? `Week of ${formatDate(part1.targetDate)}` : `Target ${formatDate(part1.targetDate)}`}</span>
             <span><FileText size={15} /> {coaching.dueCards} cards due</span>
             <span><Target size={15} /> {weakest ? `${labelCategory(weakest.category)} least ready` : 'Baseline needed'}</span>
           </div>
@@ -72,6 +76,16 @@ export function DashboardPage() {
           <div className="orbit-note top"><Sparkles size={15} /><span>{Math.round(coaching.readiness.evidenceCoverage * 100)}%<small>evidence coverage</small></span></div>
           <div className="orbit-note bottom"><Flame size={15} /><span>{currentStreak(state.studyDates)}<small>day streak</small></span></div>
         </div>
+      </section>
+
+      <section className="source-watch rollout-watch card">
+        <div className="notice-icon"><CalendarClock size={21} /></div>
+        <div>
+          <p className="eyebrow">PART 1 ROLL-OUT · OFFICIAL UPDATE</p>
+          <h3>{OFFICIAL_TIMELINE.part1.display}</h3>
+          <p>{part1NextStep(part1, testTime)}</p>
+        </div>
+        <div className="watch-meta"><Link to="/coach#part1">{part1StageLabel(part1.stage)}</Link><small>Checked {formatDate(PART1_ROLLOUT_VERIFIED_AT)}</small></div>
       </section>
 
       <section className="source-watch card">
@@ -141,8 +155,8 @@ export function DashboardPage() {
           <a className="text-link" href={competition.noticeUrl} target="_blank" rel="noreferrer">Consolidated notice <ArrowRight size={15} /></a>
         </div>
         <div className="roadmap">
-          <RoadmapStep number="01" title="Reasoning" note="Oct/Nov 2026" detail="Verbal · numerical · abstract" current />
-          <RoadmapStep number="02" title="Part 1 result" note="Date unannounced" detail="Both pass gates required" />
+          <RoadmapStep number="01" title="Reasoning" note={part1.targetSource === 'testing-platform' ? formatDate(part1.targetDate) : part1.targetSource === 'invitation-week' ? `Week of ${formatDate(part1.targetDate, { day: 'numeric', month: 'short' })}` : OFFICIAL_TIMELINE.part1.shortDisplay} detail="Verbal · numerical · abstract" current={part1.stage !== 'completed'} />
+          <RoadmapStep number="02" title="Part 1 result" note="Date unannounced" detail="Both pass gates required" current={part1.stage === 'completed'} />
           <RoadmapStep number="03" title="Remaining tests" note="2027 · date TBD" detail="EU knowledge · digital · EUFTE" provisional />
           <RoadmapStep number="04" title="Final ranking" note="1,490 sought" detail="Weighted score + eligibility" />
         </div>
