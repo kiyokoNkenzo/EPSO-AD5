@@ -5,6 +5,7 @@ import type {
   ExternalCompletion,
   MistakeInput,
   MistakeRecord,
+  Part1Logistics,
   ReviewRating,
   TestAttempt,
   UserProfile,
@@ -16,7 +17,8 @@ import {
   createDefaultState,
   loadAppStateFromStorage,
   migrateAppState,
-  persistAppState
+  persistAppState,
+  sanitizePart1Logistics
 } from '../lib/stateMigration';
 
 export const defaultState: AppState = createDefaultState();
@@ -28,6 +30,7 @@ type Action =
   | { type: 'toggle-checklist'; itemId: string }
   | { type: 'complete-external'; completion: ExternalCompletion }
   | { type: 'update-profile'; profile: Partial<UserProfile> }
+  | { type: 'update-part1-logistics'; logistics: Part1Logistics }
   | { type: 'ack-source-pack' }
   | { type: 'upsert-mistake'; mistake: MistakeInput; savedAt: string }
   | { type: 'review-mistake'; mistakeId: string; reviewedAt: string; nextReviewAt?: string }
@@ -76,6 +79,8 @@ function reducer(state: AppState, action: Action): AppState {
       });
     case 'update-profile':
       return { ...state, profile: { ...state.profile, ...action.profile } };
+    case 'update-part1-logistics':
+      return { ...state, part1Logistics: sanitizePart1Logistics(action.logistics) };
     case 'ack-source-pack':
       return { ...state, sourcePackAcknowledged: true };
     case 'upsert-mistake':
@@ -155,6 +160,7 @@ export interface AppStateContextValue {
   toggleChecklistItem: (itemId: string) => void;
   completeExternal: (completion: ExternalCompletion) => void;
   updateProfile: (profile: Partial<UserProfile>) => void;
+  updatePart1Logistics: (logistics: Part1Logistics) => void;
   acknowledgeSourcePack: () => void;
   upsertMistake: (mistake: MistakeInput) => void;
   reviewMistake: (mistakeId: string, nextReviewAt?: string, reviewedAt?: string) => void;
@@ -191,6 +197,10 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
     []
   );
   const updateProfile = useCallback((profile: Partial<UserProfile>) => dispatch({ type: 'update-profile', profile }), []);
+  const updatePart1Logistics = useCallback(
+    (logistics: Part1Logistics) => dispatch({ type: 'update-part1-logistics', logistics }),
+    []
+  );
   const acknowledgeSourcePack = useCallback(() => dispatch({ type: 'ack-source-pack' }), []);
   const upsertMistake = useCallback((mistake: MistakeInput) => {
     dispatch({ type: 'upsert-mistake', mistake, savedAt: new Date().toISOString() });
@@ -221,6 +231,7 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
       toggleChecklistItem,
       completeExternal,
       updateProfile,
+      updatePart1Logistics,
       acknowledgeSourcePack,
       upsertMistake,
       reviewMistake,
@@ -238,6 +249,7 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
       toggleChecklistItem,
       completeExternal,
       updateProfile,
+      updatePart1Logistics,
       acknowledgeSourcePack,
       upsertMistake,
       reviewMistake,

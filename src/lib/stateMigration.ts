@@ -7,6 +7,8 @@ import type {
   ExternalCompletion,
   MistakeCause,
   MistakeRecord,
+  Part1Logistics,
+  Part1TimeZone,
   QuestionCategory,
   TestAttempt,
   UserProfile,
@@ -50,6 +52,7 @@ const MISTAKE_CAUSES: readonly MistakeCause[] = [
   'confidence-miscalibration',
   'other'
 ];
+const PART1_TIME_ZONES: readonly Part1TimeZone[] = ['brussels', 'device'];
 const COACH_SESSION_TYPES: readonly CoachSessionType[] = [
   'review',
   'planning',
@@ -71,6 +74,7 @@ export function createDefaultState(): AppState {
   return {
     schemaVersion: APP_STATE_SCHEMA_VERSION,
     profile: { ...DEFAULT_PROFILE },
+    part1Logistics: {},
     attempts: [],
     schedules: {},
     completedReadings: [],
@@ -96,6 +100,7 @@ export function migrateAppState(input: unknown): AppState {
   return {
     schemaVersion: APP_STATE_SCHEMA_VERSION,
     profile: sanitizeProfile(input.profile, fallback.profile),
+    part1Logistics: sanitizePart1Logistics(input.part1Logistics),
     attempts: sanitizeArray(input.attempts, sanitizeAttempt, MAX_ATTEMPTS),
     schedules: sanitizeSchedules(input.schedules),
     completedReadings: uniqueStrings(input.completedReadings),
@@ -176,6 +181,23 @@ function sanitizeProfile(value: unknown, fallback: UserProfile): UserProfile {
     phase1Target: isoDate(value.phase1Target) ?? fallback.phase1Target,
     phase2Target: isoDate(value.phase2Target) ?? fallback.phase2Target,
     weeklyGoal: finiteInteger(value.weeklyGoal, 1, 14) ?? fallback.weeklyGoal
+  };
+}
+
+/** Keeps only well-formed invitation dates; a time is kept only with its date. */
+export function sanitizePart1Logistics(value: unknown): Part1Logistics {
+  if (!isRecord(value)) return {};
+  const testingWeekStart = isoDate(value.testingWeekStart);
+  const prerequisiteDeadline = isoDate(value.prerequisiteDeadline);
+  const testDate = isoDate(value.testDate);
+  const testTime = testDate ? clockTime(value.testTime) : undefined;
+  const testTimeZone = testTime ? enumValue(value.testTimeZone, PART1_TIME_ZONES) : undefined;
+  return {
+    ...(testingWeekStart ? { testingWeekStart } : {}),
+    ...(prerequisiteDeadline ? { prerequisiteDeadline } : {}),
+    ...(testDate ? { testDate } : {}),
+    ...(testTime ? { testTime } : {}),
+    ...(testTimeZone ? { testTimeZone } : {})
   };
 }
 
@@ -443,6 +465,12 @@ function isoDate(value: unknown): string | undefined {
   return !Number.isNaN(date.getTime()) && date.toISOString().slice(0, 10) === value ? value : undefined;
 }
 
+function clockTime(value: unknown): string | undefined {
+  if (typeof value !== 'string') return undefined;
+  const match = /^(\d{2}):(\d{2})$/.exec(value);
+  return match && Number(match[1]) <= 23 && Number(match[2]) <= 59 ? value : undefined;
+}
+
 function isoTimestamp(value: unknown): string | undefined {
   if (typeof value !== 'string' || !value.trim()) return undefined;
   const date = new Date(value);
@@ -467,6 +495,7 @@ function hasRecognizedStateField(value: Record<string, unknown>): boolean {
   return [
     'schemaVersion',
     'profile',
+    'part1Logistics',
     'attempts',
     'schedules',
     'completedReadings',

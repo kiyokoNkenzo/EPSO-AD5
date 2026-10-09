@@ -13,21 +13,30 @@ import {
 import { useMemo, type ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { PageHeader } from '../components/PageHeader';
+import { Part1RolloutPanel } from '../components/Part1RolloutPanel';
 import {
   ASSESSMENT_INTERPRETATION_BOUNDARY,
   ASSESSMENT_SOURCES,
   OFFICIAL_LANGUAGE_RULES,
+  OFFICIAL_ONLINE_TESTING_SETUP,
   OFFICIAL_OPERATIONAL_RULES,
   OFFICIAL_TEST_FORMATS,
   OFFICIAL_TIMELINE,
   type AssessmentSourceId
 } from '../data/assessmentFramework';
+import { SETUP_CHECK_IDS } from '../data/onlineTesting';
 import {
   READINESS_REQUIREMENTS,
   buildCoachingSnapshot,
   coachingTarget,
+  isOperationComplete,
   labelCategory
 } from '../lib/coaching';
+import {
+  PREREQUISITE_CHECKLIST_ID,
+  isChecklistItemApplicable,
+  type Part1RolloutStatus
+} from '../lib/part1Rollout';
 import { useAppState } from '../state/AppState';
 
 interface OperationItem {
@@ -37,50 +46,80 @@ interface OperationItem {
   evidenceLabel: string;
   sourceId: AssessmentSourceId;
   sourceLocator: string;
+  /** Shown instead of a checkbox until EPSO has made the item actionable. */
+  lockedReason?: string;
+  /** Completed elsewhere in the app; shown as a link instead of a checkbox. */
+  derived?: { href: string; label: string };
 }
 
-const OPERATION_ITEMS: readonly OperationItem[] = [
-  {
-    id: 'supporting-documents',
-    title: 'Supporting documents uploaded and checked',
-    detail: `Complete by ${OFFICIAL_TIMELINE.supportingDocumentsDeadline.display}. Re-open the files once to verify they are readable and correctly attached.`,
-    evidenceLabel: 'Official deadline + coaching verification step',
-    sourceId: 'original-notice',
-    sourceLocator: OFFICIAL_TIMELINE.supportingDocumentsDeadline.sourceLocator
-  },
-  {
-    id: 'portal-routine',
-    title: 'EPSO account checked at least every three calendar days',
-    detail: 'Confirm only when this is an active routine; a one-off visit does not satisfy the official communication rule.',
-    evidenceLabel: 'Official candidate communication rule',
-    sourceId: 'original-notice',
-    sourceLocator: OFFICIAL_OPERATIONAL_RULES.sourceLocator
-  },
-  {
-    id: 'email-current',
-    title: 'Email address linked to the EPSO account is current',
-    detail: 'Confirm after checking the address saved in the account and that you can receive messages there.',
-    evidenceLabel: 'Official candidate communication rule',
-    sourceId: 'original-notice',
-    sourceLocator: OFFICIAL_OPERATIONAL_RULES.sourceLocator
-  },
-  {
-    id: 'test-environment',
-    title: 'Actual remote-test environment rehearsed',
-    detail: `${OFFICIAL_OPERATIONAL_RULES.delivery} Use the EPSO instructions in your invitation to check the actual equipment, room and connection you will use.`,
-    evidenceLabel: 'Official delivery mode + coaching rehearsal',
-    sourceId: 'original-notice',
-    sourceLocator: OFFICIAL_OPERATIONAL_RULES.sourceLocator
-  },
-  {
-    id: 'language-and-id',
-    title: 'Declared test languages and invitation identity instructions checked',
-    detail: 'Confirm after matching language 1 and language 2 to your application and reviewing the identity requirements in your individual invitation.',
-    evidenceLabel: 'Official language allocation + invitation check',
-    sourceId: 'consolidated-notice',
-    sourceLocator: OFFICIAL_LANGUAGE_RULES.sourceLocator
-  }
-] as const;
+function operationItems(part1: Part1RolloutStatus, completed: readonly string[]): OperationItem[] {
+  const deadline = OFFICIAL_TIMELINE.supportingDocumentsDeadline;
+  const setupDone = SETUP_CHECK_IDS.filter((id) => completed.includes(id)).length;
+  return [
+    {
+      id: 'supporting-documents',
+      title: 'Supporting documents uploaded and checked',
+      detail: part1.supportingDocumentsDeadlinePassed
+        ? `The deadline passed on ${deadline.display}. Confirm your account shows each document attached to the right field; if anything is missing, contact EPSO without delay.`
+        : `Complete by ${deadline.display}. Re-open the files once to verify they are readable and correctly attached.`,
+      evidenceLabel: 'Official deadline + coaching verification step',
+      sourceId: 'original-notice',
+      sourceLocator: deadline.sourceLocator
+    },
+    {
+      id: 'portal-routine',
+      title: 'Single Candidate Portal checked at least every three calendar days',
+      detail: 'Your Part 1 invitation and the steps to your exact slot arrive there. Confirm only when this is an active routine; a one-off visit does not satisfy the official communication rule.',
+      evidenceLabel: 'Official candidate communication rule + roll-out update',
+      sourceId: 'original-notice',
+      sourceLocator: OFFICIAL_OPERATIONAL_RULES.sourceLocator
+    },
+    {
+      id: 'email-current',
+      title: 'Email address linked to the EPSO account is current',
+      detail: 'Confirm after checking the address saved in the account and that you can receive messages there.',
+      evidenceLabel: 'Official candidate communication rule',
+      sourceId: 'original-notice',
+      sourceLocator: OFFICIAL_OPERATIONAL_RULES.sourceLocator
+    },
+    {
+      id: 'tao-public-session',
+      title: 'An official sample test tried on the TAO platform',
+      detail: `${OFFICIAL_ONLINE_TESTING_SETUP.publicSessions} Learn the navigation, bookmarks and calculator before your one prerequisite attempt.`,
+      evidenceLabel: 'Official practice material + coaching step',
+      sourceId: 'ad5-testing-page',
+      sourceLocator: 'AD5 testing page, “Reasoning tests”; TAO instructions §2.5.9'
+    },
+    {
+      id: 'test-environment',
+      title: `Test-day set-up rehearsed (${setupDone}/${SETUP_CHECK_IDS.length})`,
+      detail: `${OFFICIAL_ONLINE_TESTING_SETUP.platform}: ${OFFICIAL_ONLINE_TESTING_SETUP.requirements.join(' · ')}. Completes when every rehearsal check on the Test day page is ticked.`,
+      evidenceLabel: 'Official AD5 testing instructions + coaching rehearsal',
+      sourceId: 'online-testing-instructions',
+      sourceLocator: OFFICIAL_ONLINE_TESTING_SETUP.sourceLocator,
+      derived: { href: '/test-day', label: 'Open Test day' }
+    },
+    {
+      id: 'language-and-id',
+      title: 'Declared test languages and invitation identity instructions checked',
+      detail: 'Confirm after matching language 1 and language 2 to your application and reviewing the identity requirements in your individual invitation.',
+      evidenceLabel: 'Official language allocation + invitation check',
+      sourceId: 'consolidated-notice',
+      sourceLocator: OFFICIAL_LANGUAGE_RULES.sourceLocator
+    },
+    {
+      id: PREREQUISITE_CHECKLIST_ID,
+      title: 'Prerequisite tests completed (one attempt)',
+      detail: OFFICIAL_ONLINE_TESTING_SETUP.prerequisiteCheck,
+      evidenceLabel: 'Official instructions; the time and deadline are in your invitation',
+      sourceId: 'online-testing-instructions',
+      sourceLocator: 'TAO instructions §2.4–2.5 and footnote 1',
+      ...(isChecklistItemApplicable(PREREQUISITE_CHECKLIST_ID, part1)
+        ? {}
+        : { lockedReason: 'Unlocks when you record your invitation or its prerequisite-check deadline above.' })
+    }
+  ];
+}
 
 const GATE_LABELS: Record<string, { title: string; officialRule: string }> = {
   verbal: { title: 'Verbal reasoning', officialRule: 'Official pass mark: 10/20' },
@@ -297,6 +336,8 @@ export function CoachPage() {
         </p>
       </section>
 
+      <Part1RolloutPanel status={snapshot.part1} />
+
       <section className="card operations-card" id="operations" aria-labelledby="operations-title">
         <div className="section-heading">
           <div>
@@ -309,15 +350,37 @@ export function CoachPage() {
           </strong>
         </div>
         <div className="operation-list">
-          {OPERATION_ITEMS.map((item) => {
-            const checked = state.completedChecklistItems.includes(item.id);
+          {operationItems(snapshot.part1, state.completedChecklistItems).map((item) => {
+            const checked = isOperationComplete(item.id, state.completedChecklistItems);
+            if (item.derived) {
+              return (
+                <article className={`operation-item ${checked ? 'complete' : ''}`} key={item.id}>
+                  <Link to={item.derived.href} className="operation-derived">
+                    <span className="operation-check" aria-hidden="true">
+                      {checked ? <CheckCircle2 size={20} /> : <Circle size={20} />}
+                    </span>
+                    <span>
+                      <strong>{item.title}</strong>
+                      <small>{item.detail}</small>
+                      <em>{item.evidenceLabel}</em>
+                      <em>Official locator: {item.sourceLocator}</em>
+                    </span>
+                  </Link>
+                  <Link to={item.derived.href} className="source-badge compact">
+                    <span>{item.derived.label}</span>
+                    <ArrowRight size={12} />
+                  </Link>
+                </article>
+              );
+            }
             const source = ASSESSMENT_SOURCES.find((candidate) => candidate.id === item.sourceId);
             return (
-              <article className={`operation-item ${checked ? 'complete' : ''}`} key={item.id}>
+              <article className={`operation-item ${checked ? 'complete' : ''} ${item.lockedReason ? 'locked' : ''}`} key={item.id}>
                 <label>
                   <input
                     type="checkbox"
                     checked={checked}
+                    disabled={Boolean(item.lockedReason)}
                     onChange={() => toggleChecklistItem(item.id)}
                   />
                   <span className="operation-check" aria-hidden="true">
@@ -328,6 +391,7 @@ export function CoachPage() {
                     <small>{item.detail}</small>
                     <em>{item.evidenceLabel}</em>
                     <em>Official locator: {item.sourceLocator}</em>
+                    {item.lockedReason && <em className="operation-locked">{item.lockedReason}</em>}
                   </span>
                 </label>
                 {source && (

@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import {
+  PORTAL_CHECK_INTERVAL_DAYS,
   dailyReminderDueDate,
   escapeIcsText,
   generateDailyReminderIcs,
@@ -41,6 +42,25 @@ describe('daily reminder calendar', () => {
     });
     expect(ics).toContain('SUMMARY:Review\\; then\\, study\\nnow\r\n');
     expect(ics).toContain('DESCRIPTION:Open the AD5 study app: https://example.test/app?topic=a\\,b\\;c\r\n');
+  });
+
+  it('creates a three-day portal-check event with its own UID and description', () => {
+    const ics = generateDailyReminderIcs(
+      {
+        time: '08:00',
+        title: 'Check the EPSO Single Candidate Portal',
+        appUrl: 'http://localhost:8090/',
+        startDate: '2026-10-08',
+        intervalDays: PORTAL_CHECK_INTERVAL_DAYS,
+        description: 'Look for the Part 1 invitation'
+      },
+      new Date('2026-10-08T07:00:00.000Z')
+    );
+    expect(ics).toContain('RRULE:FREQ=DAILY;INTERVAL=3\r\n');
+    expect(ics).toContain('UID:ad5-every-3d-20261008-0800@ad5-companion.local\r\n');
+    expect(ics).toContain('DESCRIPTION:Look for the Part 1 invitation\r\n');
+    expect(() => generateDailyReminderIcs({ time: '08:00', title: 'X', appUrl: 'https://example.test/', intervalDays: 0 })).toThrow(/interval/);
+    expect(() => generateDailyReminderIcs({ time: '08:00', title: 'X', appUrl: 'https://example.test/', intervalDays: 1.5 })).toThrow(/interval/);
   });
 
   it('rejects non-web and control-character launch URLs', () => {

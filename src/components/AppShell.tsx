@@ -8,6 +8,7 @@ import {
   FileCheck2,
   Gauge,
   GraduationCap,
+  Laptop,
   Library,
   ListChecks,
   PenLine,
@@ -24,6 +25,7 @@ const navItems = [
   { to: '/', label: 'Overview', icon: Gauge, end: true },
   { to: '/coach', label: 'Coach', icon: BrainCircuit },
   { to: '/plan', label: 'Study plan', icon: CalendarRange },
+  { to: '/test-day', label: 'Test day', icon: Laptop },
   { to: '/practice', label: 'Practice', icon: FileCheck2 },
   { to: '/analytics', label: 'Scoring & analytics', icon: BarChart3 },
   { to: '/mistakes', label: 'Mistake journal', icon: ListChecks },
@@ -35,7 +37,8 @@ const navItems = [
   { to: '/settings', label: 'Settings', icon: Settings }
 ] as const;
 
-const bottomItems = [navItems[0], navItems[1], navItems[3], navItems[5], navItems[6]];
+const BOTTOM_PATHS = ['/', '/coach', '/practice', '/mistakes', '/review'];
+const bottomItems = navItems.filter((item) => BOTTOM_PATHS.includes(item.to));
 
 export function AppShell() {
   const { state } = useAppState();
@@ -55,7 +58,20 @@ export function AppShell() {
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'auto' });
-  }, [location.pathname]);
+    if (!location.hash) return;
+    // In-app links such as /coach#part1 target a section of a lazily loaded page,
+    // so wait a few frames for it to mount before scrolling to it.
+    const id = decodeURIComponent(location.hash.slice(1));
+    let frame = 0;
+    let attempts = 0;
+    const seek = () => {
+      const target = document.getElementById(id);
+      if (target) target.scrollIntoView({ block: 'start' });
+      else if (++attempts < 120) frame = window.requestAnimationFrame(seek);
+    };
+    seek();
+    return () => window.cancelAnimationFrame(frame);
+  }, [location.pathname, location.hash]);
 
   const streak = currentStreak(state.studyDates);
 
@@ -86,7 +102,7 @@ export function AppShell() {
             {online ? <BookOpen size={15} /> : <WifiOff size={15} />}
             <span>{online ? 'Offline pack ready' : 'Working offline'}</span>
           </div>
-          <p>Independent study tool<br />Assessment rules checked 13 Aug 2026</p>
+          <p>Independent study tool<br />Notice rules checked 13 Aug 2026<br />EU Careers pages checked 9 Oct 2026</p>
         </div>
       </aside>
 

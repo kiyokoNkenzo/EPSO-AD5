@@ -1,0 +1,92 @@
+{
+  "reviewedAt": "2026-10-09",
+  "note": "Exact phrases from live EU Careers pages that the app's official data depends on. When the source checker reports a change, re-read the page, update src/data, then update the phrase or latestUpdate here.",
+  "claims": [
+    {
+      "id": "competition-page",
+      "url": "https://selection.eu-careers.europa.eu/en/job-opportunities/graduate-administrators",
+      "appUses": "OFFICIAL_TIMELINE and competition.ts",
+      "mustContain": [
+        "Deadline to submit supporting documents 07/10/2026",
+        "Testing period 11/2026 (indicative)",
+        "174727"
+      ],
+      "mustLinkTo": ["/node/20693"],
+      "latestUpdate": "21/09/2026 - Members of the Selection Board"
+    },
+    {
+      "id": "testing-rollout-update",
+      "url": "https://selection.eu-careers.europa.eu/en/news/ad5-graduates-testing-more-details-about-timing-and-roll-out/20788",
+      "appUses": "OFFICIAL_TIMELINE.part1 and OFFICIAL_PART1_ROLLOUT",
+      "mustContain": [
+        "is planned to start in November 2026",
+        "Approximately three weeks before the first testing session",
+        "informing them of the week in which they will take their tests",
+        "at least two weeks before their test",
+        "approximately two months before the test date"
+      ]
+    },
+    {
+      "id": "two-part-testing-update",
+      "url": "https://selection.eu-careers.europa.eu/en/news/ad5-graduates-testing-split-two-parts/20231",
+      "appUses": "OFFICIAL_OPERATIONAL_RULES and OFFICIAL_PART1_ROLLOUT.rescheduling",
+      "mustContain": [
+        "during a single testing session on one day",
+        "Rescheduling of tests will not be possible",
+        "These tests will take place in 2027"
+      ]
+    },
+    {
+      "id": "assessment-overview",
+      "url": "https://selection.eu-careers.europa.eu/en/ad5-graduates-selection-process-how-you-are-assessed",
+      "appUses": "OFFICIAL_TEST_FORMATS pass marks and the ranking weights",
+      "mustContain": [
+        "Verbal reasoning 10/20",
+        "Numerical + Abstract reasoning (combined) 10/20",
+        "EU knowledge 15/30",
+        "Digital skills 20/40",
+        "EUFTE 5/10",
+        "Verbal reasoning 40% EU knowledge 30% Digital skills 30%",
+        "Verbal reasoning 35% EU knowledge 25% Digital skills 25% EUFTE 15%"
+      ]
+    },
+    {
+      "id": "ad5-testing-page",
+      "url": "https://selection.eu-careers.europa.eu/en/graduates-administrators-ad5",
+      "appUses": "OFFICIAL_SOURCE_PACK_BOUNDARIES (a change here may mean the EU Knowledge source pack is out)",
+      "mustContain": [
+        "sample tests in all 24 EU languages to familiarise yourself with the OAT testing platform",
+        "References to the sources used to develop this test will be made available on the EPSO website approximately two months before the test date"
+      ]
+    },
+    {
+      "id": "eu-knowledge-source-pack-faq",
+      "url": "https://selection.eu-careers.europa.eu/en/help/faq/20094",
+      "appUses": "officialUpdateStatus (EU Knowledge source pack pending)",
+      "mustContain": [
+        "approximately two months before the date of the respective testing session"
+      ]
+    },
+    {
+      "id": "testing-instructions-page",
+      "url": "https://selection.eu-careers.europa.eu/en/documents/instructions-online-testing-graduate-administrators/20693",
+      "appUses": "the online-testing-instructions source (a new PDF path means a new edition)",
+      "mustContain": ["EPSO/AD/427/26"],
+      "mustLinkTo": ["2026-09/EN%20Instructions%20for%20online%20Testing%20%28TAO%29%20427-26.pdf"]
+    },
+    {
+      "id": "online-testing-instructions",
+      "url": "https://selection.eu-careers.europa.eu/system/files/2026-09/EN%20Instructions%20for%20online%20Testing%20%28TAO%29%20427-26.pdf",
+      "appUses": "OFFICIAL_ONLINE_TESTING_SETUP and src/data/onlineTesting.ts",
+      "mustContain": [
+        "You can only do the prerequisite tests once per competition unless your invitation letter states otherwise",
+        "any related technical complaint will be dismissed",
+        "Google Chrome 148+",
+        "External calculator",
+        "the comma (,) is not supported as separator",
+        "You plug in a charger after the test has started",
+        "+351 211 554 559"
+      ]
+    }
+  ]
+}

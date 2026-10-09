@@ -5,9 +5,12 @@ import {
   COACHING_READINESS_TARGETS,
   OFFICIAL_EUFTE_ANCHORS,
   OFFICIAL_FINAL_WEIGHTS,
+  OFFICIAL_ONLINE_TESTING_SETUP,
+  OFFICIAL_PART1_ROLLOUT,
   OFFICIAL_PRELIMINARY_WEIGHTS,
   OFFICIAL_SOURCE_PACK_BOUNDARIES,
-  OFFICIAL_TEST_FORMATS
+  OFFICIAL_TEST_FORMATS,
+  OFFICIAL_TIMELINE
 } from './assessmentFramework';
 
 describe('audited assessment framework', () => {
@@ -48,5 +51,28 @@ describe('audited assessment framework', () => {
   it('does not present interim EU background as the definitive source pack', () => {
     expect(OFFICIAL_SOURCE_PACK_BOUNDARIES.euKnowledge.status).toBe('not-published-as-of-verification');
     expect(OFFICIAL_SOURCE_PACK_BOUNDARIES.euKnowledge.currentGuidanceBoundary).toContain('not the definitive');
+  });
+
+  it('reflects the 18 September 2026 roll-out update without inventing exact dates', () => {
+    expect(OFFICIAL_TIMELINE.part1.plannedStartMonth).toBe('2026-11');
+    expect(OFFICIAL_TIMELINE.part1.exactDatesPublished).toBe(false);
+    expect(OFFICIAL_TIMELINE.part1.sourceIds).toContain('testing-rollout-update');
+    expect(OFFICIAL_TIMELINE.part2.exactDatesPublished).toBe(false);
+    expect(OFFICIAL_PART1_ROLLOUT.invitation.content).toMatch(/does not include the exact date and time/);
+    expect(OFFICIAL_PART1_ROLLOUT.exactSlot.minimumLeadDays).toBeLessThan(OFFICIAL_PART1_ROLLOUT.invitation.approximateLeadDays);
+  });
+
+  it('cites only registered sources from every official block', () => {
+    const ids = new Set<string>(ASSESSMENT_SOURCES.map((source) => source.id));
+    const cited = [
+      ...OFFICIAL_TIMELINE.part1.sourceIds,
+      ...OFFICIAL_TIMELINE.part2.sourceIds,
+      ...OFFICIAL_TIMELINE.supportingDocumentsDeadline.sourceIds,
+      ...OFFICIAL_PART1_ROLLOUT.sourceIds,
+      ...OFFICIAL_ONLINE_TESTING_SETUP.sourceIds,
+      ...OFFICIAL_SOURCE_PACK_BOUNDARIES.euKnowledge.sourceIds
+    ];
+    expect(cited.filter((id) => !ids.has(id))).toEqual([]);
+    expect(ASSESSMENT_SOURCES.every((source) => source.url.startsWith('https://'))).toBe(true);
   });
 });

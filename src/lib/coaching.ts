@@ -2,6 +2,7 @@ import type { AppState, QuestionCategory, TestAttempt } from '../types';
 import { COACHING_READINESS_TARGETS } from '../data/assessmentFramework';
 import { phase2Cards } from '../data/cards';
 import { externalPracticeById } from '../data/externalPractice';
+import { SETUP_CHECK_IDS } from '../data/onlineTesting';
 import { questionsById, testDefinitions } from '../data/questions';
 import {
   calculateCategoryMetrics,
@@ -11,6 +12,13 @@ import {
   type ReadinessResult,
   type ScoredAttempt
 } from './performance';
+import { formatDate } from './date';
+import {
+  PREREQUISITE_CHECKLIST_ID,
+  isChecklistItemApplicable,
+  part1RolloutStatus,
+  type Part1RolloutStatus
+} from './part1Rollout';
 import { isDue } from './spacedRepetition';
 
 export type CoachingCategory = QuestionCategory | 'eufte';
@@ -19,9 +27,17 @@ export const OPERATION_CHECKLIST_IDS = [
   'supporting-documents',
   'portal-routine',
   'email-current',
+  'tao-public-session',
   'test-environment',
-  'language-and-id'
+  'language-and-id',
+  PREREQUISITE_CHECKLIST_ID
 ] as const;
+
+/** The environment item is earned by completing every Test-day rehearsal check. */
+export function isOperationComplete(id: string, completed: readonly string[]): boolean {
+  if (id === 'test-environment') return SETUP_CHECK_IDS.every((setupId) => completed.includes(setupId));
+  return completed.includes(id);
+}
 
 export interface CoachingSnapshot {
   metrics: CategoryMetrics[];
@@ -33,6 +49,7 @@ export interface CoachingSnapshot {
   checklistComplete: number;
   checklistTotal: number;
   writingAverage: number | null;
+  part1: Part1RolloutStatus;
   nextActions: CoachingAction[];
 }
 
@@ -77,6 +94,8 @@ export function buildCoachingSnapshot(state: AppState, now = new Date()): Coachi
   const writingAverage = state.writingPractices.length
     ? state.writingPractices.reduce((sum, practice) => sum + writingPracticeRatio(practice), 0) / state.writingPractices.length
     : null;
+  const part1 = part1RolloutStatus(state, now);
+  const applicableChecklist = OPERATION_CHECKLIST_IDS.filter((id) => isChecklistItemApplicable(id, part1));
   const snapshotBase = {
     metrics,
     readiness,
@@ -84,9 +103,10 @@ export function buildCoachingSnapshot(state: AppState, now = new Date()): Coachi
     dueCards,
     dueMistakes,
     unresolvedMistakes: unresolvedMistakes.length,
-    checklistComplete: OPERATION_CHECKLIST_IDS.filter((id) => state.completedChecklistItems.includes(id)).length,
-    checklistTotal: OPERATION_CHECKLIST_IDS.length,
-    writingAverage
+    checklistComplete: applicableChecklist.filter((id) => isOperationComplete(id, state.completedChecklistItems)).length,
+    checklistTotal: applicableChecklist.length,
+    writingAverage,
+    part1
   };
 
   return { ...snapshotBase, nextActions: recommendActions(state, snapshotBase) };
@@ -166,7 +186,7 @@ function recommendActions(
   state: AppState,
   snapshot: Omit<CoachingSnapshot, 'nextActions'>
 ): CoachingAction[] {
-  const actions: CoachingAction[] = [];
+  const actions: CoachingAction[] = [...part1Actions(snapshot.part1)];
   if (snapshot.checklistComplete < snapshot.checklistTotal) {
     actions.push({ id: 'logistics', priority: 100, title: 'Close an operational risk', detail: 'Review the official deadline, portal and test-day checklist.', href: '/coach#operations', minutes: 5 });
   }
@@ -193,6 +213,31 @@ function recommendActions(
     actions.push({ id: 'writing', priority: 70, title: 'Create an EUFTE baseline', detail: 'Run a 40-minute source-bound drill and self-check all five official anchors.', href: '/writing', minutes: 45, category: 'eufte' });
   }
   return actions.sort((a, b) => b.priority - a.priority).slice(0, 4);
+}
+
+/** Time-sensitive Part 1 logistics outrank training only while EPSO's own deadlines are live. */
+function part1Actions(part1: Part1RolloutStatus): CoachingAction[] {
+  const actions: CoachingAction[] = [];
+  const href = '/coach#part1';
+  if (part1.stage === 'completed') return actions;
+  if (part1.prerequisiteDeadline && part1.prerequisiteDaysLeft !== undefined && !part1.prerequisiteDone) {
+    const daysLeft = part1.prerequisiteDaysLeft;
+    actions.push(daysLeft < 0
+      ? { id: 'prerequisite-check', priority: 110, title: 'Prerequisite-check deadline has passed', detail: 'Tick it if you completed the check; otherwise contact EPSO immediately.', href, minutes: 5 }
+      : { id: 'prerequisite-check', priority: daysLeft <= 7 ? 110 : 96, title: 'Run the mandatory technical prerequisite check', detail: `Deadline ${formatDate(part1.prerequisiteDeadline)} (${daysLeft === 0 ? 'today' : `${daysLeft} day${daysLeft === 1 ? '' : 's'} left`}). Use the computer, room and connection you will test with.`, href, minutes: 30 });
+  }
+  if (part1.slotOverdue) {
+    actions.push({ id: 'exact-slot', priority: 105, title: 'Exact test slot still missing', detail: 'EPSO says the date and time appear on the testing platform at least two weeks before the test. Check again, then contact EPSO.', href, minutes: 10 });
+  } else if (part1.slotLookupDue) {
+    actions.push({ id: 'exact-slot', priority: 97, title: 'Look up your exact test date and time', detail: 'Follow the steps in your invitation letter to the testing platform, then record the slot here.', href, minutes: 5 });
+  }
+  if (part1.invitationWatchOpen) {
+    actions.push({ id: 'invitation-watch', priority: 92, title: 'Check the Single Candidate Portal for your invitation', detail: 'Part 1 invitations give the testing week about three weeks before testing starts. Record it here when it arrives.', href, minutes: 3 });
+  }
+  if ((part1.stage === 'invited' || part1.stage === 'slot-confirmed') && part1.daysToTarget >= 0 && part1.daysToTarget <= 7) {
+    actions.push({ id: 'test-week', priority: 94, title: 'Rehearse the one-sitting sequence', detail: 'All three reasoning tests run in one session: practise verbal, numerical and abstract back to back at official timing, then review only your own mistakes.', href: '/practice', minutes: 65 });
+  }
+  return actions;
 }
 
 export function coachingTarget(category: CoachingCategory) {

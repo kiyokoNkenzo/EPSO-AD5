@@ -4,7 +4,7 @@ import phase2Deck from '../../content/phase2-cards.json';
 import { externalPracticeResources } from './externalPractice';
 import { questions } from './questions';
 
-const APPROVED_EPSO_QUESTION_HOSTS = new Set(['eu-careers.europa.eu']);
+const APPROVED_EPSO_QUESTION_HOSTS = new Set(['selection.eu-careers.europa.eu']);
 const PHASE2_SOURCE_TIERS = new Set(['EPSO_GUIDANCE', 'OFFICIAL_EU_BACKGROUND']);
 
 function expectNonEmptyText(value: unknown, field: string): asserts value is string {
@@ -89,5 +89,21 @@ describe('publisher-hosted practice catalogue', () => {
     expectNonEmptyText(resource.evidenceNote, `${resource.id} evidence note`);
     expectIsoDate(resource.verifiedAt, `${resource.id} verified date`);
     if (resource.solutionsUrl) expectHttpsUrl(resource.solutionsUrl, `${resource.id} answer-key URL`);
+  });
+});
+
+describe('official link hygiene', () => {
+  it('never points at the retired eu-careers.europa.eu host', () => {
+    const sources = import.meta.glob(['./*.ts', '../../content/*.json', '../../README.md'], {
+      query: '?raw',
+      import: 'default',
+      eager: true
+    }) as Record<string, string>;
+    expect(Object.keys(sources).length).toBeGreaterThan(5);
+    // EPSO moved its pages to selection.eu-careers.europa.eu; old paths return 404.
+    const offenders = Object.entries(sources)
+      .filter(([, text]) => /https:\/\/eu-careers\.europa\.eu\//.test(text))
+      .map(([file]) => file);
+    expect(offenders).toEqual([]);
   });
 });

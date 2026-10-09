@@ -5,7 +5,7 @@ import { buildGuidedTest, isGuidedTrainingMode } from './adaptiveTraining';
 const source = {
   publisher: 'EPSO',
   title: 'Published sample',
-  canonicalUrl: 'https://eu-careers.europa.eu/sample.pdf',
+  canonicalUrl: 'https://selection.eu-careers.europa.eu/sample.pdf',
   itemId: 'Q1',
   locator: 'p. 1',
   answerLocator: 'p. 2',

@@ -13,11 +13,11 @@
       "topic": "Competition format",
       "front": "When is Phase 2 expected, and which candidates reach it?",
       "back": "Phase 2 is planned for 2027, on dates still to be announced. Candidates reach it only after obtaining the required Phase 1 reasoning-test pass scores.",
-      "detail": "EPSO split testing into two sittings: reasoning tests expected from October/November 2026, followed in 2027 by the remaining tests for candidates who pass Part 1. Treat all dates as operationally volatile and check the candidate portal and competition page.",
+      "detail": "EPSO split testing into two sittings: the reasoning tests first, then the remaining tests in 2027 for candidates who pass Part 1. EPSO has since updated the Part 1 timing, so treat all dates as operationally volatile and check the Single Candidate Portal and competition page.",
       "tags": ["phase-2", "format", "timeline", "high-volatility"],
       "source": {
         "source_title": "AD5 Graduates testing split into two parts",
-        "url": "https://eu-careers.europa.eu/en/epso-apply-page-related-news/7576",
+        "url": "https://selection.eu-careers.europa.eu/en/epso-apply-page-related-news/7576",
         "locator": "Section 'What will change for candidates?', subsections 'Part 1' and 'Part 2'",
         "version_or_snapshot_date": "EPSO update dated 2026-06-30; snapshot 2026-08-12",
         "source_tier": "EPSO_GUIDANCE",
@@ -34,7 +34,7 @@
       "tags": ["phase-2", "format", "tests", "language-2"],
       "source": {
         "source_title": "Consolidated Notice of Open Competition EPSO/AD/427/26 — Administrators (AD 5)",
-        "url": "https://eu-careers.europa.eu/system/files/2026-07/Notice-of-open-competition-EPSO-AD-427-26_consolidated-version.pdf",
+        "url": "https://selection.eu-careers.europa.eu/system/files/2026-07/Notice-of-open-competition-EPSO-AD-427-26_consolidated-version.pdf",
         "locator": "Sections 4.1 and 4.3.2(a)(i), printed pp. 3 and 5; Table 1, printed p. 4",
         "version_or_snapshot_date": "Consolidated version published 2026-07-01",
         "source_tier": "EPSO_GUIDANCE",
@@ -51,7 +51,7 @@
       "tags": ["phase-2", "eu-knowledge", "timing", "pass-mark"],
       "source": {
         "source_title": "Consolidated Notice of Open Competition EPSO/AD/427/26 — Administrators (AD 5)",
-        "url": "https://eu-careers.europa.eu/system/files/2026-07/Notice-of-open-competition-EPSO-AD-427-26_consolidated-version.pdf",
+        "url": "https://selection.eu-careers.europa.eu/system/files/2026-07/Notice-of-open-competition-EPSO-AD-427-26_consolidated-version.pdf",
         "locator": "Section 4.3.2(c) and Table 3, printed p. 6",
         "version_or_snapshot_date": "Consolidated version published 2026-07-01",
         "source_tier": "EPSO_GUIDANCE",
@@ -68,7 +68,7 @@
       "tags": ["phase-2", "digital-skills", "timing", "pass-mark"],
       "source": {
         "source_title": "Consolidated Notice of Open Competition EPSO/AD/427/26 — Administrators (AD 5)",
-        "url": "https://eu-careers.europa.eu/system/files/2026-07/Notice-of-open-competition-EPSO-AD-427-26_consolidated-version.pdf",
+        "url": "https://selection.eu-careers.europa.eu/system/files/2026-07/Notice-of-open-competition-EPSO-AD-427-26_consolidated-version.pdf",
         "locator": "Section 4.3.2(d) and Table 4, printed pp. 6–7",
         "version_or_snapshot_date": "Consolidated version published 2026-07-01",
         "source_tier": "EPSO_GUIDANCE",
@@ -85,7 +85,7 @@
       "tags": ["phase-2", "eufte", "timing", "pass-mark"],
       "source": {
         "source_title": "Consolidated Notice of Open Competition EPSO/AD/427/26 — Administrators (AD 5)",
-        "url": "https://eu-careers.europa.eu/system/files/2026-07/Notice-of-open-competition-EPSO-AD-427-26_consolidated-version.pdf",
+        "url": "https://selection.eu-careers.europa.eu/system/files/2026-07/Notice-of-open-competition-EPSO-AD-427-26_consolidated-version.pdf",
         "locator": "Section 4.3.2(e) and Table 5, printed p. 7",
         "version_or_snapshot_date": "Consolidated version published 2026-07-01",
         "source_tier": "EPSO_GUIDANCE",
@@ -102,7 +102,7 @@
       "tags": ["phase-2", "ranking", "weights", "preliminary-score"],
       "source": {
         "source_title": "Consolidated Notice of Open Competition EPSO/AD/427/26 — Administrators (AD 5)",
-        "url": "https://eu-careers.europa.eu/system/files/2026-07/Notice-of-open-competition-EPSO-AD-427-26_consolidated-version.pdf",
+        "url": "https://selection.eu-careers.europa.eu/system/files/2026-07/Notice-of-open-competition-EPSO-AD-427-26_consolidated-version.pdf",
         "locator": "Section 4.3.3(a), Table 6, printed p. 7; Section 4.3.3(b)(ii)–(iv), printed p. 8",
         "version_or_snapshot_date": "Consolidated version published 2026-07-01",
         "source_tier": "EPSO_GUIDANCE",
@@ -119,7 +119,7 @@
       "tags": ["phase-2", "ranking", "weights", "final-score"],
       "source": {
         "source_title": "Consolidated Notice of Open Competition EPSO/AD/427/26 — Administrators (AD 5)",
-        "url": "https://eu-careers.europa.eu/system/files/2026-07/Notice-of-open-competition-EPSO-AD-427-26_consolidated-version.pdf",
+        "url": "https://selection.eu-careers.europa.eu/system/files/2026-07/Notice-of-open-competition-EPSO-AD-427-26_consolidated-version.pdf",
         "locator": "Section 4.3.3(a), Table 6, printed p. 7; Section 4.3.3(b)(iv)–(vii), printed pp. 8–9",
         "version_or_snapshot_date": "Consolidated version published 2026-07-01",
         "source_tier": "EPSO_GUIDANCE",
@@ -136,7 +136,7 @@
       "tags": ["phase-2", "source-pack", "disclaimer", "high-volatility"],
       "source": {
         "source_title": "EU Knowledge Test material available 2 months before test",
-        "url": "https://eu-careers.europa.eu/en/news/eu-knowledge-test-material-available-2-months-test/19555",
+        "url": "https://selection.eu-careers.europa.eu/en/news/eu-knowledge-test-material-available-2-months-test/19555",
         "locator": "Entire notice: two paragraphs under the page title",
         "version_or_snapshot_date": "Published 2026-03-16; last modified 2026-03-17; snapshot 2026-08-12",
         "source_tier": "EPSO_GUIDANCE",
@@ -748,7 +748,7 @@
       "tags": ["phase-2", "eufte", "writing", "anchors"],
       "source": {
         "source_title": "Graduates (Administrators – AD5)",
-        "url": "https://eu-careers.europa.eu/en/graduates-administrators-ad5",
+        "url": "https://selection.eu-careers.europa.eu/en/graduates-administrators-ad5",
         "locator": "Section 'Written test - Free-Text Essay on EU Matters (EUFTE)', five anchor bullets",
         "version_or_snapshot_date": "Web-page snapshot 2026-08-12",
         "source_tier": "EPSO_GUIDANCE",

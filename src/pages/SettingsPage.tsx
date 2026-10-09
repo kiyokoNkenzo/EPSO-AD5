@@ -69,9 +69,9 @@ export function SettingsPage() {
         </section>
 
         <section className="card settings-card">
-          <div className="settings-heading"><span><Save size={20} /></span><div><h2>Planning targets</h2><p>These dates drive the countdown—not EPSO invitations.</p></div></div>
+          <div className="settings-heading"><span><Save size={20} /></span><div><h2>Planning targets</h2><p>Fallback dates for the countdown until you record your EPSO invitation.</p></div></div>
           <div className="form-grid">
-            <label className="field"><span>Part 1 target</span><input type="date" required value={draft.phase1Target} onChange={(event) => setDraft({ ...draft, phase1Target: event.target.value })} /><small>Official expectation: as of Oct/Nov 2026.</small></label>
+            <label className="field"><span>Part 1 target</span><input type="date" required value={draft.phase1Target} onChange={(event) => setDraft({ ...draft, phase1Target: event.target.value })} /><small>EPSO plans Part 1 from November 2026. Once your invitation arrives, record it under <Link to="/coach#part1">Coach → Part 1 roll-out</Link>; countdowns then follow it.</small></label>
             <label className="field"><span>Part 2 placeholder</span><input type="date" required value={draft.phase2Target} onChange={(event) => setDraft({ ...draft, phase2Target: event.target.value })} /><small>EPSO confirms 2027; exact date is unannounced.</small></label>
             <label className="field full"><span>Weekly session goal: {draft.weeklyGoal}</span><input className="range" type="range" min="3" max="7" value={draft.weeklyGoal} onChange={(event) => setDraft({ ...draft, weeklyGoal: Number(event.target.value) })} /></label>
           </div>

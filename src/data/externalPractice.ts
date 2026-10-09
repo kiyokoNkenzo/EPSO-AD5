@@ -166,7 +166,7 @@ export const externalPracticeResources: ExternalPracticeResource[] = [
     publisher: 'European Personnel Selection Office (EPSO)',
     phase: 1,
     categories: ['abstract'],
-    url: 'https://eu-careers.europa.eu/system/files/2024-05/AD_Abstract_10Q_DA2.pdf',
+    url: 'https://selection.eu-careers.europa.eu/system/files/2024-05/AD_Abstract_10Q_DA2.pdf',
     description: 'Ten official EPSO AD visual abstract-reasoning sample questions.',
     kind: 'Abstract reasoning',
     reuse: 'link-only',

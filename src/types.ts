@@ -186,9 +186,29 @@ export interface CoachSessionLog {
   actionItems?: string[];
 }
 
+/**
+ * Details the learner copies from their own Part 1 invitation and the testing
+ * platform. Every field stays optional until EPSO actually provides it.
+ */
+export interface Part1Logistics {
+  /** First day of the testing week stated in the invitation letter (YYYY-MM-DD). */
+  testingWeekStart?: string;
+  /** Prerequisite-check deadline stated in the invitation letter (YYYY-MM-DD). */
+  prerequisiteDeadline?: string;
+  /** Exact test date shown on the testing platform (YYYY-MM-DD). */
+  testDate?: string;
+  /** Exact start time exactly as shown on the testing platform (HH:mm). */
+  testTime?: string;
+  /** Whether `testTime` is Brussels time or the learner's own device time. */
+  testTimeZone?: Part1TimeZone;
+}
+
+export type Part1TimeZone = 'brussels' | 'device';
+
 export interface AppState {
   schemaVersion: number;
   profile: UserProfile;
+  part1Logistics: Part1Logistics;
   attempts: TestAttempt[];
   schedules: Record<string, CardSchedule>;
   completedReadings: string[];
