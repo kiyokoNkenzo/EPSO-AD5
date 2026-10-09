@@ -1,0 +1,33 @@
+name: Official source watch
+
+# Checks that every official link still resolves and that EPSO's pages still say
+# what the app claims. A failed run means EPSO changed something worth reviewing.
+on:
+  schedule:
+    - cron: '17 6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: official-source-watch
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pdftotext
+        run: sudo apt-get update -q && sudo apt-get install -y -q poppler-utils
+      - name: Check official sources
+        run: python3 scripts/check_official_sources.py --report official-source-report.md
+      - name: Keep the report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: official-source-report
+          path: official-source-report.md
+          if-no-files-found: ignore

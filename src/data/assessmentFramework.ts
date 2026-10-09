@@ -9,12 +9,11 @@
 export const ASSESSMENT_FRAMEWORK_VERIFIED_AT = '2026-08-13' as const;
 
 /**
- * Date of the Part 1 roll-out refresh. These facts were cross-checked against the
- * indexed text of the cited EU Careers pages on this date; the pages could not be
- * opened directly from the build environment, so re-open each source before
- * relying on a detail that matters for your own invitation.
+ * Date the live EU Careers pages and documents marked with it were re-opened and
+ * read in full. EPSO moved its pages to selection.eu-careers.europa.eu in 2026;
+ * links on the old eu-careers.europa.eu host no longer resolve reliably.
  */
-export const PART1_ROLLOUT_VERIFIED_AT = '2026-10-08' as const;
+export const EPSO_PAGES_VERIFIED_AT = '2026-10-09' as const;
 
 export type EvidenceClassification =
   | 'official-binding'
@@ -33,7 +32,6 @@ export type AssessmentSourceId =
   | 'two-part-testing-update'
   | 'testing-rollout-update'
   | 'online-testing-instructions'
-  | 'tao-first-testing-report'
   | 'ad5-testing-page'
   | 'eu-knowledge-source-pack-update'
   | 'written-test-page'
@@ -86,7 +84,7 @@ export const ASSESSMENT_SOURCES = [
     id: 'consolidated-notice',
     title: 'EPSO/AD/427/26 consolidated notice (information-only version)',
     publisher: 'European Personnel Selection Office (EPSO)',
-    url: 'https://eu-careers.europa.eu/system/files/2026-07/Notice-of-open-competition-EPSO-AD-427-26_consolidated-version.pdf',
+    url: 'https://selection.eu-careers.europa.eu/system/files/2026-07/Notice-of-open-competition-EPSO-AD-427-26_consolidated-version.pdf',
     classification: 'official-informational-consolidation',
     locator:
       'PDF p. 1 disclaimer; pp. 4–9, §§4.1–4.3.4 and Tables 1–6 (printed-page numbering)',
@@ -98,87 +96,78 @@ export const ASSESSMENT_SOURCES = [
     id: 'competition-page',
     title: 'Graduate administrators — EPSO/AD/427/26',
     publisher: 'European Personnel Selection Office (EPSO)',
-    url: 'https://eu-careers.europa.eu/en/job-opportunities/graduate-administrators',
+    url: 'https://selection.eu-careers.europa.eu/en/job-opportunities/graduate-administrators',
     classification: 'official-guidance',
     locator:
-      'Competition header; “Selection and recruitment process”; “Competition overview — Key dates and figures”; “Latest updates”',
-    verifiedAt: ASSESSMENT_FRAMEWORK_VERIFIED_AT
+      'Competition header; “Selection and recruitment process”; “Competition overview — Key dates and figures” (testing period 11/2026, indicative); “Latest updates”',
+    verifiedAt: EPSO_PAGES_VERIFIED_AT
   },
   {
     id: 'assessment-overview',
     title: 'AD5 Graduates selection process: how you are assessed',
     publisher: 'European Personnel Selection Office (EPSO)',
-    url: 'https://eu-careers.europa.eu/en/ad5-graduates-selection-process-how-you-are-assessed',
+    url: 'https://selection.eu-careers.europa.eu/en/ad5-graduates-selection-process-how-you-are-assessed',
     classification: 'official-guidance',
     locator: '“Part 1”, “Part 2”, “Preliminary scoring” and “Final scoring” tables',
-    verifiedAt: ASSESSMENT_FRAMEWORK_VERIFIED_AT
+    verifiedAt: EPSO_PAGES_VERIFIED_AT
   },
   {
     id: 'two-part-testing-update',
     title: 'AD5 Graduates testing split into two parts',
     publisher: 'European Personnel Selection Office (EPSO)',
-    url: 'https://eu-careers.europa.eu/en/news/ad5-graduates-testing-split-two-parts/20231',
+    url: 'https://selection.eu-careers.europa.eu/en/news/ad5-graduates-testing-split-two-parts/20231',
     classification: 'official-guidance',
     locator:
       '“Part 1: reasoning tests (expected as of October/November 2026)” and “Part 2: remaining tests (2027)”',
-    verifiedAt: ASSESSMENT_FRAMEWORK_VERIFIED_AT,
+    verifiedAt: EPSO_PAGES_VERIFIED_AT,
     note: 'Its Part 1 timing wording is superseded by the 18 September 2026 roll-out update.'
   },
   {
     id: 'testing-rollout-update',
     title: 'AD5 graduates testing: more details about timing and roll-out',
     publisher: 'European Personnel Selection Office (EPSO)',
-    url: 'https://eu-careers.europa.eu/en/news/ad5-graduates-testing-more-details-about-timing-and-roll-out/20788',
+    url: 'https://selection.eu-careers.europa.eu/en/news/ad5-graduates-testing-more-details-about-timing-and-roll-out/20788',
     classification: 'official-guidance',
     locator:
       'Part 1 paragraph: planned November 2026 start, invitation letter and testing-platform slot details; Part 2 paragraph',
-    verifiedAt: PART1_ROLLOUT_VERIFIED_AT,
-    note: 'Published 18 September 2026. Replaces the earlier “expected as of October/November 2026” Part 1 wording.'
+    verifiedAt: EPSO_PAGES_VERIFIED_AT,
+    note: 'Posted 18 September 2026. Replaces the earlier “expected as of October/November 2026” Part 1 wording.'
   },
   {
     id: 'online-testing-instructions',
-    title: 'Instructions for online testing (TAO)',
+    title: 'Instructions for online testing (TAO) — EPSO/AD/427/26',
     publisher: 'European Personnel Selection Office (EPSO)',
-    url: 'https://eu-careers.europa.eu/system/files/2026-03/EN_Instructions%20for%20online%20Testing%20%28TAO%29%20March%202026.pdf',
+    url: 'https://selection.eu-careers.europa.eu/system/files/2026-09/EN%20Instructions%20for%20online%20Testing%20%28TAO%29%20427-26.pdf',
     classification: 'official-guidance',
-    locator: 'TAO and Proctorio set-up, technical requirements, public sessions and the mandatory technical prerequisite check',
-    verifiedAt: PART1_ROLLOUT_VERIFIED_AT,
+    locator:
+      'Quick instructions; Essential information; §1.2 technical requirements; §2.2 ID; §2.5 prerequisite tests; §3.2 valid session; §3.3 technical issues; §4 after testing; Annex I tools',
+    verifiedAt: EPSO_PAGES_VERIFIED_AT,
     note:
-      'General March 2026 edition. EPSO has also published an EPSO/AD/427/26 edition (September 2026); the instructions linked from your own invitation prevail.'
-  },
-  {
-    id: 'tao-first-testing-report',
-    title: 'First testing with the TAO platform on 27/1/2026: preliminary data and observations',
-    publisher: 'European Personnel Selection Office (EPSO)',
-    url: 'https://eu-careers.europa.eu/en/news/first-testing-tao-platform-27-1-2026-preliminary-data-and-observations/19231',
-    classification: 'official-guidance',
-    locator: 'Preliminary figures: 2249 of 3170 applicants connected; about 91% completed all three tests',
-    verifiedAt: PART1_ROLLOUT_VERIFIED_AT,
-    note: 'Concerns EPSO/AD/425/25, not this competition. Cited only as evidence that technical rehearsal matters.'
+      'Competition-specific edition published September 2026 (English and French). The instructions in your own invitation prevail.'
   },
   {
     id: 'ad5-testing-page',
     title: 'Graduates (Administrators — AD5): tests and preparation',
     publisher: 'European Personnel Selection Office (EPSO)',
-    url: 'https://eu-careers.europa.eu/en/graduates-administrators-ad5',
+    url: 'https://selection.eu-careers.europa.eu/en/graduates-administrators-ad5',
     classification: 'official-guidance',
     locator: '“EU Knowledge test”, “Digital skills test” and “Written test — EUFTE” sections',
-    verifiedAt: ASSESSMENT_FRAMEWORK_VERIFIED_AT
+    verifiedAt: EPSO_PAGES_VERIFIED_AT
   },
   {
     id: 'eu-knowledge-source-pack-update',
     title: 'EU Knowledge Test material available 2 months before test',
     publisher: 'European Personnel Selection Office (EPSO)',
-    url: 'https://eu-careers.europa.eu/en/news/eu-knowledge-test-material-available-2-months-test/19555',
+    url: 'https://selection.eu-careers.europa.eu/en/news/eu-knowledge-test-material-available-2-months-test/19555',
     classification: 'official-guidance',
     locator: 'Main announcement, published 16 March 2026 and last modified 17 March 2026',
-    verifiedAt: ASSESSMENT_FRAMEWORK_VERIFIED_AT
+    verifiedAt: EPSO_PAGES_VERIFIED_AT
   },
   {
     id: 'written-test-page',
     title: 'Written test',
     publisher: 'European Personnel Selection Office (EPSO)',
-    url: 'https://eu-careers.europa.eu/en/sample-tests/written-test-0',
+    url: 'https://selection.eu-careers.europa.eu/en/sample-tests/written-test-0',
     classification: 'official-guidance',
     locator: 'EUFTE description and the five written-communication anchors',
     verifiedAt: ASSESSMENT_FRAMEWORK_VERIFIED_AT
@@ -187,10 +176,10 @@ export const ASSESSMENT_SOURCES = [
     id: 'testing-faq',
     title: 'Tests and assessments — frequently asked questions',
     publisher: 'European Personnel Selection Office (EPSO)',
-    url: 'https://eu-careers.europa.eu/en/help/faq/tests',
+    url: 'https://selection.eu-careers.europa.eu/en/help/faq/tests',
     classification: 'official-guidance',
     locator: 'FAQ “Where can I find out more on the tests? Do you offer training for candidates?”',
-    verifiedAt: ASSESSMENT_FRAMEWORK_VERIFIED_AT
+    verifiedAt: EPSO_PAGES_VERIFIED_AT
   },
   {
     id: 'digcomp-2-2',
@@ -661,7 +650,7 @@ export const OFFICIAL_TIMELINE = {
  */
 export const OFFICIAL_PART1_ROLLOUT = {
   classification: 'official-guidance',
-  verifiedAt: PART1_ROLLOUT_VERIFIED_AT,
+  verifiedAt: EPSO_PAGES_VERIFIED_AT,
   invitation: {
     channel: 'Single Candidate Portal (your EPSO account)',
     approximateLeadDays: 21,
@@ -679,32 +668,30 @@ export const OFFICIAL_PART1_ROLLOUT = {
   sourceLocator: 'Roll-out update, Part 1 paragraph; two-part update, Part 1 (no rescheduling)'
 } as const;
 
-/** Remote-testing set-up from EPSO’s general TAO instructions; your invitation prevails. */
+/** Remote-testing set-up summarised from EPSO’s EPSO/AD/427/26 TAO instructions; your invitation prevails. */
 export const OFFICIAL_ONLINE_TESTING_SETUP = {
   classification: 'official-guidance',
-  verifiedAt: PART1_ROLLOUT_VERIFIED_AT,
+  verifiedAt: EPSO_PAGES_VERIFIED_AT,
   platform: 'TAO (Open Assessment Technologies) used together with the Proctorio browser extension',
   requirements: [
-    'A desktop or laptop computer; mobile devices and tablets are not supported',
-    'Google Chrome or Microsoft Edge',
-    'Windows 10 or later, macOS 10.15 or later, or Ubuntu 18.04 or later',
-    'A working webcam and microphone',
-    'Administrator rights on the computer (often unavailable on employer-managed devices)'
+    'A plugged-in desktop or laptop; phones and tablets are not supported',
+    'Google Chrome 148+ or Microsoft Edge 148+ with the Proctorio extension',
+    'Windows 10+, macOS 10.15+ or Ubuntu 18.04+',
+    'A webcam and microphone allowed to record',
+    'Administrator rights (employer-managed devices are not recommended)'
   ],
   prerequisiteCheck:
-    'A mandatory technical prerequisite check must be run no later than the deadline stated in your invitation letter.',
+    'The prerequisite tests can be taken only once per competition unless your invitation says otherwise, on the same computer and set-up as test day and before the deadline in your invitation. You can still sit the test without them, but a related technical complaint will be dismissed.',
   publicSessions:
-    'Optional public TAO sessions are anonymous and unscored. They help with the interface but may not show every EPSO feature.',
-  firstTaoTestingEvidence:
-    'At EPSO’s first TAO testing (27 January 2026, another competition), about 9% of the candidates who connected could not complete all three tests.',
-  sourceIds: ['online-testing-instructions', 'tao-first-testing-report'] as const,
-  sourceLocator: 'TAO instructions: technical requirements, public sessions, prerequisite check; TAO first-testing report'
+    'EPSO publishes AD5 sample tests on the OAT testing platform in all 24 EU languages, and public TAO sessions are anonymous and unscored. Neither may show every feature of your own test.',
+  sourceIds: ['online-testing-instructions', 'ad5-testing-page'] as const,
+  sourceLocator: 'TAO instructions §1.2, §2.5 and footnote 1, §2.5.9; AD5 testing page, “Reasoning tests”'
 } as const;
 
 export const OFFICIAL_SOURCE_PACK_BOUNDARIES = {
   classification: 'official-guidance',
   // Re-confirmed as still pending by the 18 September 2026 roll-out update.
-  verifiedAt: PART1_ROLLOUT_VERIFIED_AT,
+  verifiedAt: EPSO_PAGES_VERIFIED_AT,
   euKnowledge: {
     status: 'not-published-as-of-verification',
     promisedTiming: 'Approximately two months before the EU knowledge test date',

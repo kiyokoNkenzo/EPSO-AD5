@@ -8,6 +8,7 @@ import type {
   MistakeCause,
   MistakeRecord,
   Part1Logistics,
+  Part1TimeZone,
   QuestionCategory,
   TestAttempt,
   UserProfile,
@@ -51,6 +52,7 @@ const MISTAKE_CAUSES: readonly MistakeCause[] = [
   'confidence-miscalibration',
   'other'
 ];
+const PART1_TIME_ZONES: readonly Part1TimeZone[] = ['brussels', 'device'];
 const COACH_SESSION_TYPES: readonly CoachSessionType[] = [
   'review',
   'planning',
@@ -188,12 +190,14 @@ export function sanitizePart1Logistics(value: unknown): Part1Logistics {
   const testingWeekStart = isoDate(value.testingWeekStart);
   const prerequisiteDeadline = isoDate(value.prerequisiteDeadline);
   const testDate = isoDate(value.testDate);
-  const testTime = clockTime(value.testTime);
+  const testTime = testDate ? clockTime(value.testTime) : undefined;
+  const testTimeZone = testTime ? enumValue(value.testTimeZone, PART1_TIME_ZONES) : undefined;
   return {
     ...(testingWeekStart ? { testingWeekStart } : {}),
     ...(prerequisiteDeadline ? { prerequisiteDeadline } : {}),
     ...(testDate ? { testDate } : {}),
-    ...(testDate && testTime ? { testTime } : {})
+    ...(testTime ? { testTime } : {}),
+    ...(testTimeZone ? { testTimeZone } : {})
   };
 }
 

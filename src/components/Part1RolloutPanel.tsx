@@ -1,17 +1,21 @@
-import { AlertTriangle, CalendarCheck2, Check, ExternalLink, Eraser, Save } from 'lucide-react';
+import { AlertTriangle, ArrowRight, CalendarCheck2, CalendarPlus, Check, ExternalLink, Eraser, Save } from 'lucide-react';
 import { useEffect, useState, type FormEvent } from 'react';
+import { Link } from 'react-router-dom';
 import {
   ASSESSMENT_SOURCES,
   OFFICIAL_ONLINE_TESTING_SETUP,
   OFFICIAL_OPERATIONAL_RULES,
   OFFICIAL_PART1_ROLLOUT,
   OFFICIAL_TIMELINE,
-  PART1_ROLLOUT_VERIFIED_AT
+  EPSO_PAGES_VERIFIED_AT
 } from '../data/assessmentFramework';
 import { formatDate } from '../lib/date';
-import { part1NextStep, part1StageLabel, type Part1RolloutStatus } from '../lib/part1Rollout';
+import { generatePart1CalendarIcs } from '../lib/part1Calendar';
+import { describeTestTime, part1NextStep, part1StageLabel, type Part1RolloutStatus } from '../lib/part1Rollout';
 import { useAppState } from '../state/AppState';
-import type { Part1Logistics } from '../types';
+import type { Part1Logistics, Part1TimeZone } from '../types';
+
+type DateOrTimeField = Exclude<keyof Part1Logistics, 'testTimeZone'>;
 
 const ROLLOUT_SOURCE = ASSESSMENT_SOURCES.find((source) => source.id === 'testing-rollout-update');
 const TAO_SOURCE = ASSESSMENT_SOURCES.find((source) => source.id === 'online-testing-instructions');
@@ -23,11 +27,26 @@ export function Part1RolloutPanel({ status }: { status: Part1RolloutStatus }) {
 
   useEffect(() => setDraft(state.part1Logistics), [state.part1Logistics]);
 
-  const setField = (field: keyof Part1Logistics, value: string) => {
+  const setField = (field: DateOrTimeField, value: string) => {
     const next = { ...draft };
     if (value) next[field] = value;
     else delete next[field];
+    // EPSO quotes its own times in CET, so a newly entered time defaults to Brussels time.
+    if (field === 'testTime' && value && !next.testTimeZone) next.testTimeZone = 'brussels';
     setDraft(next);
+  };
+
+  const calendar = generatePart1CalendarIcs(state.part1Logistics, new Date(), status.slotLookupFrom);
+  const downloadCalendar = () => {
+    if (!calendar) return;
+    const url = URL.createObjectURL(new Blob([calendar], { type: 'text/calendar;charset=utf-8' }));
+    const anchor = document.createElement('a');
+    anchor.href = url;
+    anchor.download = 'epso-ad5-part1-dates.ics';
+    document.body.appendChild(anchor);
+    anchor.click();
+    anchor.remove();
+    window.setTimeout(() => URL.revokeObjectURL(url), 0);
   };
 
   const submit = (event: FormEvent) => {
@@ -49,7 +68,7 @@ export function Part1RolloutPanel({ status }: { status: Part1RolloutStatus }) {
       done: status.stage === 'slot-confirmed' || status.stage === 'completed'
     },
     {
-      title: 'Technical prerequisite check',
+      title: 'Prerequisite tests (one attempt)',
       detail: OFFICIAL_ONLINE_TESTING_SETUP.prerequisiteCheck,
       done: status.prerequisiteDone
     },
@@ -78,7 +97,7 @@ export function Part1RolloutPanel({ status }: { status: Part1RolloutStatus }) {
 
       <p className="part1-next">
         <CalendarCheck2 size={18} aria-hidden="true" />
-        <span>{part1NextStep(status, state.part1Logistics.testTime)}</span>
+        <span>{part1NextStep(status, describeTestTime(state.part1Logistics))}</span>
       </p>
 
       <ol className="rollout-steps">
@@ -111,6 +130,13 @@ export function Part1RolloutPanel({ status }: { status: Part1RolloutStatus }) {
             <span>Start time <small>as shown</small></span>
             <input type="time" value={draft.testTime ?? ''} disabled={!draft.testDate} onChange={(event) => setField('testTime', event.target.value)} />
           </label>
+          <label className="field">
+            <span>Time zone of that time</span>
+            <select value={draft.testTimeZone ?? 'brussels'} disabled={!draft.testTime} onChange={(event) => setDraft({ ...draft, testTimeZone: event.target.value as Part1TimeZone })}>
+              <option value="brussels">Brussels (CET)</option>
+              <option value="device">My device</option>
+            </select>
+          </label>
         </div>
         {status.testDateOutsideWeek && (
           <p className="field-error"><AlertTriangle size={15} /> The test date is outside the testing week you recorded. Re-check both against EPSO’s messages.</p>
@@ -119,6 +145,11 @@ export function Part1RolloutPanel({ status }: { status: Part1RolloutStatus }) {
           <button className="button primary" type="submit" disabled={!dirty}>
             {saved ? <><Check size={17} /> Saved</> : <><Save size={17} /> Save invitation details</>}
           </button>
+          {calendar && (
+            <button className="button secondary" type="button" onClick={downloadCalendar} disabled={dirty} title={dirty ? 'Save your changes first' : undefined}>
+              <CalendarPlus size={17} /> Add to calendar
+            </button>
+          )}
           {Object.keys(state.part1Logistics).length > 0 && (
             <button className="button secondary" type="button" onClick={() => updatePart1Logistics({})}>
               <Eraser size={17} /> Clear
@@ -151,11 +182,12 @@ export function Part1RolloutPanel({ status }: { status: Part1RolloutStatus }) {
         )}
         {TAO_SOURCE && (
           <a href={TAO_SOURCE.url} target="_blank" rel="noreferrer" className="source-badge compact">
-            <span>TAO testing instructions</span>
+            <span>AD5 testing instructions</span>
             <ExternalLink size={12} />
           </a>
         )}
-        <small>Checked {formatDate(PART1_ROLLOUT_VERIFIED_AT)}. Your own invitation prevails; note the time zone of any time it gives.</small>
+        <Link to="/test-day" className="text-link">Test-day guide <ArrowRight size={14} /></Link>
+        <small>Checked on EU Careers {formatDate(EPSO_PAGES_VERIFIED_AT)}. Your own invitation prevails.</small>
       </footer>
     </section>
   );

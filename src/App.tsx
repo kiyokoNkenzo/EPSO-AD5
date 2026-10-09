@@ -15,6 +15,7 @@ const AnalyticsPage = lazy(() => import('./pages/AnalyticsPage').then((module) =
 const CoachPage = lazy(() => import('./pages/CoachPage').then((module) => ({ default: module.CoachPage })));
 const MistakesPage = lazy(() => import('./pages/MistakesPage').then((module) => ({ default: module.MistakesPage })));
 const WritingLabPage = lazy(() => import('./pages/WritingLabPage').then((module) => ({ default: module.WritingLabPage })));
+const TestDayPage = lazy(() => import('./pages/TestDayPage').then((module) => ({ default: module.TestDayPage })));
 const RemindersPage = lazy(() => import('./pages/RemindersPage').then((module) => ({ default: module.RemindersPage })));
 
 function page(element: ReactNode) {
@@ -27,6 +28,7 @@ export function App() {
       <Route element={<AppShell />}>
         <Route index element={page(<DashboardPage />)} />
         <Route path="coach" element={page(<CoachPage />)} />
+        <Route path="test-day" element={page(<TestDayPage />)} />
         <Route path="analytics" element={page(<AnalyticsPage />)} />
         <Route path="plan" element={page(<PlanPage />)} />
         <Route path="practice" element={page(<PracticePage />)} />

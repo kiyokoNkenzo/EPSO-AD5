@@ -1,6 +1,7 @@
 import { OFFICIAL_PART1_ROLLOUT, OFFICIAL_TIMELINE } from '../data/assessmentFramework';
-import type { AppState } from '../types';
+import type { AppState, Part1Logistics } from '../types';
 import { addDaysIso, formatDate, localDateIso, signedDaysUntil } from './date';
+import { BRUSSELS_TIME_ZONE, deviceTimeZone, wallClockIn, zonedDateTimeToInstant } from './timeZone';
 
 export type Part1Stage = 'awaiting-invitation' | 'invited' | 'slot-confirmed' | 'completed';
 
@@ -134,8 +135,22 @@ export function part1NextStep(status: Part1RolloutStatus, testTime?: string): st
         ? `Testing week from ${formatDate(status.targetDate)}. Look up your exact date and time on the testing platform now.`
         : `Testing week from ${formatDate(status.targetDate)}. The exact date and time appear on the testing platform at least two weeks before your test (look from ${formatDate(status.slotLookupFrom ?? status.targetDate)}).`;
     case 'slot-confirmed':
-      return `Test on ${formatDate(status.targetDate)}${testTime ? ` at ${testTime}` : ''}. Rescheduling is not possible; finish the prerequisite check before its deadline.`;
+      return `Test on ${formatDate(status.targetDate)}${testTime ? ` at ${testTime}` : ''}. Finish your one prerequisite attempt before its deadline.`;
     case 'completed':
       return 'Your Part 1 date has passed. Shift to Part 2 preparation; EPSO has announced only “2027” for Part 2.';
   }
+}
+
+/**
+ * The recorded start time as the learner should read it. Brussels times also show
+ * the viewer's own clock when it differs, including a different calendar date.
+ */
+export function describeTestTime(logistics: Part1Logistics, viewerTimeZone = deviceTimeZone()): string | undefined {
+  const { testDate, testTime, testTimeZone } = logistics;
+  if (!testDate || !testTime) return undefined;
+  if (testTimeZone !== 'brussels') return testTime;
+  const local = wallClockIn(zonedDateTimeToInstant(testDate, testTime, BRUSSELS_TIME_ZONE), viewerTimeZone);
+  if (local.date === testDate && local.time === testTime) return `${testTime} Brussels time`;
+  const localDate = local.date === testDate ? '' : ` on ${formatDate(local.date, { day: 'numeric', month: 'short' })}`;
+  return `${testTime} Brussels time (${local.time}${localDate} your time)`;
 }

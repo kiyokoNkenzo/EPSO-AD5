@@ -156,7 +156,7 @@ function isValidLocalDate(value: string): boolean {
   return candidate.getFullYear() === year && candidate.getMonth() === month - 1 && candidate.getDate() === day;
 }
 
-function utcIcsTimestamp(date: Date): string {
+export function utcIcsTimestamp(date: Date): string {
   return date.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}Z$/, 'Z');
 }
 

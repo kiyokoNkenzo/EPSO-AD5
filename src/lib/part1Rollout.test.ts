@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { defaultState } from '../state/AppState';
 import type { AppState, Part1Logistics } from '../types';
 import {
+  describeTestTime,
   isChecklistItemApplicable,
   part1CountdownHeadline,
   part1NextStep,
@@ -90,5 +91,14 @@ describe('Part 1 roll-out status', () => {
     expect(isChecklistItemApplicable('prerequisite-check', { stage: 'awaiting-invitation', prerequisiteDeadline: '2026-11-06' })).toBe(true);
     expect(isChecklistItemApplicable('prerequisite-check', { stage: 'invited' })).toBe(true);
     expect(isChecklistItemApplicable('portal-routine', { stage: 'awaiting-invitation' })).toBe(true);
+  });
+
+  it('shows Brussels test times in the viewer’s own clock when it differs', () => {
+    const slot = { testDate: '2026-11-18', testTime: '09:30', testTimeZone: 'brussels' as const };
+    expect(describeTestTime(slot, 'Europe/Brussels')).toBe('09:30 Brussels time');
+    expect(describeTestTime(slot, 'Europe/Lisbon')).toBe('09:30 Brussels time (08:30 your time)');
+    expect(describeTestTime({ ...slot, testTime: '23:30' }, 'Asia/Tokyo')).toBe('23:30 Brussels time (07:30 on 19 Nov your time)');
+    expect(describeTestTime({ testDate: '2026-11-18', testTime: '09:30', testTimeZone: 'device' }, 'Asia/Tokyo')).toBe('09:30');
+    expect(describeTestTime({ testDate: '2026-11-18' })).toBeUndefined();
   });
 });

@@ -8,13 +8,13 @@ const EPSO_LICENCE =
   'Copyright European Union/EPSO. The source does not grant a specific open licence for these test items; retain attribution, do not redistribute this extracted bank, and consult the linked official PDF.';
 
 const VERBAL_URL =
-  'https://eu-careers.europa.eu/system/files/2024-05/AD_Verbal_10Q_DA2.pdf';
+  'https://selection.eu-careers.europa.eu/system/files/2024-05/AD_Verbal_10Q_DA2.pdf';
 const NUMERICAL_URL =
-  'https://eu-careers.europa.eu/system/files/2024-05/AD_Numerical_5Q_DA2.pdf';
+  'https://selection.eu-careers.europa.eu/system/files/2024-05/AD_Numerical_5Q_DA2.pdf';
 const EU_KNOWLEDGE_URL =
-  'https://eu-careers.europa.eu/system/files/2023-10/Sample%20mock-tests%20EPSO%20-%20Part%202%20-%20EU%20knowledge.pdf';
+  'https://selection.eu-careers.europa.eu/system/files/2023-10/Sample%20mock-tests%20EPSO%20-%20Part%202%20-%20EU%20knowledge.pdf';
 const DIGITAL_SKILLS_URL =
-  'https://eu-careers.europa.eu/system/files/2023-10/Sample%20mock-tests%20EPSO%20-%20Part%203%20-%20Digital%20skills.pdf';
+  'https://selection.eu-careers.europa.eu/system/files/2023-10/Sample%20mock-tests%20EPSO%20-%20Part%203%20-%20Digital%20skills.pdf';
 
 const options = (...texts: string[]) =>
   texts.map((text, index) => ({ id: String.fromCharCode(65 + index), text }));

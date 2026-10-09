@@ -2,6 +2,7 @@ import type { AppState, QuestionCategory, TestAttempt } from '../types';
 import { COACHING_READINESS_TARGETS } from '../data/assessmentFramework';
 import { phase2Cards } from '../data/cards';
 import { externalPracticeById } from '../data/externalPractice';
+import { SETUP_CHECK_IDS } from '../data/onlineTesting';
 import { questionsById, testDefinitions } from '../data/questions';
 import {
   calculateCategoryMetrics,
@@ -31,6 +32,12 @@ export const OPERATION_CHECKLIST_IDS = [
   'language-and-id',
   PREREQUISITE_CHECKLIST_ID
 ] as const;
+
+/** The environment item is earned by completing every Test-day rehearsal check. */
+export function isOperationComplete(id: string, completed: readonly string[]): boolean {
+  if (id === 'test-environment') return SETUP_CHECK_IDS.every((setupId) => completed.includes(setupId));
+  return completed.includes(id);
+}
 
 export interface CoachingSnapshot {
   metrics: CategoryMetrics[];
@@ -96,7 +103,7 @@ export function buildCoachingSnapshot(state: AppState, now = new Date()): Coachi
     dueCards,
     dueMistakes,
     unresolvedMistakes: unresolvedMistakes.length,
-    checklistComplete: applicableChecklist.filter((id) => state.completedChecklistItems.includes(id)).length,
+    checklistComplete: applicableChecklist.filter((id) => isOperationComplete(id, state.completedChecklistItems)).length,
     checklistTotal: applicableChecklist.length,
     writingAverage,
     part1

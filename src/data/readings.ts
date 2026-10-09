@@ -49,9 +49,9 @@ const source = (
 });
 
 const NOTICE_URL =
-  'https://eu-careers.europa.eu/system/files/2026-07/Notice-of-open-competition-EPSO-AD-427-26_consolidated-version.pdf';
+  'https://selection.eu-careers.europa.eu/system/files/2026-07/Notice-of-open-competition-EPSO-AD-427-26_consolidated-version.pdf';
 const EPSO_PHASE2_URL =
-  'https://eu-careers.europa.eu/en/graduates-administrators-ad5';
+  'https://selection.eu-careers.europa.eu/en/graduates-administrators-ad5';
 const TEU_URL =
   'https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A02016M%2FTXT-20250315';
 const TFEU_URL =
@@ -93,7 +93,7 @@ export const phase2Readings: Phase2Reading[] = [
           ),
           source(
             'AD5 Graduates testing split into two parts',
-            'https://eu-careers.europa.eu/en/epso-apply-page-related-news/7576',
+            'https://selection.eu-careers.europa.eu/en/epso-apply-page-related-news/7576',
             "Sections 'Part 1: reasoning tests' and 'Part 2: remaining tests'",
             'EPSO update dated 2026-06-30; snapshot 2026-08-12',
             'EPSO_GUIDANCE',
@@ -149,7 +149,7 @@ export const phase2Readings: Phase2Reading[] = [
         sources: [
           source(
             'EU Knowledge Test material available 2 months before test',
-            'https://eu-careers.europa.eu/en/news/eu-knowledge-test-material-available-2-months-test/19555',
+            'https://selection.eu-careers.europa.eu/en/news/eu-knowledge-test-material-available-2-months-test/19555',
             'Entire notice: two paragraphs beneath the page title',
             'Published 2026-03-16; last modified 2026-03-17; snapshot 2026-08-12',
             'EPSO_GUIDANCE',

@@ -199,7 +199,11 @@ export interface Part1Logistics {
   testDate?: string;
   /** Exact start time exactly as shown on the testing platform (HH:mm). */
   testTime?: string;
+  /** Whether `testTime` is Brussels time or the learner's own device time. */
+  testTimeZone?: Part1TimeZone;
 }
+
+export type Part1TimeZone = 'brussels' | 'device';
 
 export interface AppState {
   schemaVersion: number;

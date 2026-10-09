@@ -24,10 +24,12 @@ import {
   OFFICIAL_TIMELINE,
   type AssessmentSourceId
 } from '../data/assessmentFramework';
+import { SETUP_CHECK_IDS } from '../data/onlineTesting';
 import {
   READINESS_REQUIREMENTS,
   buildCoachingSnapshot,
   coachingTarget,
+  isOperationComplete,
   labelCategory
 } from '../lib/coaching';
 import {
@@ -46,10 +48,13 @@ interface OperationItem {
   sourceLocator: string;
   /** Shown instead of a checkbox until EPSO has made the item actionable. */
   lockedReason?: string;
+  /** Completed elsewhere in the app; shown as a link instead of a checkbox. */
+  derived?: { href: string; label: string };
 }
 
-function operationItems(part1: Part1RolloutStatus): OperationItem[] {
+function operationItems(part1: Part1RolloutStatus, completed: readonly string[]): OperationItem[] {
   const deadline = OFFICIAL_TIMELINE.supportingDocumentsDeadline;
+  const setupDone = SETUP_CHECK_IDS.filter((id) => completed.includes(id)).length;
   return [
     {
       id: 'supporting-documents',
@@ -79,19 +84,20 @@ function operationItems(part1: Part1RolloutStatus): OperationItem[] {
     },
     {
       id: 'tao-public-session',
-      title: 'Public TAO session tried on your test computer',
-      detail: `${OFFICIAL_ONLINE_TESTING_SETUP.publicSessions} Learn the navigation and on-screen tools before your own prerequisite check.`,
-      evidenceLabel: 'Official optional practice + coaching step',
-      sourceId: 'online-testing-instructions',
-      sourceLocator: 'TAO instructions: public sessions'
+      title: 'An official sample test tried on the TAO platform',
+      detail: `${OFFICIAL_ONLINE_TESTING_SETUP.publicSessions} Learn the navigation, bookmarks and calculator before your one prerequisite attempt.`,
+      evidenceLabel: 'Official practice material + coaching step',
+      sourceId: 'ad5-testing-page',
+      sourceLocator: 'AD5 testing page, “Reasoning tests”; TAO instructions §2.5.9'
     },
     {
       id: 'test-environment',
-      title: 'Computer, browser and room meet the TAO + Proctorio requirements',
-      detail: `${OFFICIAL_ONLINE_TESTING_SETUP.platform}: ${OFFICIAL_ONLINE_TESTING_SETUP.requirements.join(' · ')}. ${OFFICIAL_ONLINE_TESTING_SETUP.firstTaoTestingEvidence}`,
-      evidenceLabel: 'Official TAO instructions + coaching rehearsal',
+      title: `Test-day set-up rehearsed (${setupDone}/${SETUP_CHECK_IDS.length})`,
+      detail: `${OFFICIAL_ONLINE_TESTING_SETUP.platform}: ${OFFICIAL_ONLINE_TESTING_SETUP.requirements.join(' · ')}. Completes when every rehearsal check on the Test day page is ticked.`,
+      evidenceLabel: 'Official AD5 testing instructions + coaching rehearsal',
       sourceId: 'online-testing-instructions',
-      sourceLocator: OFFICIAL_ONLINE_TESTING_SETUP.sourceLocator
+      sourceLocator: OFFICIAL_ONLINE_TESTING_SETUP.sourceLocator,
+      derived: { href: '/test-day', label: 'Open Test day' }
     },
     {
       id: 'language-and-id',
@@ -103,11 +109,11 @@ function operationItems(part1: Part1RolloutStatus): OperationItem[] {
     },
     {
       id: PREREQUISITE_CHECKLIST_ID,
-      title: 'Mandatory technical prerequisite check completed',
-      detail: `${OFFICIAL_ONLINE_TESTING_SETUP.prerequisiteCheck} Run it on the exact computer, room and connection you will use on test day.`,
-      evidenceLabel: 'Official requirement; the deadline is in your invitation',
+      title: 'Prerequisite tests completed (one attempt)',
+      detail: OFFICIAL_ONLINE_TESTING_SETUP.prerequisiteCheck,
+      evidenceLabel: 'Official instructions; the time and deadline are in your invitation',
       sourceId: 'online-testing-instructions',
-      sourceLocator: 'TAO instructions: technical prerequisite check',
+      sourceLocator: 'TAO instructions §2.4–2.5 and footnote 1',
       ...(isChecklistItemApplicable(PREREQUISITE_CHECKLIST_ID, part1)
         ? {}
         : { lockedReason: 'Unlocks when you record your invitation or its prerequisite-check deadline above.' })
@@ -344,8 +350,29 @@ export function CoachPage() {
           </strong>
         </div>
         <div className="operation-list">
-          {operationItems(snapshot.part1).map((item) => {
-            const checked = state.completedChecklistItems.includes(item.id);
+          {operationItems(snapshot.part1, state.completedChecklistItems).map((item) => {
+            const checked = isOperationComplete(item.id, state.completedChecklistItems);
+            if (item.derived) {
+              return (
+                <article className={`operation-item ${checked ? 'complete' : ''}`} key={item.id}>
+                  <Link to={item.derived.href} className="operation-derived">
+                    <span className="operation-check" aria-hidden="true">
+                      {checked ? <CheckCircle2 size={20} /> : <Circle size={20} />}
+                    </span>
+                    <span>
+                      <strong>{item.title}</strong>
+                      <small>{item.detail}</small>
+                      <em>{item.evidenceLabel}</em>
+                      <em>Official locator: {item.sourceLocator}</em>
+                    </span>
+                  </Link>
+                  <Link to={item.derived.href} className="source-badge compact">
+                    <span>{item.derived.label}</span>
+                    <ArrowRight size={12} />
+                  </Link>
+                </article>
+              );
+            }
             const source = ASSESSMENT_SOURCES.find((candidate) => candidate.id === item.sourceId);
             return (
               <article className={`operation-item ${checked ? 'complete' : ''} ${item.lockedReason ? 'locked' : ''}`} key={item.id}>

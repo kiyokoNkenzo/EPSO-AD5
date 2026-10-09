@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { defaultState } from '../state/AppState';
 import type { AppState } from '../types';
+import { SETUP_CHECK_IDS } from '../data/onlineTesting';
 import { buildCoachingSnapshot, toScoredAttempts } from './coaching';
 
 describe('coaching snapshot', () => {
@@ -110,5 +111,15 @@ describe('coaching snapshot', () => {
     const after = buildCoachingSnapshot(state, new Date('2026-11-20T12:00:00Z'));
     expect(after.part1.stage).toBe('completed');
     expect(after.nextActions.some((action) => ['test-week', 'exact-slot', 'invitation-watch'].includes(action.id))).toBe(false);
+  });
+
+  it('earns the test-environment item only through every Test-day rehearsal check', () => {
+    const now = new Date('2026-10-12T12:00:00Z');
+    const legacyTick = buildCoachingSnapshot({ ...defaultState, completedChecklistItems: ['test-environment'] }, now);
+    expect(legacyTick.checklistComplete).toBe(0);
+    const partial = buildCoachingSnapshot({ ...defaultState, completedChecklistItems: SETUP_CHECK_IDS.slice(1) }, now);
+    expect(partial.checklistComplete).toBe(0);
+    const all = buildCoachingSnapshot({ ...defaultState, completedChecklistItems: [...SETUP_CHECK_IDS] }, now);
+    expect(all.checklistComplete).toBe(1);
   });
 });
