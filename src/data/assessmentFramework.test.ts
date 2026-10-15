@@ -53,13 +53,15 @@ describe('audited assessment framework', () => {
     expect(OFFICIAL_SOURCE_PACK_BOUNDARIES.euKnowledge.currentGuidanceBoundary).toContain('not the definitive');
   });
 
-  it('reflects the 18 September 2026 roll-out update without inventing exact dates', () => {
-    expect(OFFICIAL_TIMELINE.part1.plannedStartMonth).toBe('2026-11');
-    expect(OFFICIAL_TIMELINE.part1.exactDatesPublished).toBe(false);
-    expect(OFFICIAL_TIMELINE.part1.sourceIds).toContain('testing-rollout-update');
+  it('reflects EPSO’s 13 October 2026 testing schedule without inventing individual slots', () => {
+    expect(OFFICIAL_TIMELINE.part1.testingWeek).toEqual({ start: '2026-11-09', end: '2026-11-13' });
+    expect(OFFICIAL_TIMELINE.part1.individualSlotsPublished).toBe(false);
+    expect(OFFICIAL_TIMELINE.part1.sourceIds).toContain('testing-week-announcement');
     expect(OFFICIAL_TIMELINE.part2.exactDatesPublished).toBe(false);
-    expect(OFFICIAL_PART1_ROLLOUT.invitation.content).toMatch(/does not include the exact date and time/);
-    expect(OFFICIAL_PART1_ROLLOUT.exactSlot.minimumLeadDays).toBeLessThan(OFFICIAL_PART1_ROLLOUT.invitation.approximateLeadDays);
+    expect(OFFICIAL_PART1_ROLLOUT.invitation.date).toBe('2026-10-19');
+    expect(OFFICIAL_PART1_ROLLOUT.invitation.content).toMatch(/does not include your individual date and time/);
+    expect([OFFICIAL_PART1_ROLLOUT.platform.opens, OFFICIAL_PART1_ROLLOUT.platform.prerequisiteDeadline]).toEqual(['2026-10-20', '2026-11-06']);
+    expect(OFFICIAL_PART1_ROLLOUT.platform.prerequisiteDeadline < OFFICIAL_TIMELINE.part1.testingWeek.start).toBe(true);
   });
 
   it('cites only registered sources from every official block', () => {

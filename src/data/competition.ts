@@ -11,10 +11,10 @@ export const competition = {
   testingUpdateUrl:
     'https://selection.eu-careers.europa.eu/en/news/ad5-graduates-testing-more-details-about-timing-and-roll-out/20788',
   sourcePackFaqUrl: 'https://selection.eu-careers.europa.eu/en/help/faq/20094',
-  verifiedAt: '2026-10-09',
+  verifiedAt: '2026-10-15',
   part1: {
-    timing: 'Planned to start in November 2026',
-    dateStatus: 'official-planned-month' as const,
+    timing: 'Week of 9–13 November 2026',
+    dateStatus: 'official-testing-week' as const,
     tests: [
       { name: 'Verbal reasoning', questions: 20, minutes: 35, pass: '10/20', language: 'Language 1', weight: '35% final' },
       { name: 'Numerical reasoning', questions: 10, minutes: 20, pass: '10/20 combined with abstract', language: 'Language 1', weight: 'Gate only' },

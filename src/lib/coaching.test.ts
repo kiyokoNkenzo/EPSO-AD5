@@ -84,7 +84,7 @@ describe('coaching snapshot', () => {
       part1Logistics: { testingWeekStart: '2026-11-16', prerequisiteDeadline: '2026-11-06' }
     };
     const snapshot = buildCoachingSnapshot(state, new Date('2026-11-02T12:00:00Z'));
-    expect(snapshot.nextActions[0]).toMatchObject({ id: 'prerequisite-check', href: '/coach#part1' });
+    expect(snapshot.nextActions[0]).toMatchObject({ id: 'prerequisite-check', href: '/test-day' });
     expect(snapshot.nextActions.some((action) => action.id === 'exact-slot')).toBe(true);
 
     const done = buildCoachingSnapshot(
@@ -94,11 +94,13 @@ describe('coaching snapshot', () => {
     expect(done.nextActions.some((action) => action.id === 'prerequisite-check')).toBe(false);
   });
 
-  it('prompts an invitation check only once the estimated invitation window is open', () => {
-    const early = buildCoachingSnapshot(defaultState, new Date('2026-10-08T12:00:00Z'));
+  it('prompts to open the invitation from EPSO’s 19 October send date until a week is recorded', () => {
+    const early = buildCoachingSnapshot(defaultState, new Date(2026, 9, 18, 12));
     expect(early.nextActions.some((action) => action.id === 'invitation-watch')).toBe(false);
-    const open = buildCoachingSnapshot(defaultState, new Date('2026-10-12T12:00:00Z'));
-    expect(open.nextActions.some((action) => action.id === 'invitation-watch')).toBe(true);
+    const open = buildCoachingSnapshot(defaultState, new Date(2026, 9, 19, 12));
+    expect(open.nextActions[0]).toMatchObject({ id: 'invitation-watch' });
+    const recorded = buildCoachingSnapshot({ ...defaultState, part1Logistics: { testingWeekStart: '2026-11-09' } }, new Date(2026, 9, 19, 12));
+    expect(recorded.nextActions.some((action) => action.id === 'invitation-watch')).toBe(false);
   });
 
   it('switches to a one-sitting rehearsal in the final week and stops logistics after the test', () => {

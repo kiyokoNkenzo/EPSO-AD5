@@ -29,7 +29,7 @@ const DEFAULT_PROFILE: UserProfile = {
   name: '',
   language1: 'English',
   language2: 'French',
-  phase1Target: '2026-11-01',
+  phase1Target: '2026-11-09',
   phase2Target: '2027-03-15',
   weeklyGoal: 5
 };

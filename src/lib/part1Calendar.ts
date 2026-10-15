@@ -1,6 +1,7 @@
 import { OFFICIAL_TEST_FORMATS } from '../data/assessmentFramework';
 import { TAO_TEST_DAY } from '../data/onlineTesting';
 import type { Part1Logistics } from '../types';
+import type { Part1RolloutStatus } from './part1Rollout';
 import { addDaysIso } from './date';
 import { escapeIcsText, utcIcsTimestamp } from './reminders';
 import { BRUSSELS_TIME_ZONE } from './timeZone';
@@ -39,15 +40,25 @@ interface CalendarEvent {
   alarms: string[];
 }
 
+/** The schedule fields the export needs; normally the app's Part 1 roll-out status. */
+export type Part1CalendarSchedule = Pick<
+  Part1RolloutStatus,
+  'testingWeekStart' | 'testingWeekEnd' | 'invitationWatchFrom' | 'platformOpens' | 'slotLookupFrom' | 'prerequisiteDeadline'
+>;
+
 /**
- * One calendar file with every Part 1 date the learner has recorded. Stable UIDs
- * let most calendar apps update the same events when the file is imported again.
- * Returns null when nothing has been recorded yet.
+ * One calendar file with every Part 1 date: EPSO's schedule, overridden by whatever the
+ * learner recorded from their own invitation. Stable UIDs let most calendar apps update
+ * the same events when the file is imported again.
  */
-export function generatePart1CalendarIcs(logistics: Part1Logistics, createdAt = new Date(), slotLookupFrom?: string): string | null {
+export function generatePart1CalendarIcs(logistics: Part1Logistics, schedule: Part1CalendarSchedule, createdAt = new Date()): string {
   const events: CalendarEvent[] = [];
-  const { testingWeekStart, prerequisiteDeadline, testDate, testTime, testTimeZone } = logistics;
+  const { testingWeekStart, testDate, testTime, testTimeZone } = logistics;
   const support = `TAO support: ${TAO_TEST_DAY.support.phone} (${TAO_TEST_DAY.support.hours}).`;
+
+  if (!testingWeekStart && !testDate) {
+    events.push(allDay('ad5-part1-invitation', 'EPSO invitation letter in the Single Candidate Portal', 'Open the letter: it confirms your testing week and explains how to reach the TAO platform. It does not give your individual date and time.', schedule.invitationWatchFrom, 1, ['PT9H']));
+  }
 
   if (testDate) {
     const description = `Verbal, numerical and abstract reasoning in one session (${PART1_TEST_MINUTES} minutes of test time). Sign in a few minutes early from your invitation letter: TAO portal link, then EU Login. Plug in the charger before the start. ${support}`;
@@ -62,20 +73,20 @@ export function generatePart1CalendarIcs(logistics: Part1Logistics, createdAt = 
         alarms: ['-P1D', '-PT1H']
       });
     } else {
-      events.push(allDay('ad5-part1-test', 'EPSO Part 1 reasoning tests (check the time on the testing platform)', description, testDate, 1, ['-PT12H']));
+      events.push(allDay('ad5-part1-test', 'EPSO Part 1 reasoning tests (check the time on the TAO platform)', description, testDate, 1, ['-PT12H']));
     }
-  } else if (testingWeekStart) {
-    events.push(allDay('ad5-part1-week', 'EPSO Part 1 testing week', `Your invitation places your reasoning tests in this week. The exact date and time appear on the testing platform at least two weeks before the test. ${support}`, testingWeekStart, 7, []));
-    if (slotLookupFrom) {
-      events.push(allDay('ad5-part1-slot-lookup', 'Look up your exact EPSO Part 1 slot', 'Follow the steps in your invitation letter to the testing platform and record the date and time in the AD5 app.', slotLookupFrom, 1, ['PT9H']));
-    }
+  } else {
+    const days = Math.round((Date.parse(`${schedule.testingWeekEnd}T12:00:00Z`) - Date.parse(`${schedule.testingWeekStart}T12:00:00Z`)) / 86_400_000) + 1;
+    events.push(allDay('ad5-part1-week', 'EPSO Part 1 testing week', `Your reasoning tests take place in this week. The TAO platform shows your exact date and time. ${support}`, schedule.testingWeekStart, days, []));
+    const combined = schedule.slotLookupFrom === schedule.platformOpens;
+    events.push(allDay('ad5-part1-slot-lookup', combined ? 'TAO platform opens: your exact slot and the prerequisite test' : 'Look up your exact EPSO Part 1 slot', 'Sign in through your invitation letter, note your exact date and time in the AD5 app, and take the prerequisite test once.', schedule.slotLookupFrom, 1, ['PT9H']));
   }
 
-  if (prerequisiteDeadline) {
-    events.push(allDay('ad5-part1-prerequisite', 'Deadline: EPSO prerequisite tests', `Take them once, on the computer, room and connection you will test with. Without them a related technical complaint is dismissed. ${support}`, prerequisiteDeadline, 1, ['-P2D']));
+  if (testDate || schedule.slotLookupFrom !== schedule.platformOpens) {
+    events.push(allDay('ad5-part1-prerequisite-opens', 'EPSO prerequisite test opens on TAO', 'One attempt only, on the computer, room and connection you will test with.', schedule.platformOpens, 1, ['PT9H']));
   }
+  events.push(allDay('ad5-part1-prerequisite', 'Deadline: EPSO prerequisite test', `Take it once, on the computer, room and connection you will test with. Without it a related technical complaint is dismissed. ${support}`, schedule.prerequisiteDeadline, 1, ['-P2D']));
 
-  if (!events.length) return null;
   const dtstamp = utcIcsTimestamp(createdAt);
   const sequence = Math.max(0, Math.floor((createdAt.getTime() - Date.UTC(2026, 0, 1)) / 60_000));
   const usesBrussels = events.some((event) => event.start[0].includes(`TZID=${BRUSSELS_TIME_ZONE}`));

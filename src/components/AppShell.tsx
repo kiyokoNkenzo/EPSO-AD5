@@ -102,7 +102,7 @@ export function AppShell() {
             {online ? <BookOpen size={15} /> : <WifiOff size={15} />}
             <span>{online ? 'Offline pack ready' : 'Working offline'}</span>
           </div>
-          <p>Independent study tool<br />Notice rules checked 13 Aug 2026<br />EU Careers pages checked 9 Oct 2026</p>
+          <p>Independent study tool<br />Notice rules checked 13 Aug 2026<br />EU Careers pages checked 9 Oct 2026<br />Testing schedule checked 15 Oct 2026</p>
         </div>
       </aside>
 

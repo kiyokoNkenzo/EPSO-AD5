@@ -3,6 +3,7 @@ import { useRef, useState, type ChangeEvent, type FormEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { PageHeader } from '../components/PageHeader';
 import { Modal } from '../components/Modal';
+import { OFFICIAL_TIMELINE } from '../data/assessmentFramework';
 import { formatDate } from '../lib/date';
 import { parseImportedAppState } from '../lib/stateMigration';
 import { useAppState } from '../state/AppState';
@@ -69,9 +70,9 @@ export function SettingsPage() {
         </section>
 
         <section className="card settings-card">
-          <div className="settings-heading"><span><Save size={20} /></span><div><h2>Planning targets</h2><p>Fallback dates for the countdown until you record your EPSO invitation.</p></div></div>
+          <div className="settings-heading"><span><Save size={20} /></span><div><h2>Planning targets</h2><p>Part 1 follows EPSO’s schedule; Part 2 is still your own planning assumption.</p></div></div>
           <div className="form-grid">
-            <label className="field"><span>Part 1 target</span><input type="date" required value={draft.phase1Target} onChange={(event) => setDraft({ ...draft, phase1Target: event.target.value })} /><small>EPSO plans Part 1 from November 2026. Once your invitation arrives, record it under <Link to="/coach#part1">Coach → Part 1 roll-out</Link>; countdowns then follow it.</small></label>
+            <div className="field"><span>Part 1 testing week</span><p className="settings-fixed-date">{OFFICIAL_TIMELINE.part1.display}</p><small>Set by EPSO for all candidates. Record your exact slot under <Link to="/coach#part1">Coach → Part 1 roll-out</Link>.</small></div>
             <label className="field"><span>Part 2 placeholder</span><input type="date" required value={draft.phase2Target} onChange={(event) => setDraft({ ...draft, phase2Target: event.target.value })} /><small>EPSO confirms 2027; exact date is unannounced.</small></label>
             <label className="field full"><span>Weekly session goal: {draft.weeklyGoal}</span><input className="range" type="range" min="3" max="7" value={draft.weeklyGoal} onChange={(event) => setDraft({ ...draft, weeklyGoal: Number(event.target.value) })} /></label>
           </div>
@@ -107,7 +108,7 @@ export function SettingsPage() {
       </section>
 
       <Modal open={resetOpen} onClose={() => setResetOpen(false)} title="Reset all local progress?">
-        <div className="confirm-dialog"><AlertTriangle size={28} /><p>This cannot be undone unless you exported a backup first.</p><div><button className="button secondary" onClick={() => setResetOpen(false)}>Cancel</button><button className="button danger" onClick={() => { resetState(); setDraft({ name: '', language1: 'English', language2: 'French', phase1Target: '2026-11-01', phase2Target: '2027-03-15', weeklyGoal: 5 }); setResetOpen(false); }}>Reset everything</button></div></div>
+        <div className="confirm-dialog"><AlertTriangle size={28} /><p>This cannot be undone unless you exported a backup first.</p><div><button className="button secondary" onClick={() => setResetOpen(false)}>Cancel</button><button className="button danger" onClick={() => { resetState(); setDraft({ name: '', language1: 'English', language2: 'French', phase1Target: '2026-11-09', phase2Target: '2027-03-15', weeklyGoal: 5 }); setResetOpen(false); }}>Reset everything</button></div></div>
       </Modal>
     </div>
   );

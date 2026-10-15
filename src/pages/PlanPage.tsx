@@ -12,7 +12,7 @@ export function PlanPage() {
   const snapshot = buildCoachingSnapshot(state);
   const part1 = snapshot.part1;
   const part1Days = Math.max(0, part1.daysToTarget);
-  const afterPart1 = part1.stage === 'completed' || (part1.targetSource === 'planning-target' && part1.daysToTarget < 0);
+  const afterPart1 = part1.stage === 'completed';
   const part1Card = PART1_TARGET_COPY[part1.targetSource];
   const weakest = [...snapshot.readiness.components].sort((left, right) => left.index - right.index)[0];
   const primaryAction = snapshot.nextActions[0];
@@ -110,7 +110,7 @@ export function PlanPage() {
 const PART1_TARGET_COPY = {
   'testing-platform': { eyebrow: 'PART 1 TEST DATE', tag: 'From testing platform', official: true },
   'invitation-week': { eyebrow: 'PART 1 TESTING WEEK', tag: 'From your invitation', official: true },
-  'planning-target': { eyebrow: 'PART 1 PLANNING TARGET', tag: 'Your estimate', official: false }
+  'official-week': { eyebrow: 'PART 1 TESTING WEEK', tag: 'EPSO, all candidates', official: true }
 } as const;
 
 function buildWeeks(target: string, goal: number, afterPart1: boolean, priorities: string[], primaryHref?: string) {

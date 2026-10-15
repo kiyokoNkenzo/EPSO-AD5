@@ -2,16 +2,17 @@
 
 A private, source-first study app for competition **EPSO/AD/427/26**. It runs as a responsive Docker-served PWA, stores progress only in the browser, and never generates substitute reasoning questions.
 
-The notice-based competition rules were checked on **12–13 August 2026**. The live EU Careers pages and EPSO's AD5 testing instructions were re-read in full on **9 October 2026**. EPSO now plans the Part 1 reasoning tests to **start in November 2026**; no exact dates are published. EPSO currently confirms only **2027** for Part 2; the app's 15 March 2027 default is an editable planning placeholder, not an announced test date.
+The notice-based competition rules were checked on **12–13 August 2026**. The live EU Careers pages and EPSO's AD5 testing instructions were re-read in full on **9 October 2026**, and EPSO's testing schedule on **15 October 2026**. Part 1 reasoning tests take place in the **week of 9–13 November 2026**; each candidate's exact slot is shown on the TAO platform. EPSO currently confirms only **2027** for Part 2; the app's 15 March 2027 default is an editable planning placeholder, not an announced test date.
 
 ## Part 1 roll-out: what EPSO has said
 
-EPSO's [18 September 2026 update](https://selection.eu-careers.europa.eu/en/news/ad5-graduates-testing-more-details-about-timing-and-roll-out/20788) replaces the earlier "expected as of October/November 2026" wording:
+EPSO's [13 October 2026 announcement](https://selection.eu-careers.europa.eu/en/news/ad5-graduates-competition-testing-second-week-november-2026/20908) fixes the schedule that its [18 September update](https://selection.eu-careers.europa.eu/en/news/ad5-graduates-testing-more-details-about-timing-and-roll-out/20788) left open:
 
-- Part 1 (verbal, numerical and abstract reasoning) is **planned to start in November 2026**.
-- About **three weeks before the first testing session**, an invitation letter arrives in the **Single Candidate Portal**. It gives the **testing week only**, not the exact date and time.
-- The exact date and time appear on the **testing platform at least two weeks before the test**, reached by following the steps in the letter.
+- Part 1 (verbal, numerical and abstract reasoning) takes place in the **week of 9–13 November 2026**.
+- On **19 October**, every candidate receives an invitation letter in the **Single Candidate Portal**. It confirms the testing week and gives instructions, but not the individual date and time.
+- From **20 October until 6 November**, the TAO testing platform shows each candidate's **exact date and time** and hosts the **prerequisite test**.
 - Rescheduling is not possible, and all three reasoning tests take place in one session on one day.
+- On 12 October EPSO [explained](https://selection.eu-careers.europa.eu/en/news/ad5-information/20897) that sessions some candidates saw on TAO on 11 October were the provider's simulations, now removed. Only the formal invitation sets your slot.
 - The supporting-documents deadline (7 October 2026, 12:00 Brussels time) has passed.
 
 EPSO has moved its website to **selection.eu-careers.europa.eu**. Links on the old `eu-careers.europa.eu` host return 404 for news items and PDFs, so every EPSO link in this project now uses the new host.
@@ -25,7 +26,7 @@ The tests run on TAO with the Proctorio browser extension. EPSO's [AD5 testing i
 
 The app's **Test day** page summarises these rules in its own words, with section numbers, a set-up rehearsal checklist, TAO support details and the conditions for an admissible technical complaint. EPSO's instructions say they are its copyright, so the app paraphrases and links to the full document rather than copying it.
 
-In the app, open **Coach → Part 1 roll-out** and copy in your testing week, prerequisite-check deadline and, once visible, the exact date and time with its time zone. The Dashboard countdown, the study plan and the coach's next-action queue then follow your real dates instead of the planning target. **Add to calendar** exports every recorded date as one `.ics` file, with Brussels times kept in the Europe/Brussels time zone.
+The app follows EPSO's schedule by default. In **Coach → Part 1 roll-out**, copy in your exact date and time (and its time zone) once TAO shows them, or a different week or deadline if your own invitation says so. The Dashboard countdown, the study plan and the coach's next-action queue then follow your real dates instead of the planning target. **Add to calendar** exports the invitation day, platform opening, prerequisite deadline and your test (or the testing week) as one `.ics` file, with Brussels times kept in the Europe/Brussels time zone.
 
 ## Run with Docker
 
@@ -177,9 +178,11 @@ python3 scripts/check_official_sources.py --claims-only --report report.md
 ```
 
 - **Links:** every https URL in `src/`, `content/` and this README must resolve. Links on the retired `eu-careers.europa.eu` host fail outright.
-- **Claims:** `content/official-source-claims.json` lists the exact phrases the app depends on, for example "planned to start in November 2026" or "once per competition". It also stores the newest "Latest updates" entry on the competition page. A missing phrase or a new update makes the run fail, which means: re-read the page, update `src/data`, then update the claims file.
+- **Claims:** `content/official-source-claims.json` lists the exact phrases the app depends on, for example "during the week of 9 to 13 November 2026" or "once per competition". It also stores the newest "Latest updates" entry already reviewed, so every newer EPSO post is listed with its link.
 
-EUR-Lex and the Council site answer scripted requests with bot challenges, so those links are reported as inconclusive rather than failed. PDF claims need `pdftotext` (poppler-utils). The `Official source watch` workflow runs this daily on GitHub and fails, which triggers GitHub's failure email, when something changed. It runs once the workflow is on the default branch, or on demand from the Actions tab. A separate `CI` workflow runs the tests, typecheck, build and Python suites on every push and pull request.
+Locally, `pnpm sources:check` exits with 1 when something needs review. EUR-Lex and the Council site answer scripted requests with bot challenges, so those links are reported as inconclusive rather than failed. PDF claims need `pdftotext` (poppler-utils).
+
+The `Official source watch` workflow runs this daily on GitHub (06:17 UTC, or on demand from the Actions tab). **An EPSO update or a dead link does not fail the job.** Instead it opens one issue titled "EPSO update to review", with links to the new EPSO posts, and comments on it only when something different changes. Once the app data and claims file match EPSO again, the next run closes the issue. GitHub notifies you about the issue like any other. The job only goes red if the checker itself breaks. A separate `CI` workflow runs the tests, typecheck, build and Python suites on every push and pull request.
 
 ## Local development and verification
 
