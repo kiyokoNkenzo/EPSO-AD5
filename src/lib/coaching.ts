@@ -220,21 +220,21 @@ function part1Actions(part1: Part1RolloutStatus): CoachingAction[] {
   const actions: CoachingAction[] = [];
   const href = '/coach#part1';
   if (part1.stage === 'completed') return actions;
-  if (part1.prerequisiteDeadline && part1.prerequisiteDaysLeft !== undefined && !part1.prerequisiteDone) {
+  if (part1.prerequisiteOpen && !part1.prerequisiteDone) {
     const daysLeft = part1.prerequisiteDaysLeft;
     actions.push(daysLeft < 0
-      ? { id: 'prerequisite-check', priority: 110, title: 'Prerequisite-check deadline has passed', detail: 'Tick it if you completed the check; otherwise contact EPSO immediately.', href, minutes: 5 }
-      : { id: 'prerequisite-check', priority: daysLeft <= 7 ? 110 : 96, title: 'Run the mandatory technical prerequisite check', detail: `Deadline ${formatDate(part1.prerequisiteDeadline)} (${daysLeft === 0 ? 'today' : `${daysLeft} day${daysLeft === 1 ? '' : 's'} left`}). Use the computer, room and connection you will test with.`, href, minutes: 30 });
+      ? { id: 'prerequisite-check', priority: 110, title: 'Prerequisite-test deadline has passed', detail: 'Tick it if you took the test; otherwise contact EPSO through the Single Candidate Portal now.', href, minutes: 5 }
+      : { id: 'prerequisite-check', priority: daysLeft <= 7 ? 110 : 96, title: 'Take the prerequisite test (one attempt)', detail: `Open on the TAO platform until ${formatDate(part1.prerequisiteDeadline)} (${daysLeft === 0 ? 'today' : `${daysLeft} day${daysLeft === 1 ? '' : 's'} left`}). Use the computer, room and connection you will test with.`, href: '/test-day', minutes: 30 });
   }
   if (part1.slotOverdue) {
-    actions.push({ id: 'exact-slot', priority: 105, title: 'Exact test slot still missing', detail: 'EPSO says the date and time appear on the testing platform at least two weeks before the test. Check again, then contact EPSO.', href, minutes: 10 });
+    actions.push({ id: 'exact-slot', priority: 105, title: 'Exact test slot still missing', detail: 'EPSO says the TAO platform shows your date and time. Check again, then contact EPSO.', href, minutes: 10 });
   } else if (part1.slotLookupDue) {
-    actions.push({ id: 'exact-slot', priority: 97, title: 'Look up your exact test date and time', detail: 'Follow the steps in your invitation letter to the testing platform, then record the slot here.', href, minutes: 5 });
+    actions.push({ id: 'exact-slot', priority: 97, title: 'Look up your exact test date and time', detail: 'Sign in to the TAO platform through your invitation letter, then record the slot here.', href, minutes: 5 });
   }
   if (part1.invitationWatchOpen) {
-    actions.push({ id: 'invitation-watch', priority: 92, title: 'Check the Single Candidate Portal for your invitation', detail: 'Part 1 invitations give the testing week about three weeks before testing starts. Record it here when it arrives.', href, minutes: 3 });
+    actions.push({ id: 'invitation-watch', priority: 101, title: 'Open your invitation letter', detail: `EPSO sent invitations through the Single Candidate Portal on ${formatDate(part1.invitationWatchFrom)}. Confirm your testing week here.`, href, minutes: 3 });
   }
-  if ((part1.stage === 'invited' || part1.stage === 'slot-confirmed') && part1.daysToTarget >= 0 && part1.daysToTarget <= 7) {
+  if (part1.stage !== 'awaiting-invitation' && part1.daysToTarget >= 0 && part1.daysToTarget <= 7) {
     actions.push({ id: 'test-week', priority: 94, title: 'Rehearse the one-sitting sequence', detail: 'All three reasoning tests run in one session: practise verbal, numerical and abstract back to back at official timing, then review only your own mistakes.', href: '/practice', minutes: 65 });
   }
   return actions;

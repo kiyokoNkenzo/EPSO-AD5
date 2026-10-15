@@ -1,5 +1,5 @@
 {
-  "reviewedAt": "2026-10-09",
+  "reviewedAt": "2026-10-15",
   "note": "Exact phrases from live EU Careers pages that the app's official data depends on. When the source checker reports a change, re-read the page, update src/data, then update the phrase or latestUpdate here.",
   "claims": [
     {
@@ -12,18 +12,39 @@
         "174727"
       ],
       "mustLinkTo": ["/node/20693"],
-      "latestUpdate": "21/09/2026 - Members of the Selection Board"
+      "latestUpdate": "13/10/2026 - AD5 Graduates Competition: Testing in the Second Week of November 2026"
     },
     {
       "id": "testing-rollout-update",
       "url": "https://selection.eu-careers.europa.eu/en/news/ad5-graduates-testing-more-details-about-timing-and-roll-out/20788",
-      "appUses": "OFFICIAL_TIMELINE.part1 and OFFICIAL_PART1_ROLLOUT",
+      "appUses": "OFFICIAL_PART1_ROLLOUT (still cited for the two-week minimum lead)",
       "mustContain": [
         "is planned to start in November 2026",
         "Approximately three weeks before the first testing session",
         "informing them of the week in which they will take their tests",
         "at least two weeks before their test",
         "approximately two months before the test date"
+      ]
+    },
+    {
+      "id": "testing-week-announcement",
+      "url": "https://selection.eu-careers.europa.eu/en/news/ad5-graduates-competition-testing-second-week-november-2026/20908",
+      "appUses": "OFFICIAL_TIMELINE.part1 and OFFICIAL_PART1_ROLLOUT (testing week, invitation date, platform window)",
+      "mustContain": [
+        "will take place during the week of 9 to 13 November 2026",
+        "On 19 October, candidates will receive an invitation letter through the Single Candidate Portal",
+        "The letter will not include their individual testing date and time",
+        "From 20 October until 6 November, candidates will be able to access the testing platform and complete the required pre-requisite test",
+        "they will also see the precise date and time of their individual test session"
+      ]
+    },
+    {
+      "id": "simulation-notice",
+      "url": "https://selection.eu-careers.europa.eu/en/news/ad5-information/20897",
+      "appUses": "OFFICIAL_PART1_ROLLOUT.simulationNotice",
+      "mustContain": [
+        "temporarily simulating test sessions",
+        "EPSO will send a formal individual invitation letter to all candidates"
       ]
     },
     {

@@ -15,6 +15,9 @@ export const ASSESSMENT_FRAMEWORK_VERIFIED_AT = '2026-08-13' as const;
  */
 export const EPSO_PAGES_VERIFIED_AT = '2026-10-09' as const;
 
+/** Date the 12–13 October 2026 testing-schedule announcements were read in full. */
+export const TESTING_SCHEDULE_VERIFIED_AT = '2026-10-15' as const;
+
 export type EvidenceClassification =
   | 'official-binding'
   | 'official-guidance'
@@ -31,6 +34,8 @@ export type AssessmentSourceId =
   | 'assessment-overview'
   | 'two-part-testing-update'
   | 'testing-rollout-update'
+  | 'testing-week-announcement'
+  | 'simulation-notice'
   | 'online-testing-instructions'
   | 'ad5-testing-page'
   | 'eu-knowledge-source-pack-update'
@@ -100,7 +105,7 @@ export const ASSESSMENT_SOURCES = [
     classification: 'official-guidance',
     locator:
       'Competition header; “Selection and recruitment process”; “Competition overview — Key dates and figures” (testing period 11/2026, indicative); “Latest updates”',
-    verifiedAt: EPSO_PAGES_VERIFIED_AT
+    verifiedAt: TESTING_SCHEDULE_VERIFIED_AT
   },
   {
     id: 'assessment-overview',
@@ -132,6 +137,26 @@ export const ASSESSMENT_SOURCES = [
       'Part 1 paragraph: planned November 2026 start, invitation letter and testing-platform slot details; Part 2 paragraph',
     verifiedAt: EPSO_PAGES_VERIFIED_AT,
     note: 'Posted 18 September 2026. Replaces the earlier “expected as of October/November 2026” Part 1 wording.'
+  },
+  {
+    id: 'testing-week-announcement',
+    title: 'AD5 Graduates competition: testing in the second week of November 2026',
+    publisher: 'European Personnel Selection Office (EPSO)',
+    url: 'https://selection.eu-careers.europa.eu/en/news/ad5-graduates-competition-testing-second-week-november-2026/20908',
+    classification: 'official-guidance',
+    locator: 'Paragraphs 1–3: testing week, invitation date, platform access and prerequisite window',
+    verifiedAt: TESTING_SCHEDULE_VERIFIED_AT,
+    note: 'Posted 13 October 2026. Fixes the Part 1 testing week and replaces the “planned to start in November” wording.'
+  },
+  {
+    id: 'simulation-notice',
+    title: 'AD5 – Information',
+    publisher: 'European Personnel Selection Office (EPSO)',
+    url: 'https://selection.eu-careers.europa.eu/en/news/ad5-information/20897',
+    classification: 'official-guidance',
+    locator: 'Both paragraphs: simulated sessions on 11 October; formal invitation letter to follow',
+    verifiedAt: TESTING_SCHEDULE_VERIFIED_AT,
+    note: 'Posted 12 October 2026.'
   },
   {
     id: 'online-testing-instructions',
@@ -625,14 +650,15 @@ export const OFFICIAL_TIMELINE = {
     sourceLocator: 'Notice §4.3.1(e)'
   },
   part1: {
-    display: 'Planned to start in November 2026',
-    shortDisplay: 'Nov 2026 (planned)',
-    plannedStartMonth: '2026-11',
-    exactDatesPublished: false,
-    status: 'official-planned-month-not-an-exact-date',
-    supersedes: 'Expected as of October/November 2026 (30 June 2026 two-part update)',
-    sourceIds: ['testing-rollout-update'] as const,
-    sourceLocator: 'Roll-out update, Part 1 paragraph, first sentence'
+    display: 'Week of 9–13 November 2026',
+    shortDisplay: '9–13 Nov 2026',
+    testingWeek: { start: '2026-11-09', end: '2026-11-13' },
+    testingWeekPublished: true,
+    individualSlotsPublished: false,
+    status: 'official-testing-week-individual-slots-on-tao',
+    supersedes: 'Planned to start in November 2026 (18 September 2026 roll-out update)',
+    sourceIds: ['testing-week-announcement'] as const,
+    sourceLocator: 'Testing-week announcement, first paragraph'
   },
   part2: {
     display: '2027 — dates to be announced later',
@@ -650,22 +676,31 @@ export const OFFICIAL_TIMELINE = {
  */
 export const OFFICIAL_PART1_ROLLOUT = {
   classification: 'official-guidance',
-  verifiedAt: EPSO_PAGES_VERIFIED_AT,
+  verifiedAt: TESTING_SCHEDULE_VERIFIED_AT,
   invitation: {
     channel: 'Single Candidate Portal (your EPSO account)',
-    approximateLeadDays: 21,
-    leadDisplay: 'About three weeks before the first testing session',
-    content: 'States the week in which you will take the tests. It does not include the exact date and time.'
+    date: '2026-10-19',
+    leadDisplay: 'Sent on 19 October 2026',
+    content: 'Confirms your testing week and gives further instructions. It does not include your individual date and time.'
+  },
+  platform: {
+    opens: '2026-10-20',
+    prerequisiteDeadline: '2026-11-06',
+    display: 'From 20 October to 6 November 2026',
+    content: 'Sign in to the TAO testing platform to take the required prerequisite test and see the precise date and time of your session.'
   },
   exactSlot: {
-    channel: 'Testing platform, reached by following the steps in the invitation letter',
+    channel: 'TAO testing platform, reached through the invitation letter',
     minimumLeadDays: 14,
-    leadDisplay: 'At least two weeks before your test'
+    leadDisplay: 'Shown on the platform from 20 October 2026'
   },
-  accountAccess: 'Make sure you can log in to your Single Candidate Portal account before invitations arrive.',
+  simulationNotice:
+    'Sessions some candidates saw on the TAO platform on 11 October were the test provider’s simulations and have been removed. Only the formal invitation letter sets your testing slot.',
+  accountAccess: 'Make sure you can log in to your Single Candidate Portal account to view the invitation.',
   rescheduling: 'Rescheduling is not possible.',
-  sourceIds: ['testing-rollout-update', 'two-part-testing-update'] as const,
-  sourceLocator: 'Roll-out update, Part 1 paragraph; two-part update, Part 1 (no rescheduling)'
+  sourceIds: ['testing-week-announcement', 'simulation-notice', 'testing-rollout-update', 'two-part-testing-update'] as const,
+  sourceLocator:
+    'Testing-week announcement, paragraphs 1–3; 12 October information notice; roll-out update, Part 1; two-part update, Part 1 (no rescheduling)'
 } as const;
 
 /** Remote-testing set-up summarised from EPSO’s EPSO/AD/427/26 TAO instructions; your invitation prevails. */

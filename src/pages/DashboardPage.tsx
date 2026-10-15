@@ -15,7 +15,7 @@ import {
 import { Link } from 'react-router-dom';
 import { PageHeader } from '../components/PageHeader';
 import { ProgressRing } from '../components/ProgressRing';
-import { OFFICIAL_TIMELINE, EPSO_PAGES_VERIFIED_AT } from '../data/assessmentFramework';
+import { OFFICIAL_TIMELINE, TESTING_SCHEDULE_VERIFIED_AT } from '../data/assessmentFramework';
 import { competition, officialUpdateStatus } from '../data/competition';
 import { currentStreak, formatDate } from '../lib/date';
 import { buildCoachingSnapshot, labelCategory } from '../lib/coaching';
@@ -85,7 +85,7 @@ export function DashboardPage() {
           <h3>{OFFICIAL_TIMELINE.part1.display}</h3>
           <p>{part1NextStep(part1, testTime)}</p>
         </div>
-        <div className="watch-meta"><Link to="/coach#part1">{part1StageLabel(part1.stage)}</Link><Link to="/test-day" className="watch-secondary">Test-day guide</Link><small>Checked {formatDate(EPSO_PAGES_VERIFIED_AT)}</small></div>
+        <div className="watch-meta"><Link to="/coach#part1">{part1StageLabel(part1.stage)}</Link><Link to="/test-day" className="watch-secondary">Test-day guide</Link><small>Checked {formatDate(TESTING_SCHEDULE_VERIFIED_AT)}</small></div>
       </section>
 
       <section className="source-watch card">

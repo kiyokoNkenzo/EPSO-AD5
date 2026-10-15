@@ -1,43 +1,52 @@
 import { describe, expect, it } from 'vitest';
+import { defaultState } from '../state/AppState';
+import type { Part1Logistics } from '../types';
 import { PART1_TEST_MINUTES, foldIcsLine, generatePart1CalendarIcs } from './part1Calendar';
+import { part1RolloutStatus } from './part1Rollout';
 
-const CREATED = new Date('2026-10-09T08:00:00Z');
+const CREATED = new Date('2026-10-15T08:00:00Z');
 
-function unfold(ics: string) {
-  return ics.replace(/\r\n /g, '');
+function exportFor(part1Logistics: Part1Logistics) {
+  const status = part1RolloutStatus({ ...defaultState, part1Logistics }, new Date('2026-10-15T12:00:00Z'));
+  return generatePart1CalendarIcs(part1Logistics, status, CREATED).replace(/\r\n /g, '');
 }
 
 describe('Part 1 calendar export', () => {
-  it('returns nothing until a date is recorded', () => {
-    expect(generatePart1CalendarIcs({}, CREATED)).toBeNull();
+  it('exports EPSO’s schedule before anything is recorded', () => {
+    const text = exportFor({});
+    expect(text).toContain('UID:ad5-part1-invitation@ad5-companion.local\r\n');
+    expect(text).toContain('DTSTART;VALUE=DATE:20261019\r\n');
+    expect(text).toContain('DTSTART;VALUE=DATE:20261109\r\nDTEND;VALUE=DATE:20261114\r\n');
+    expect(text).toContain('SUMMARY:TAO platform opens: your exact slot and the prerequisite test\r\n');
+    expect(text).toContain('DTSTART;VALUE=DATE:20261106\r\nDTEND;VALUE=DATE:20261107\r\n');
+    expect(text).not.toContain('ad5-part1-prerequisite-opens');
   });
 
-  it('exports a Brussels-time test slot with its time zone, duration and alarms', () => {
+  it('exports a Brussels-time slot with its time zone, duration and alarms', () => {
     const ics = generatePart1CalendarIcs(
-      { testingWeekStart: '2026-11-16', testDate: '2026-11-18', testTime: '09:30', testTimeZone: 'brussels', prerequisiteDeadline: '2026-11-06' },
+      { testingWeekStart: '2026-11-09', testDate: '2026-11-11', testTime: '09:30', testTimeZone: 'brussels' },
+      part1RolloutStatus(defaultState, new Date('2026-10-21T12:00:00Z')),
       CREATED
-    )!;
-    const text = unfold(ics);
+    );
+    const text = ics.replace(/\r\n /g, '');
     expect(PART1_TEST_MINUTES).toBe(65);
     expect(text).toContain('BEGIN:VTIMEZONE\r\nTZID:Europe/Brussels\r\n');
-    expect(text).toContain('DTSTART;TZID=Europe/Brussels:20261118T093000\r\nDURATION:PT65M\r\n');
-    expect(text).toContain('UID:ad5-part1-test@ad5-companion.local\r\n');
+    expect(text).toContain('DTSTART;TZID=Europe/Brussels:20261111T093000\r\nDURATION:PT65M\r\n');
     expect(text).toContain('TRIGGER:-PT1H\r\n');
-    expect(text).toContain('DTSTART;VALUE=DATE:20261106\r\nDTEND;VALUE=DATE:20261107\r\n');
+    expect(text).toContain('UID:ad5-part1-prerequisite-opens@ad5-companion.local\r\n');
     expect(text).not.toContain('ad5-part1-week');
+    expect(text).not.toContain('ad5-part1-invitation');
     expect(ics.split('\r\n').every((line) => new TextEncoder().encode(line).length <= 75)).toBe(true);
   });
 
   it('uses floating local time when the learner recorded device time', () => {
-    const text = unfold(generatePart1CalendarIcs({ testDate: '2026-11-18', testTime: '14:00', testTimeZone: 'device' }, CREATED)!);
-    expect(text).toContain('DTSTART:20261118T140000\r\n');
+    const text = exportFor({ testDate: '2026-11-11', testTime: '14:00', testTimeZone: 'device' });
+    expect(text).toContain('DTSTART:20261111T140000\r\n');
     expect(text).not.toContain('VTIMEZONE');
   });
 
-  it('exports the testing week and slot look-up day before the exact slot is known', () => {
-    const text = unfold(generatePart1CalendarIcs({ testingWeekStart: '2026-11-16' }, CREATED, '2026-11-02')!);
-    expect(text).toContain('DTSTART;VALUE=DATE:20261116\r\nDTEND;VALUE=DATE:20261123\r\n');
-    expect(text).toContain('UID:ad5-part1-slot-lookup@ad5-companion.local\r\nDTSTAMP:20261009T080000Z\r\n');
+  it('keeps a recorded prerequisite deadline instead of EPSO’s', () => {
+    expect(exportFor({ prerequisiteDeadline: '2026-11-04' })).toContain('DTSTART;VALUE=DATE:20261104\r\n');
   });
 
   it('folds long lines on character boundaries', () => {

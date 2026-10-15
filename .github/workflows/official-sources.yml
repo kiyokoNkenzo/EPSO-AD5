@@ -1,7 +1,9 @@
 name: Official source watch
 
 # Checks that every official link still resolves and that EPSO's pages still say
-# what the app claims. A failed run means EPSO changed something worth reviewing.
+# what the app claims. An EPSO update or dead link does not fail this job: it opens
+# (or updates) one "official-source-change" issue, which closes itself once the app
+# matches EPSO again. The job only fails if the checker itself breaks.
 on:
   schedule:
     - cron: '17 6 * * *'
@@ -9,6 +11,7 @@ on:
 
 permissions:
   contents: read
+  issues: write
 
 concurrency:
   group: official-source-watch
@@ -18,12 +21,17 @@ jobs:
   check:
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    env:
+      GH_TOKEN: ${{ github.token }}
+      LABEL: official-source-change
+      TITLE: EPSO update to review
     steps:
       - uses: actions/checkout@v4
       - name: Install pdftotext
         run: sudo apt-get update -q && sudo apt-get install -y -q poppler-utils
       - name: Check official sources
-        run: python3 scripts/check_official_sources.py --report official-source-report.md
+        id: check
+        run: python3 scripts/check_official_sources.py --no-fail --report official-source-report.md
       - name: Keep the report
         if: always()
         uses: actions/upload-artifact@v4
@@ -31,3 +39,27 @@ jobs:
           name: official-source-report
           path: official-source-report.md
           if-no-files-found: ignore
+      - name: Open or update the review issue
+        if: steps.check.outputs.review_needed == 'true'
+        continue-on-error: true
+        env:
+          FINGERPRINT: ${{ steps.check.outputs.fingerprint }}
+        run: |
+          gh label create "$LABEL" --color D93F0B --description "EPSO changed something the app relies on" --force || true
+          number=$(gh issue list --state open --limit 100 --json number,title --jq ".[] | select(.title == \"$TITLE\") | .number" | head -n 1)
+          if [ -z "$number" ]; then
+            gh issue create --title "$TITLE" --label "$LABEL" --body-file official-source-report.md \
+              || gh issue create --title "$TITLE" --body-file official-source-report.md
+          elif gh issue view "$number" --comments --json body,comments --jq '[.body] + [.comments[].body] | join("\n")' | grep -q "$FINGERPRINT"; then
+            echo "Issue #$number already reports this change."
+          else
+            gh issue comment "$number" --body-file official-source-report.md
+          fi
+          echo "::notice::EPSO changed something the app relies on; see the open \"$TITLE\" issue."
+      - name: Close the review issue once everything matches
+        if: steps.check.outputs.review_needed == 'false'
+        continue-on-error: true
+        run: |
+          for number in $(gh issue list --state open --limit 100 --json number,title --jq ".[] | select(.title == \"$TITLE\") | .number"); do
+            gh issue close "$number" --reason completed --comment "The latest check found the app matching EPSO's pages again."
+          done
