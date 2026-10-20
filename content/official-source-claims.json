@@ -1,5 +1,5 @@
 {
-  "reviewedAt": "2026-10-15",
+  "reviewedAt": "2026-10-20",
   "note": "Exact phrases from live EU Careers pages that the app's official data depends on. When the source checker reports a change, re-read the page, update src/data, then update the phrase or latestUpdate here.",
   "claims": [
     {
@@ -11,7 +11,9 @@
         "Testing period 11/2026 (indicative)",
         "174727"
       ],
-      "mustLinkTo": ["/node/20693"],
+      "mustLinkTo": [
+        "/node/20693"
+      ],
       "latestUpdate": "13/10/2026 - AD5 Graduates Competition: Testing in the Second Week of November 2026"
     },
     {
@@ -92,13 +94,17 @@
       "id": "testing-instructions-page",
       "url": "https://selection.eu-careers.europa.eu/en/documents/instructions-online-testing-graduate-administrators/20693",
       "appUses": "the online-testing-instructions source (a new PDF path means a new edition)",
-      "mustContain": ["EPSO/AD/427/26"],
-      "mustLinkTo": ["2026-09/EN%20Instructions%20for%20online%20Testing%20%28TAO%29%20427-26.pdf"]
+      "mustContain": [
+        "EPSO/AD/427/26"
+      ],
+      "mustLinkTo": [
+        "2026-10/EN%20Instructions%20for%20online%20Testing%20%28TAO%29%20427-26%20V1.pdf"
+      ]
     },
     {
       "id": "online-testing-instructions",
-      "url": "https://selection.eu-careers.europa.eu/system/files/2026-09/EN%20Instructions%20for%20online%20Testing%20%28TAO%29%20427-26.pdf",
-      "appUses": "OFFICIAL_ONLINE_TESTING_SETUP and src/data/onlineTesting.ts",
+      "url": "https://selection.eu-careers.europa.eu/system/files/2026-10/EN%20Instructions%20for%20online%20Testing%20%28TAO%29%20427-26%20V1.pdf",
+      "appUses": "OFFICIAL_ONLINE_TESTING_SETUP and src/data/onlineTesting.ts (V1 edition)",
       "mustContain": [
         "You can only do the prerequisite tests once per competition unless your invitation letter states otherwise",
         "any related technical complaint will be dismissed",
@@ -106,7 +112,8 @@
         "External calculator",
         "the comma (,) is not supported as separator",
         "You plug in a charger after the test has started",
-        "+351 211 554 559"
+        "+351 211 554 559",
+        "If the \"Continue testing\" button is active, select it to return to your test"
       ]
     }
   ]

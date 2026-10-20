@@ -10,6 +10,19 @@ import { useAppState } from '../state/AppState';
 import type { QuestionCategory } from '../types';
 
 type PracticeFilter = 'all' | '1' | '2' | 'external';
+type SectionFilter = 'any' | QuestionCategory;
+
+const SECTION_FILTERS: readonly (readonly [SectionFilter, string])[] = [
+  ['any', 'Every section'],
+  ['verbal', 'Verbal'],
+  ['numerical', 'Numerical'],
+  ['abstract', 'Abstract'],
+  ['eu-knowledge', 'EU knowledge'],
+  ['digital-skills', 'Digital skills']
+];
+
+/** Official EPSO sets first, because only they enter the readiness estimate. */
+const EVIDENCE_ORDER = { 'official-epso-calibration': 0, 'transfer-practice': 1, 'phase2-background': 2 } as const;
 
 interface ResultDraft {
   category: QuestionCategory;
@@ -30,14 +43,18 @@ const guidedTraining = [
 export function PracticePage() {
   const { state, completeExternal } = useAppState();
   const [filter, setFilter] = useState<PracticeFilter>('all');
+  const [section, setSection] = useState<SectionFilter>('any');
   const [loggingResource, setLoggingResource] = useState<ExternalPracticeResource | null>(null);
   const [savedResourceId, setSavedResourceId] = useState<string | null>(null);
   const [formError, setFormError] = useState('');
   const [draft, setDraft] = useState<ResultDraft>({ category: 'verbal', score: '', total: '', durationMinutes: '', note: '' });
   const visibleTests = testDefinitions.filter((test) => filter === 'all' || filter === String(test.phase));
-  const visibleExternalResources = externalPracticeResources.filter((resource) => (
-    filter === 'all' || filter === 'external' || filter === String(resource.phase)
-  ));
+  const phaseExternalResources = externalPracticeResources
+    .filter((resource) => filter === 'all' || filter === 'external' || filter === String(resource.phase));
+  const visibleExternalResources = phaseExternalResources
+    .filter((resource) => section === 'any' || resource.categories.includes(section))
+    .sort((left, right) => EVIDENCE_ORDER[left.evidenceRole] - EVIDENCE_ORDER[right.evidenceRole]);
+  const officialCount = visibleExternalResources.filter((resource) => resource.evidenceRole === 'official-epso-calibration').length;
   const visibleGuided = filter === 'external'
     ? []
     : guidedTraining.filter((training) => filter === 'all' || training.phase === `PART ${filter}`);
@@ -95,7 +112,7 @@ export function PracticePage() {
       <div className="filter-tabs" role="group" aria-label="Filter practice resources">
         <Filter size={17} />
         {([['all', 'All'], ['1', 'Part 1'], ['2', 'Part 2'], ['external', 'Publisher links']] as const).map(([value, label]) => (
-          <button key={value} className={filter === value ? 'active' : ''} onClick={() => setFilter(value)}>{label}</button>
+          <button key={value} className={filter === value ? 'active' : ''} onClick={() => { setFilter(value); setSection('any'); }}>{label}</button>
         ))}
       </div>
 
@@ -149,11 +166,17 @@ export function PracticePage() {
         </section>
       )}
 
-      {visibleExternalResources.length > 0 && (
+      {phaseExternalResources.length > 0 && (
         <section className="external-section">
           <div className="section-heading">
             <div><p className="eyebrow">CURATED PUBLISHER-HOSTED PRACTICE</p><h2>Open at the publisher</h2><p>Every entry exposes an answer trail. Only official EPSO samples enter the readiness estimate; transfer drills and EU background quizzes remain training evidence.</p></div>
           </div>
+          <div className="filter-tabs compact-tabs" role="group" aria-label="Filter linked practice by test section">
+            {SECTION_FILTERS.map(([value, label]) => (
+              <button key={value} className={section === value ? 'active' : ''} aria-pressed={section === value} onClick={() => setSection(value)}>{label}</button>
+            ))}
+          </div>
+          <p className="external-count" role="status">{visibleExternalResources.length ? `${visibleExternalResources.length} resource${visibleExternalResources.length === 1 ? '' : 's'}${officialCount ? `, ${officialCount} official EPSO` : ''}` : 'No linked resource covers this section for the selected part.'}</p>
           <div className="external-list">
             {visibleExternalResources.map((resource) => {
               const completions = state.externalCompletions.filter((entry) => entry.resourceId === resource.id);
@@ -171,7 +194,7 @@ export function PracticePage() {
                       {resource.accessNote && <p><strong>Access:</strong> {resource.accessNote}</p>}
                       <p><strong>Evidence use:</strong> {resource.evidenceNote}</p>
                       <p><strong>Licence:</strong> {resource.licenceNote}</p>
-                      <p><small>Link checked {resource.verifiedAt}. No prompts are copied into this app.</small></p>
+                      <p><small>{resource.verificationNote ?? `Link checked ${resource.verifiedAt}.`} No prompts are copied into this app.</small></p>
                     </details>
                   </div>
                   <div className="external-actions">
