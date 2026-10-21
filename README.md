@@ -17,7 +17,7 @@ EPSO's [13 October 2026 announcement](https://selection.eu-careers.europa.eu/en/
 
 EPSO has moved its website to **selection.eu-careers.europa.eu**. Links on the old `eu-careers.europa.eu` host return 404 for news items and PDFs, so every EPSO link in this project now uses the new host.
 
-The tests run on TAO with the Proctorio browser extension. EPSO's [AD5 testing instructions](https://selection.eu-careers.europa.eu/system/files/2026-09/EN%20Instructions%20for%20online%20Testing%20%28TAO%29%20427-26.pdf) (EPSO/AD/427/26 edition, September 2026) add points that matter for preparation:
+The tests run on TAO with the Proctorio browser extension. EPSO's [AD5 testing instructions](https://selection.eu-careers.europa.eu/system/files/2026-10/EN%20Instructions%20for%20online%20Testing%20%28TAO%29%20427-26%20V1.pdf) (EPSO/AD/427/26 V1, 16 October 2026) add points that matter for preparation:
 
 - The **prerequisite tests can be taken only once per competition** (unless your invitation says otherwise), on the same computer and set-up, before the deadline in your invitation. You can still sit the test without them, but a related technical complaint will be dismissed.
 - You need a plugged-in desktop or laptop (no phones or tablets), **Chrome or Edge 148+** with Proctorio, Windows 10+ / macOS 10.15+ / Ubuntu 18.04+, webcam, microphone and administrator rights. VPN, web proxy, antivirus and firewall must be off.
@@ -79,7 +79,7 @@ Browsers allow service-worker installation only in a secure context. Desktop `lo
 - A **Test day** page: set-up rehearsal checklist, log-in sequence, allowed and forbidden items, actions that end a test automatically, on-screen tools, TAO support, complaint conditions and after-test steps, each with its section number in EPSO's instructions.
 - Four timed, source-linked EPSO sample sprints: 10 verbal, 5 numerical, 5 EU Knowledge, and 5 digital-skills questions.
 - Exact item and answer-key locators for all 25 embedded questions.
-- Nineteen answer-backed, link-only resources, including British Mensa, LSAC/LawHub, LNAT, UAT-UK TSA/TARA and TMUA archives, College Board SAT, OECD PISA, UCAT, GRE, UK Civil Service, EPSO abstract reasoning, Commission/Parliament/Council EU quizzes, Eurostat and Europass digital skills.
+- Twenty-nine answer-backed, link-only resources, ordered official-EPSO-first and filterable by test section. Seven are official EPSO reasoning sets: the AD abstract PDF, interactive AD verbal, numerical and abstract mock-tests, and the AST/contract-staff verbal, numerical and abstract sets (verbal and numerical in all 24 EU languages). Each notes which items repeat ones you have already seen. The rest are transfer practice from test makers and exam owners: Saville Assessment (incl. abstract and diagrammatic), SHL inductive reasoning, Aon practice tasks, GMAT Official Starter Kit, British Mensa, LSAC/LawHub, LNAT, UAT-UK TSA/TARA and TMUA archives, College Board SAT, OECD PISA, UCAT, GRE and UK Civil Service, plus Commission/Parliament/Council EU quizzes, Eurostat and Europass digital skills.
 - An SM-2-style local review queue with Again/Hard/Good/Easy scheduling.
 - Seven offline Phase 2 reading briefs with section-level official citations.
 - An 80-card Phase 2 Anki package and TSV fallback, both with per-card provenance; 35 cards come directly from the European Parliament’s 2025 Europe@School solved banks.

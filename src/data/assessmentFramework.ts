@@ -18,6 +18,9 @@ export const EPSO_PAGES_VERIFIED_AT = '2026-10-09' as const;
 /** Date the 12–13 October 2026 testing-schedule announcements were read in full. */
 export const TESTING_SCHEDULE_VERIFIED_AT = '2026-10-15' as const;
 
+/** Date the V1 testing instructions (published 16 October 2026) were read in full. */
+export const TESTING_INSTRUCTIONS_VERIFIED_AT = '2026-10-20' as const;
+
 export type EvidenceClassification =
   | 'official-binding'
   | 'official-guidance'
@@ -160,15 +163,15 @@ export const ASSESSMENT_SOURCES = [
   },
   {
     id: 'online-testing-instructions',
-    title: 'Instructions for online testing (TAO) — EPSO/AD/427/26',
+    title: 'Instructions for online testing (TAO) — EPSO/AD/427/26, V1',
     publisher: 'European Personnel Selection Office (EPSO)',
-    url: 'https://selection.eu-careers.europa.eu/system/files/2026-09/EN%20Instructions%20for%20online%20Testing%20%28TAO%29%20427-26.pdf',
+    url: 'https://selection.eu-careers.europa.eu/system/files/2026-10/EN%20Instructions%20for%20online%20Testing%20%28TAO%29%20427-26%20V1.pdf',
     classification: 'official-guidance',
     locator:
-      'Quick instructions; Essential information; §1.2 technical requirements; §2.2 ID; §2.5 prerequisite tests; §3.2 valid session; §3.3 technical issues; §4 after testing; Annex I tools',
-    verifiedAt: EPSO_PAGES_VERIFIED_AT,
+      'Quick instructions; Essential information; §1.2 technical requirements; §2.2 ID; §2.5 prerequisite tests; §3.2 valid session, incl. §3.2.7 re-entry; §3.3 technical issues; §4 after testing; Annex I tools',
+    verifiedAt: TESTING_INSTRUCTIONS_VERIFIED_AT,
     note:
-      'Competition-specific edition published September 2026 (English and French). The instructions in your own invitation prevail.'
+      'V1, published 16 October 2026 in English and French, replaces the September edition and adds §3.2.7 on re-entering after an automatic termination. The instructions in your own invitation prevail.'
   },
   {
     id: 'ad5-testing-page',

@@ -1,10 +1,10 @@
 /**
  * Test-day rules for EPSO/AD/427/26, summarised in the app's own words from EPSO's
- * competition-specific TAO instructions (September 2026). EPSO states that its
+ * competition-specific TAO instructions (V1, 16 October 2026). EPSO states that its
  * testing instructions are its copyright, so the app paraphrases short facts and
  * links to the full document instead of reproducing it.
  */
-import { EPSO_PAGES_VERIFIED_AT, type AssessmentSourceId } from './assessmentFramework';
+import { TESTING_INSTRUCTIONS_VERIFIED_AT, type AssessmentSourceId } from './assessmentFramework';
 
 export interface SetupCheck {
   id: string;
@@ -65,8 +65,8 @@ export const SETUP_CHECK_IDS = SETUP_CHECKS.map((check) => check.id);
 
 export const TAO_TEST_DAY = {
   sourceId: SOURCE_ID,
-  verifiedAt: EPSO_PAGES_VERIFIED_AT,
-  edition: 'EPSO/AD/427/26 edition, published September 2026',
+  verifiedAt: TESTING_INSTRUCTIONS_VERIFIED_AT,
+  edition: 'EPSO/AD/427/26 instructions V1, published 16 October 2026',
   loginSequence: {
     locator: 'Quick instructions; §2.4; §2.5.7; §3.1; §6.3.5',
     steps: [
@@ -103,7 +103,13 @@ export const TAO_TEST_DAY = {
     ]
   },
   autoTermination: {
-    locator: '§3.2.6',
+    locator: '§3.2.6–3.2.7',
+    ifItHappens: [
+      'Go back to the main page of the TAO portal, where your sessions are listed.',
+      'If “Continue testing” is active, select it to return to your test.',
+      'If it is not, contact TAO support and ask for manual authorisation to re-enter.',
+      'Human reviewers then examine why the test ended; consequences can follow under the notice and the General Rules.'
+    ],
     withinYourControl: [
       'Revoking camera, microphone or screen-recording permission',
       'Plugging in a charger after the test has started',
@@ -126,7 +132,10 @@ export const TAO_TEST_DAY = {
       'A timer shows the time left in the current section.',
       'On-screen calculator (dot as decimal separator), plus a scratchpad when enabled for the test.',
       'Highlighter, line reader, answer elimination and masking, zoom and accessibility themes.'
-    ]
+    ],
+    /** Linked from EPSO's Assistants testing page; anonymous and unscored, so it trains the interface only. */
+    publicSessionsUrl: 'https://epso.prod.gcp-eu.taocloud.org/public-sessions',
+    sampleTestsUrl: 'https://selection.eu-careers.europa.eu/en/graduates-administrators-ad5'
   },
   support: {
     locator: 'Technical support; §3.3.1',

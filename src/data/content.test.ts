@@ -92,6 +92,26 @@ describe('publisher-hosted practice catalogue', () => {
   });
 });
 
+describe('practice catalogue evidence boundary', () => {
+  it('only lets EPSO-hosted material count as official EPSO calibration', () => {
+    const official = externalPracticeResources.filter((resource) => resource.evidenceRole === 'official-epso-calibration');
+    expect(official.length).toBeGreaterThanOrEqual(7);
+    for (const resource of official) {
+      expect(resource.publisher, resource.id).toBe('European Personnel Selection Office (EPSO)');
+      expect(new URL(resource.url).hostname, resource.id).toBe('selection.eu-careers.europa.eu');
+    }
+  });
+
+  it('keeps resource ids unique and gives every reasoning section several answer-backed options', () => {
+    expect(new Set(externalPracticeResources.map((resource) => resource.id)).size).toBe(externalPracticeResources.length);
+    for (const section of ['verbal', 'numerical', 'abstract'] as const) {
+      const options = externalPracticeResources.filter((resource) => resource.categories.includes(section));
+      expect(options.filter((resource) => resource.evidenceRole === 'official-epso-calibration').length, section).toBeGreaterThanOrEqual(2);
+      expect(options.length, section).toBeGreaterThanOrEqual(5);
+    }
+  });
+});
+
 describe('official link hygiene', () => {
   it('never points at the retired eu-careers.europa.eu host', () => {
     const sources = import.meta.glob(['./*.ts', '../../content/*.json', '../../README.md'], {

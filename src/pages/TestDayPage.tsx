@@ -85,6 +85,10 @@ export function TestDayPage() {
         </RuleCard>
         <RuleCard icon={<Wrench size={20} />} eyebrow="INSIDE THE TEST" title="Tools you can use" locator={TAO_TEST_DAY.tools.locator}>
           <ul>{TAO_TEST_DAY.tools.items.map((item) => <li key={item}>{item}</li>)}</ul>
+          <p>
+            Try them before test day: <a href={TAO_TEST_DAY.tools.publicSessionsUrl} target="_blank" rel="noreferrer">EPSO’s public TAO sessions</a> (anonymous, unscored)
+            or the <a href={TAO_TEST_DAY.tools.sampleTestsUrl} target="_blank" rel="noreferrer">AD5 sample tests on the OAT platform</a> in all 24 EU languages.
+          </p>
         </RuleCard>
         <RuleCard icon={<PackageCheck size={20} />} eyebrow="ALLOWED" title="What may be on or near the desk" locator={TAO_TEST_DAY.allowed.locator} tone="allowed">
           <ul>{TAO_TEST_DAY.allowed.items.map((item) => <li key={item}>{item}</li>)}</ul>
@@ -94,11 +98,12 @@ export function TestDayPage() {
         </RuleCard>
       </div>
 
-      <RuleCard icon={<Power size={20} />} eyebrow="AUTOMATIC TERMINATION" title="Actions that can end the test with no way back in" locator={TAO_TEST_DAY.autoTermination.locator} tone="forbidden">
+      <RuleCard icon={<Power size={20} />} eyebrow="AUTOMATIC TERMINATION" title="Actions that can end the test automatically" locator={TAO_TEST_DAY.autoTermination.locator} tone="forbidden">
         <div className="test-day-columns">
           <div><h4>Within your control</h4><ul>{TAO_TEST_DAY.autoTermination.withinYourControl.map((item) => <li key={item}>{item}</li>)}</ul></div>
           <div><h4>Beyond your control</h4><ul>{TAO_TEST_DAY.autoTermination.beyondYourControl.map((item) => <li key={item}>{item}</li>)}</ul></div>
         </div>
+        <div><h4>If it happens</h4><ol>{TAO_TEST_DAY.autoTermination.ifItHappens.map((item) => <li key={item}>{item}</li>)}</ol></div>
       </RuleCard>
 
       <div className="test-day-grid">
